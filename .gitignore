@@ -1,0 +1,10 @@
+.adb-home/
+.android/
+platform-tools/
+captures/
+analysis/
+build/
+.gradle/
+*.iml
+local.properties
+
