@@ -776,6 +776,17 @@ public final class VendorMotionEngine {
         double totalRom = 0.0;
         double totalMeanVelocity = 0.0;
         double totalPowerPerMass = 0.0;
+        double maxPowerPerMass = 0.0;
+        double totalEccentricDuration = 0.0;
+        double totalEccentricMeanVelocity = 0.0;
+        double totalEccentricMaxVelocity = 0.0;
+        double totalEccentricRom = 0.0;
+        double totalTempoRatio = 0.0;
+        double totalTimeToPeak = 0.0;
+        double totalRfdPerMass = 0.0;
+        double totalDecelerationRate = 0.0;
+        double totalRelativeTimeToPeak = 0.0;
+        double totalEccentricConcentricRatio = 0.0;
         for (int rep = 0; rep < peaks.size(); rep++) {
             int peakIndex = peaks.get(rep);
             int start = peakIndex;
@@ -786,40 +797,110 @@ public final class VendorMotionEngine {
             double sumVelocity = 0.0;
             double rom = 0.0;
             double power = 0.0;
+            double repMaxPowerPerMass = 0.0;
+            double eccentricSumVelocity = 0.0;
+            double eccentricRom = 0.0;
+            double eccentricMaxVelocity = 0.0;
+            double decelerationRate = 0.0;
+            int eccentricCount = 0;
             int count = 0;
             for (int index = start; index <= end; index++) {
                 DerivedSample sample = values.get(index);
                 double dt = index == start ? 1.0 / 120.0
                         : Math.max(1.0 / 240.0,
                         sample.elapsedSeconds - values.get(index - 1).elapsedSeconds);
-                sumVelocity += sample.linearSpeed;
-                rom += sample.linearSpeed * dt;
-                power += sample.linearMagnitude * sample.linearSpeed;
+                double speed = sample.linearSpeed;
+                sumVelocity += speed;
+                rom += speed * dt;
+                double instantaneousPowerPerMass = sample.linearMagnitude * speed
+                        / Math.max(1.0, bodyMassKg);
+                power += sample.linearMagnitude * speed;
+                repMaxPowerPerMass = Math.max(repMaxPowerPerMass, instantaneousPowerPerMass);
+                if (index <= peakIndex) {
+                    eccentricSumVelocity += speed;
+                    eccentricRom += speed * dt;
+                    eccentricMaxVelocity = Math.max(eccentricMaxVelocity, speed);
+                    eccentricCount++;
+                }
+                if (index > start) {
+                    double previousSpeed = values.get(index - 1).linearSpeed;
+                    double rate = (speed - previousSpeed) / dt;
+                    if (rate < 0.0) decelerationRate = Math.max(decelerationRate, -rate);
+                }
                 count++;
             }
             double meanVelocity = count == 0 ? 0.0 : sumVelocity / count;
             double powerPerMass = power / Math.max(1.0, bodyMassKg);
+            double eccentricDuration = Math.max(0.0,
+                    values.get(peakIndex).elapsedSeconds - values.get(start).elapsedSeconds);
+            double concentricDuration = Math.max(0.0,
+                    values.get(end).elapsedSeconds - values.get(peakIndex).elapsedSeconds);
+            double eccentricMeanVelocity = eccentricCount == 0
+                    ? 0.0 : eccentricSumVelocity / eccentricCount;
+            double tempoRatio = concentricDuration > 1.0e-9
+                    ? eccentricDuration / concentricDuration : 0.0;
+            double timeToPeakVelocity = eccentricDuration;
+            double totalDuration = Math.max(0.0,
+                    values.get(end).elapsedSeconds - values.get(start).elapsedSeconds);
+            double relativeTimeToPeak = totalDuration > 1.0e-9
+                    ? timeToPeakVelocity / totalDuration : 0.0;
+            double eccentricConcentricRatio = tempoRatio;
+            double rfdPerMass = peakAcceleration(values, start, peakIndex)
+                    / Math.max(1.0, bodyMassKg);
             if (rep == 0) firstPeak = peakVelocity;
             last = peakVelocity;
             totalRom += rom;
             totalMeanVelocity += meanVelocity;
             totalPowerPerMass += powerPerMass;
+            maxPowerPerMass = Math.max(maxPowerPerMass, repMaxPowerPerMass);
+            totalEccentricDuration += eccentricDuration;
+            totalEccentricMeanVelocity += eccentricMeanVelocity;
+            totalEccentricMaxVelocity += eccentricMaxVelocity;
+            totalEccentricRom += eccentricRom;
+            totalTempoRatio += tempoRatio;
+            totalTimeToPeak += timeToPeakVelocity;
+            totalRfdPerMass += rfdPerMass;
+            totalDecelerationRate += decelerationRate;
+            totalRelativeTimeToPeak += relativeTimeToPeak;
+            totalEccentricConcentricRatio += eccentricConcentricRatio;
             addEvent(result, "vbtRep", "VBT 第 " + (rep + 1) + " 次",
                     values, start, end, peakVelocity);
             result.repetitionCount++;
         }
         if (!peaks.isEmpty()) {
+            double repCount = peaks.size();
             result.metrics.put("vbtPeakVelocityMps", firstPeak);
             result.metrics.put("vbtLastPeakVelocityMps", last);
             result.metrics.put("rangeOfMotionM", totalRom);
-            result.metrics.put("meanVelocityMps", totalMeanVelocity / peaks.size());
-            result.metrics.put("meanPowerPerMassWPerKg", totalPowerPerMass / peaks.size());
+            result.metrics.put("rangeOfMotion", totalRom);
+            result.metrics.put("meanVelocityMps", totalMeanVelocity / repCount);
+            result.metrics.put("meanPowerPerMassWPerKg", totalPowerPerMass / repCount);
+            result.metrics.put("meanPowerPerMass", totalPowerPerMass / repCount);
+            result.metrics.put("maxPowerPerMass", maxPowerPerMass);
+            result.metrics.put("eccentricDuration", totalEccentricDuration / repCount);
+            result.metrics.put("eccentricMeanVelocity", totalEccentricMeanVelocity / repCount);
+            result.metrics.put("eccentricMaxVelocity", totalEccentricMaxVelocity / repCount);
+            result.metrics.put("eccentricRom", totalEccentricRom / repCount);
+            result.metrics.put("tempoRatio", totalTempoRatio / repCount);
+            result.metrics.put("timeToPeakVelocity", totalTimeToPeak / repCount);
+            result.metrics.put("rfdPerMass", totalRfdPerMass / repCount);
+            result.metrics.put("decelerationRate", totalDecelerationRate / repCount);
+            result.metrics.put("relativeTimeToPeak", totalRelativeTimeToPeak / repCount);
+            result.metrics.put("eccentricConcentricRatio",
+                    totalEccentricConcentricRatio / repCount);
             result.metrics.put("velocityLoss", firstPeak < 1.0e-9 ? 0.0 : 1.0 - last / firstPeak);
             result.metrics.put("peakTimestampSeconds",
                     values.get(peaks.get(0)).elapsedSeconds);
         }
     }
 
+    private static double peakAcceleration(List<DerivedSample> values, int start, int end) {
+        double peak = 0.0;
+        for (int index = start; index <= end && index < values.size(); index++) {
+            peak = Math.max(peak, values.get(index).linearMagnitude);
+        }
+        return peak;
+    }
     private static void populateOneRm(AnalysisResult result, double loadKg) {
         if (loadKg <= 0.0 || result.repetitionCount <= 0) {
             result.metrics.put("loadKg", Math.max(0.0, loadKg));
