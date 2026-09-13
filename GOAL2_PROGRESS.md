@@ -14,7 +14,7 @@
 - [x] 1RM 匯出 Epley、Brzycki、Lander、Mayhew、O'Conner 與 LVP 重建欄位。
 - [x] 四面板逐點圖表：線性加速度、線性速度、角速度、角加速度；事件線標記。
 - [x] CSV／JSON 逐筆匯出 raw、校正後、重力、全域資料、速度、角資料、四元數、事件與算法版本。
-- [x] 實機匯出 CSV／JSON 並解析確認各 5,118 筆樣本及 nalysis、profile、lgorithmVersion 欄位。
+- [x] 實機匯出 CSV／JSON 並解析確認各 5,118 筆樣本及 `analysis`、`profile`、`algorithmVersion` 欄位。
 - [x] `build-goal2.ps1` 合併官方 `split_config.zh.apk` 的 Traditional Chinese values，並宣告 V2 分析頁。
 - [x] 隔離 JDK／Android SDK／Apktool 建置、v2/v3 簽章驗證成功。
 - [x] Samsung SM-N9810 實機安裝；launcher、自由分析、訪客相容頁、校正對話框及可選登入路徑無啟動崩潰。
