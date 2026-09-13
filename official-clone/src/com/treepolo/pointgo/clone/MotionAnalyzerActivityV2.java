@@ -945,9 +945,9 @@ if (!recording || packet.length == 0) return;
         try (Writer writer = new OutputStreamWriter(new FileOutputStream(file), StandardCharsets.UTF_8)) {
             writer.write("{\"source\":\"Poin+T GO private clone\",\"algorithmVersion\":\"");
             writer.write(jsonEscape(VendorMotionEngine.ALGORITHM_VERSION));
-            writer.write("\",\"profile\":\"");
-            writer.write(jsonEscape(profile.describe()));
-            writer.write("\",\"module\":\"");
+            writer.write("\",\"profile\":");
+            writer.write(profile.toJson());
+            writer.write(",\"module\":\"");
             writer.write(jsonEscape(selectedModule.name()));
             writer.write("\",\"analysis\":");
             writer.write(analysisResult == null ? "null" : analysisResult.toJson());

@@ -52,6 +52,7 @@ public final class VendorMotionEngineTest {
                 VendorMotionEngine.Profile.defaultProfile());
         assertTrue(profile.isSixFaceComplete(), "six-face profile");
         assertTrue(profile.isGyroComplete(), "six-face gyro");
+        assertTrue(profile.toJson().contains("\"accelBias\""), "profile JSON bias");
         VendorMotionEngine.DerivedSample calibrated = new VendorMotionEngine(profile).process(
                 new VendorMotionEngine.RawSample(0L, G + bx, by, bz, gx, gy, gz));
         assertNear(G, calibrated.calibratedAx, 0.0001, "calibrated +X");

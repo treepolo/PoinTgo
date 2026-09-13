@@ -278,6 +278,21 @@ public final class VendorMotionEngine {
             String gyro = gyroComplete ? "陀螺儀偏置已校正" : "陀螺儀偏置未校正";
             return accel + " · " + gyro + " · " + algorithmVersion;
         }
+
+        /** Export the actual profile parameters so a session can be reproduced offline. */
+        public String toJson() {
+            return String.format(Locale.US,
+                    "{\"id\":\"%s\",\"algorithmVersion\":\"%s\",\"updatedAtMillis\":%d,"
+                            + "\"sixFaceComplete\":%s,\"gyroComplete\":%s,"
+                            + "\"accelBias\":[%.9f,%.9f,%.9f],"
+                            + "\"accelScale\":[%.9f,%.9f,%.9f],"
+                            + "\"gyroBias\":[%.9f,%.9f,%.9f]}",
+                    escape(id), escape(algorithmVersion), updatedAtMillis,
+                    Boolean.toString(sixFaceComplete), Boolean.toString(gyroComplete),
+                    accelBiasX, accelBiasY, accelBiasZ,
+                    accelScaleX, accelScaleY, accelScaleZ,
+                    gyroBiasX, gyroBiasY, gyroBiasZ);
+        }
     }
 
     public static final class CalibrationSession {
