@@ -36,6 +36,7 @@ import android.os.ParcelUuid;
 import android.text.InputType;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -607,7 +608,6 @@ public final class MotionAnalyzerActivityV2 extends Activity {
 
     private boolean looksLikeSensor(ScanResult result) {
         BluetoothDevice device = result.getDevice();
-            connectionAttempts++;
         String name = safeName(device).toLowerCase(Locale.US);
         String address = device.getAddress();
         String normalized = address == null ? "" : address.replace('_', ':').toLowerCase(Locale.US);
@@ -1191,10 +1191,12 @@ public final class MotionAnalyzerActivityV2 extends Activity {
     private final class AnalyzerGraphView extends View {
         private final Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
         private final Path path = new Path();
+        private int cursorIndex = -1;
 
         AnalyzerGraphView(Context context) {
             super(context);
             setBackgroundColor(PANEL);
+            setFocusable(true);
             paint.setStrokeCap(Paint.Cap.ROUND);
         }
 
@@ -1204,16 +1206,23 @@ public final class MotionAnalyzerActivityV2 extends Activity {
             float width = getWidth();
             float height = getHeight();
             float panelHeight = height / 4f;
-            drawPanel(canvas, 0f, panelHeight * 0f, width, panelHeight, "線性加速度（m/s²）", 0, ACCENT);
-            drawPanel(canvas, 0f, panelHeight * 1f, width, panelHeight, "線性速度（m/s）", 1, GREEN);
+            ArrayList<VendorMotionEngine.DerivedSample> copy;
+            synchronized (sampleLock) {
+                copy = new ArrayList<>(samples);
+            }
+            drawPanel(canvas, 0f, panelHeight * 0f, width, panelHeight,
+                    "線性加速度（m/s²）", 0, ACCENT, copy);
+            drawPanel(canvas, 0f, panelHeight * 1f, width, panelHeight,
+                    "線性速度（m/s）", 1, GREEN, copy);
             drawPanel(canvas, 0f, panelHeight * 2f, width, panelHeight,
-                    "角速度（rad/s）", 2, CYAN);
+                    "角速度（rad/s）", 2, CYAN, copy);
             drawPanel(canvas, 0f, panelHeight * 3f, width, panelHeight,
-                    "角加速度（rad/s²）", 3, ORANGE);
+                    "角加速度（rad/s²）", 3, ORANGE, copy);
         }
 
         private void drawPanel(Canvas canvas, float left, float top, float width, float height,
-                               String title, int metric, int color) {
+                               String title, int metric, int color,
+                               ArrayList<VendorMotionEngine.DerivedSample> values) {
             float padLeft = dp(40);
             float padRight = dp(10);
             float padTop = dp(22);
@@ -1227,7 +1236,7 @@ public final class MotionAnalyzerActivityV2 extends Activity {
             canvas.drawRect(left, top, left + width, top + height, paint);
             paint.setTextSize(dp(12));
             paint.setColor(MUTED);
-            canvas.drawText(title, left + dp(10), top + dp(15), paint);
+            canvas.drawText(title + " · 全時段", left + dp(10), top + dp(15), paint);
             paint.setStyle(Paint.Style.STROKE);
             paint.setStrokeWidth(1f);
             paint.setColor(Color.rgb(65, 73, 85));
@@ -1235,46 +1244,64 @@ public final class MotionAnalyzerActivityV2 extends Activity {
                 float y = chartTop + (chartBottom - chartTop) * line / 4f;
                 canvas.drawLine(chartLeft, y, chartRight, y, paint);
             }
-            ArrayList<VendorMotionEngine.DerivedSample> copy;
-            synchronized (sampleLock) {
-                copy = new ArrayList<>(samples);
-            }
-            if (copy.size() < 2) {
+            if (values.size() < 2) {
                 paint.setStyle(Paint.Style.FILL);
                 paint.setColor(MUTED);
                 canvas.drawText("等待資料…", chartLeft + dp(10), (chartTop + chartBottom) / 2f, paint);
                 return;
             }
-            int start = Math.max(0, copy.size() - 1000);
             double max = 0.0;
-            for (int index = start; index < copy.size(); index++) {
-                max = Math.max(max, metricValue(copy.get(index), metric));
+            for (VendorMotionEngine.DerivedSample value : values) {
+                max = Math.max(max, metricValue(value, metric));
             }
             if (max < 0.001) max = 1.0;
-            drawSeries(canvas, copy, start, chartLeft, chartTop, chartRight, chartBottom,
+            drawSeries(canvas, values, chartLeft, chartTop, chartRight, chartBottom,
                     max, metric, color);
-            drawEventMarkers(canvas, copy, start, chartLeft, chartTop, chartRight, chartBottom);
+            drawEventMarkers(canvas, values, chartLeft, chartTop, chartRight, chartBottom);
+            drawCursor(canvas, values, chartLeft, chartTop, chartRight, chartBottom, max, metric);
             paint.setStyle(Paint.Style.FILL);
             paint.setColor(MUTED);
             paint.setTextSize(dp(10));
             canvas.drawText(String.format(Locale.US, "%.2f", max), left + dp(4), chartTop + dp(4), paint);
             canvas.drawText("0", left + dp(20), chartBottom + dp(4), paint);
+            canvas.drawText("0.00 s", chartLeft, chartBottom + dp(4), paint);
             canvas.drawText(String.format(Locale.US, "%.2f s",
-                    copy.get(copy.size() - 1).elapsedSeconds), chartRight - dp(42),
+                    values.get(values.size() - 1).elapsedSeconds), chartRight - dp(45),
                     chartBottom + dp(4), paint);
         }
 
+        /** Draw a min/max envelope per pixel bucket so a long recording remains complete
+         * and peaks are not lost while avoiding a huge one-point Path. */
         private void drawSeries(Canvas canvas, ArrayList<VendorMotionEngine.DerivedSample> values,
-                                int start, float left, float top, float right, float bottom,
+                                float left, float top, float right, float bottom,
                                 double max, int metric, int color) {
+            int count = values.size();
+            int pixelBuckets = Math.max(1, (int) (right - left));
+            int bucketCount = Math.min(count, pixelBuckets * 2);
             path.reset();
-            int count = values.size() - start;
-            for (int index = start; index < values.size(); index++) {
-                double value = metricValue(values.get(index), metric);
-                float x = left + (right - left) * (index - start) / Math.max(1f, count - 1f);
-                float y = bottom - (float) Math.min(1.0, Math.max(0.0, value / max))
+            boolean first = true;
+            for (int bucket = 0; bucket < bucketCount; bucket++) {
+                int from = bucket * count / bucketCount;
+                int to = Math.max(from + 1, (bucket + 1) * count / bucketCount);
+                double min = Double.POSITIVE_INFINITY;
+                double peak = Double.NEGATIVE_INFINITY;
+                for (int index = from; index < to && index < count; index++) {
+                    double value = metricValue(values.get(index), metric);
+                    min = Math.min(min, value);
+                    peak = Math.max(peak, value);
+                }
+                float x = left + (right - left) * bucket / Math.max(1f, bucketCount - 1f);
+                float yMin = bottom - (float) Math.min(1.0, Math.max(0.0, min / max))
                         * (bottom - top);
-                if (index == start) path.moveTo(x, y); else path.lineTo(x, y);
+                float yPeak = bottom - (float) Math.min(1.0, Math.max(0.0, peak / max))
+                        * (bottom - top);
+                if (first) {
+                    path.moveTo(x, yMin);
+                    first = false;
+                } else {
+                    path.lineTo(x, yMin);
+                }
+                path.lineTo(x, yPeak);
             }
             paint.setStyle(Paint.Style.STROKE);
             paint.setStrokeWidth(dp(1.6f));
@@ -1284,18 +1311,59 @@ public final class MotionAnalyzerActivityV2 extends Activity {
 
         private void drawEventMarkers(Canvas canvas,
                                       ArrayList<VendorMotionEngine.DerivedSample> values,
-                                      int start, float left, float top, float right, float bottom) {
+                                      float left, float top, float right, float bottom) {
             if (analysisResult == null || analysisResult.events.isEmpty()) return;
-            int count = values.size() - start;
             paint.setStrokeWidth(dp(1f));
             paint.setStyle(Paint.Style.STROKE);
             for (VendorMotionEngine.Event event : analysisResult.events) {
-                if (event.startIndex < start || event.startIndex >= values.size()) continue;
-                float x = left + (right - left) * (event.startIndex - start)
-                        / Math.max(1f, count - 1f);
+                if (event.startIndex < 0 || event.startIndex >= values.size()) continue;
+                float x = left + (right - left) * event.startIndex
+                        / Math.max(1f, values.size() - 1f);
                 paint.setColor(event.kind.contains("landing") ? ORANGE : PURPLE);
                 canvas.drawLine(x, top, x, bottom, paint);
             }
+        }
+
+        private void drawCursor(Canvas canvas,
+                                ArrayList<VendorMotionEngine.DerivedSample> values,
+                                float left, float top, float right, float bottom,
+                                double max, int metric) {
+            if (cursorIndex < 0 || cursorIndex >= values.size()) return;
+            VendorMotionEngine.DerivedSample sample = values.get(cursorIndex);
+            float x = left + (right - left) * cursorIndex
+                    / Math.max(1f, values.size() - 1f);
+            paint.setStyle(Paint.Style.STROKE);
+            paint.setStrokeWidth(dp(1f));
+            paint.setColor(Color.WHITE);
+            canvas.drawLine(x, top, x, bottom, paint);
+            double value = metricValue(sample, metric);
+            paint.setStyle(Paint.Style.FILL);
+            paint.setTextSize(dp(10));
+            paint.setColor(Color.WHITE);
+            String text = String.format(Locale.US, "%.2f s  %.3f", sample.elapsedSeconds, value);
+            float textX = Math.min(Math.max(left, x + dp(4)), right - dp(105));
+            canvas.drawText(text, textX, top + dp(12), paint);
+        }
+
+        @Override
+        public boolean onTouchEvent(MotionEvent event) {
+            if (event.getAction() == MotionEvent.ACTION_DOWN
+                    || event.getAction() == MotionEvent.ACTION_MOVE) {
+                ArrayList<VendorMotionEngine.DerivedSample> copy;
+                synchronized (sampleLock) {
+                    copy = new ArrayList<>(samples);
+                }
+                if (copy.size() >= 2) {
+                    float left = dp(40);
+                    float right = getWidth() - dp(10);
+                    float ratio = (event.getX() - left) / Math.max(1f, right - left);
+                    cursorIndex = Math.max(0, Math.min(copy.size() - 1,
+                            Math.round(ratio * (copy.size() - 1))));
+                    invalidate();
+                }
+                return true;
+            }
+            return true;
         }
 
         private double metricValue(VendorMotionEngine.DerivedSample sample, int metric) {
