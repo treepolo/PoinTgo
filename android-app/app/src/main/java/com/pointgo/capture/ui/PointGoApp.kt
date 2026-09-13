@@ -24,12 +24,12 @@ import com.pointgo.capture.ui.screens.LiveScreen
 fun PointGoApp(viewModel: PointGoViewModel) {
     val state by viewModel.uiState.collectAsStateWithLifecycle()
     var selectedTab by rememberSaveable { mutableIntStateOf(0) }
-    val titles = listOf("Live", "Replay")
+    val titles = listOf("即時", "回放")
 
     Scaffold(
         topBar = {
             CenterAlignedTopAppBar(
-                title = { Text("PointGo Analyzer · ${titles[selectedTab]}") },
+                title = { Text("PointGo 分析器 · ${titles[selectedTab]}") },
                 colors = TopAppBarDefaults.centerAlignedTopAppBarColors(),
             )
         },
@@ -39,13 +39,13 @@ fun PointGoApp(viewModel: PointGoViewModel) {
                     selected = selectedTab == 0,
                     onClick = { selectedTab = 0 },
                     icon = { Text("●") },
-                    label = { Text("Live") },
+                    label = { Text("即時") },
                 )
                 NavigationBarItem(
                     selected = selectedTab == 1,
                     onClick = { selectedTab = 1 },
                     icon = { Text("↺") },
-                    label = { Text("Replay") },
+                    label = { Text("回放") },
                 )
             }
         },

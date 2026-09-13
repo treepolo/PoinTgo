@@ -59,11 +59,11 @@ data class MeasurementSession(
 )
 
 enum class Metric(val label: String, val unit: String) {
-    LINEAR_ACCELERATION("Linear acceleration", "m/s²"),
-    ANGULAR_ACCELERATION("Angular acceleration", "rad/s²"),
-    ANGULAR_VELOCITY("Angular velocity", "rad/s"),
-    LINEAR_ACCELERATION_MAGNITUDE("Linear resultant", "m/s²"),
-    ANGULAR_ACCELERATION_MAGNITUDE("Angular resultant", "rad/s²"),
+    LINEAR_ACCELERATION("線性加速度", "m/s²"),
+    ANGULAR_ACCELERATION("角加速度", "rad/s²"),
+    ANGULAR_VELOCITY("角速度", "rad/s"),
+    LINEAR_ACCELERATION_MAGNITUDE("線性加速度合成值", "m/s²"),
+    ANGULAR_ACCELERATION_MAGNITUDE("角加速度合成值", "rad/s²"),
     ;
 
     fun value(sample: RawSample): Double = when (this) {

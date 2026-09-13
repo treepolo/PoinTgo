@@ -62,13 +62,13 @@ fun LiveScreen(
         item {
             Card(Modifier.fillMaxWidth()) {
                 Column(Modifier.padding(16.dp)) {
-                    Text("Live monitor", style = MaterialTheme.typography.titleLarge)
+                    Text("即時監測", style = MaterialTheme.typography.titleLarge)
                     Text(
-                        "Start a free recording without choosing a sport mode.",
+                        "不必選運動模式即可開始自由記錄。",
                         style = MaterialTheme.typography.bodyMedium,
                     )
                     Spacer(Modifier.height(12.dp))
-                    Text("Linear acceleration · resultant (m/s²)", style = MaterialTheme.typography.labelLarge)
+                    Text("線性加速度・合成值 (m/s²)", style = MaterialTheme.typography.labelLarge)
                     TimeSeriesChart(
                         values = linearValues,
                         threshold = if (state.selectedMetric == Metric.LINEAR_ACCELERATION_MAGNITUDE) {
@@ -78,7 +78,7 @@ fun LiveScreen(
                         },
                     )
                     Spacer(Modifier.height(12.dp))
-                    Text("Angular acceleration · resultant (rad/s²)", style = MaterialTheme.typography.labelLarge)
+                    Text("角加速度・合成值 (rad/s²)", style = MaterialTheme.typography.labelLarge)
                     TimeSeriesChart(
                         values = angularValues,
                         threshold = if (state.selectedMetric == Metric.ANGULAR_ACCELERATION_MAGNITUDE) {
@@ -89,7 +89,7 @@ fun LiveScreen(
                     )
                     Spacer(Modifier.height(12.dp))
                     Text(
-                        "Selected: ${state.selectedMetric.label} (${state.selectedMetric.unit})",
+                        "目前選擇：${state.selectedMetric.label} (${state.selectedMetric.unit})",
                         style = MaterialTheme.typography.labelLarge,
                     )
                     Text(
@@ -109,12 +109,12 @@ fun LiveScreen(
             ) {
                 PeakCard(
                     modifier = Modifier.weight(1f),
-                    title = "Peak linear accel",
+                    title = "線性加速度峰值",
                     value = valueText(state.peakLinearAccelerationMps2, "m/s²"),
                 )
                 PeakCard(
                     modifier = Modifier.weight(1f),
-                    title = "Peak angular accel",
+                    title = "角加速度峰值",
                     value = valueText(state.peakAngularAccelerationRadPerSec2, "rad/s²"),
                 )
             }
@@ -123,7 +123,7 @@ fun LiveScreen(
             if (warningActive) {
                 Card(Modifier.fillMaxWidth()) {
                     Text(
-                        "Threshold exceeded: ${valueText(state.currentValue, state.selectedMetric.unit)}",
+                        "超過警示門檻：${valueText(state.currentValue, state.selectedMetric.unit)}",
                         modifier = Modifier.padding(16.dp),
                         color = MaterialTheme.colorScheme.error,
                         fontWeight = FontWeight.Bold,
@@ -139,10 +139,10 @@ fun LiveScreen(
                     verticalAlignment = Alignment.CenterVertically,
                 ) {
                     Button(onClick = onToggleRecording, Modifier.weight(1f)) {
-                        Text(if (state.isRecording) "Stop & save" else "Start free recording")
+                        Text(if (state.isRecording) "停止並儲存" else "開始自由記錄")
                     }
                     Text(
-                        if (state.isRecording) "Recording" else "Ready",
+                        if (state.isRecording) "記錄中" else "準備就緒",
                         color = if (state.isRecording) {
                             MaterialTheme.colorScheme.primary
                         } else {
@@ -161,14 +161,14 @@ fun LiveScreen(
                         horizontalArrangement = Arrangement.SpaceBetween,
                     ) {
                         Column(Modifier.weight(1f)) {
-                            Text("Advanced controls", style = MaterialTheme.typography.titleMedium)
+                            Text("進階設定", style = MaterialTheme.typography.titleMedium)
                             Text(
-                                "Optional settings; blank address scans for Poin+T.",
+                                "可選設定；BLE 位址留白會自動掃描 Poin+T。",
                                 style = MaterialTheme.typography.bodySmall,
                             )
                         }
                         TextButton(onClick = onToggleAdvanced) {
-                            Text(if (state.advancedPanelExpanded) "Hide" else "Show")
+                            Text(if (state.advancedPanelExpanded) "收起" else "展開")
                         }
                     }
                     if (state.advancedPanelExpanded) {
@@ -177,19 +177,19 @@ fun LiveScreen(
                             value = state.deviceAddress,
                             onValueChange = onDeviceAddressChanged,
                             modifier = Modifier.fillMaxWidth(),
-                            label = { Text("BLE address (optional)") },
-                            placeholder = { Text("Blank = scan") },
+                            label = { Text("BLE 位址（可選）") },
+                            placeholder = { Text("留白＝掃描") },
                             singleLine = true,
                         )
                         Spacer(Modifier.height(12.dp))
-                        Text("Smoothing window: ${state.smoothingWindow} samples")
+                        Text("平滑視窗：${state.smoothingWindow} 筆")
                         Slider(
                             value = state.smoothingWindow.toFloat(),
                             onValueChange = { onSmoothingChanged(it.toInt().coerceIn(1, 9)) },
                             valueRange = 1f..9f,
                             steps = 7,
                         )
-                        Text("Warning threshold: ${valueText(state.warningThreshold, state.selectedMetric.unit)}")
+                        Text("警示門檻：${valueText(state.warningThreshold, state.selectedMetric.unit)}")
                         Slider(
                             value = state.warningThreshold.toFloat().coerceIn(0f, 100f),
                             onValueChange = { onThresholdChanged(it.toDouble()) },
@@ -209,12 +209,12 @@ private fun ConnectionCard(
     onDisconnect: () -> Unit,
 ) {
     val status = when (connectionState) {
-        SensorConnectionState.Disconnected -> "Disconnected"
-        SensorConnectionState.Scanning -> "Scanning for Poin+T…"
-        is SensorConnectionState.Connecting -> "Connecting…"
-        is SensorConnectionState.Connected -> "Connected"
-        is SensorConnectionState.Streaming -> "Streaming"
-        is SensorConnectionState.Error -> "Error: ${connectionState.message}"
+        SensorConnectionState.Disconnected -> "未連線"
+        SensorConnectionState.Scanning -> "正在掃描 Poin+T…"
+        is SensorConnectionState.Connecting -> "連線中…"
+        is SensorConnectionState.Connected -> "已連線"
+        is SensorConnectionState.Streaming -> "串流中"
+        is SensorConnectionState.Error -> "錯誤：${connectionState.message}"
     }
     Card(Modifier.fillMaxWidth()) {
         Row(
@@ -223,15 +223,15 @@ private fun ConnectionCard(
             horizontalArrangement = Arrangement.spacedBy(10.dp),
         ) {
             Column(Modifier.weight(1f)) {
-                Text("Sensor", style = MaterialTheme.typography.titleMedium)
+                Text("感測器", style = MaterialTheme.typography.titleMedium)
                 Text(status, style = MaterialTheme.typography.bodyMedium)
             }
             if (connectionState is SensorConnectionState.Connected ||
                 connectionState is SensorConnectionState.Streaming
             ) {
-                OutlinedButton(onClick = onDisconnect) { Text("Disconnect") }
+                OutlinedButton(onClick = onDisconnect) { Text("中斷連線") }
             } else {
-                Button(onClick = onConnect) { Text("Scan & connect") }
+                Button(onClick = onConnect) { Text("掃描並連線") }
             }
         }
     }
@@ -249,7 +249,7 @@ private fun MetricPicker(selected: Metric, onSelected: (Metric) -> Unit) {
                     selected = selected == metric,
                     onClick = { onSelected(metric) },
                     label = {
-                        Text(if (metric == Metric.LINEAR_ACCELERATION_MAGNITUDE) "Linear" else "Angular")
+                        Text(if (metric == Metric.LINEAR_ACCELERATION_MAGNITUDE) "線性" else "角加速度")
                     },
                 )
             }
@@ -258,12 +258,12 @@ private fun MetricPicker(selected: Metric, onSelected: (Metric) -> Unit) {
             FilterChip(
                 selected = selected == Metric.ANGULAR_VELOCITY,
                 onClick = { onSelected(Metric.ANGULAR_VELOCITY) },
-                label = { Text("Angular velocity") },
+                label = { Text("角速度") },
             )
             FilterChip(
                 selected = selected == Metric.LINEAR_ACCELERATION,
                 onClick = { onSelected(Metric.LINEAR_ACCELERATION) },
-                label = { Text("Linear X") },
+                label = { Text("線性 X") },
             )
         }
     }

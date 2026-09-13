@@ -72,9 +72,9 @@ fun HistoryScreen(
         verticalArrangement = Arrangement.spacedBy(12.dp),
     ) {
         item {
-            Text("Session replay", style = MaterialTheme.typography.headlineSmall)
+            Text("量測回放", style = MaterialTheme.typography.headlineSmall)
             Text(
-                "Review the complete acceleration-time trace, select a segment, mark moments, compare sessions, and export data or charts.",
+                "查看完整加速度—時間曲線、選取區段、標記時刻、比較量測並匯出資料或圖表。",
                 style = MaterialTheme.typography.bodyMedium,
             )
         }
@@ -82,14 +82,14 @@ fun HistoryScreen(
             item {
                 Card(Modifier.fillMaxWidth()) {
                     Text(
-                        "No saved sessions yet. Start a free recording on Live.",
+                        "目前沒有儲存的量測，請先到「即時」開始自由記錄。",
                         modifier = Modifier.padding(16.dp),
                     )
                 }
             }
         } else {
             item {
-                Text("Saved sessions", style = MaterialTheme.typography.titleMedium)
+                Text("已儲存的量測", style = MaterialTheme.typography.titleMedium)
             }
             items(state.sessions, key = MeasurementSession::id) { session ->
                 SessionRow(
@@ -107,29 +107,29 @@ fun HistoryScreen(
                 item {
                     Card(Modifier.fillMaxWidth()) {
                         Column(Modifier.padding(16.dp)) {
-                            Text("Replay trace", style = MaterialTheme.typography.titleLarge)
+                            Text("回放曲線", style = MaterialTheme.typography.titleLarge)
                             Text(
-                                "${session.samples.size} samples · ${session.annotations.size} annotations · full session shown",
+                                "${session.samples.size} 筆資料・${session.annotations.size} 個標註・顯示完整量測",
                                 style = MaterialTheme.typography.bodySmall,
                             )
                             Spacer(Modifier.height(10.dp))
-                            Text("Linear acceleration · resultant (m/s²)", style = MaterialTheme.typography.labelLarge)
+                            Text("線性加速度・合成值 (m/s²)", style = MaterialTheme.typography.labelLarge)
                             val plotted = downsample(session.samples, MAX_REPLAY_POINTS)
                             TimeSeriesChart(
                                 values = plotted.map { it.linearAccelerationMagnitudeMps2.toFloat() },
                             )
                             Spacer(Modifier.height(10.dp))
-                            Text("Angular acceleration · resultant (rad/s²)", style = MaterialTheme.typography.labelLarge)
+                            Text("角加速度・合成值 (rad/s²)", style = MaterialTheme.typography.labelLarge)
                             TimeSeriesChart(
                                 values = plotted.map { it.angularAccelerationMagnitudeRadPerSec2.toFloat() },
                             )
                             Spacer(Modifier.height(10.dp))
-                            Text("Segment window", style = MaterialTheme.typography.titleMedium)
+                            Text("區段範圍", style = MaterialTheme.typography.titleMedium)
                             Text(
-                                "${segmentIndexText(session, segmentStartFraction, segmentEndFraction)} · ${selectedSegment.size} samples",
+                                "${segmentIndexText(session, segmentStartFraction, segmentEndFraction)}・${selectedSegment.size} 筆",
                                 style = MaterialTheme.typography.bodySmall,
                             )
-                            Text("Start", style = MaterialTheme.typography.labelMedium)
+                            Text("開始", style = MaterialTheme.typography.labelMedium)
                             Slider(
                                 value = segmentStartFraction,
                                 onValueChange = {
@@ -137,7 +137,7 @@ fun HistoryScreen(
                                 },
                                 valueRange = 0f..1f,
                             )
-                            Text("End", style = MaterialTheme.typography.labelMedium)
+                            Text("結束", style = MaterialTheme.typography.labelMedium)
                             Slider(
                                 value = segmentEndFraction,
                                 onValueChange = {
@@ -146,7 +146,7 @@ fun HistoryScreen(
                                 valueRange = 0f..1f,
                             )
                             Text(
-                                "Selected segment peak: linear ${peakText(selectedSegment.maxOfOrNull { it.linearAccelerationMagnitudeMps2 } ?: 0.0, "m/s²")}, angular ${peakText(selectedSegment.maxOfOrNull { it.angularAccelerationMagnitudeRadPerSec2 } ?: 0.0, "rad/s²")}",
+                                "選取區段峰值：線性 ${peakText(selectedSegment.maxOfOrNull { it.linearAccelerationMagnitudeMps2 } ?: 0.0, "m/s²")}、角 ${peakText(selectedSegment.maxOfOrNull { it.angularAccelerationMagnitudeRadPerSec2 } ?: 0.0, "rad/s²")}",
                                 style = MaterialTheme.typography.bodyMedium,
                                 fontWeight = FontWeight.Bold,
                             )
@@ -157,18 +157,18 @@ fun HistoryScreen(
                                     onClick = {
                                         replayMetric = Metric.LINEAR_ACCELERATION_MAGNITUDE.name
                                     },
-                                    label = { Text("Focus linear") },
+                                    label = { Text("聚焦線性") },
                                 )
                                 FilterChip(
                                     selected = metric == Metric.ANGULAR_ACCELERATION_MAGNITUDE,
                                     onClick = {
                                         replayMetric = Metric.ANGULAR_ACCELERATION_MAGNITUDE.name
                                     },
-                                    label = { Text("Focus angular") },
+                                    label = { Text("聚焦角加速度") },
                                 )
                             }
                             Text(
-                                "Focus: ${metric.label} (${metric.unit})",
+                                "聚焦：${metric.label} (${metric.unit})",
                                 style = MaterialTheme.typography.labelSmall,
                             )
                         }
@@ -204,13 +204,13 @@ fun HistoryScreen(
                 }
                 if (session.annotations.isNotEmpty()) {
                     item {
-                        Text("Annotations", style = MaterialTheme.typography.titleMedium)
+                        Text("標註", style = MaterialTheme.typography.titleMedium)
                     }
                     items(session.annotations) { annotation ->
                         Card(Modifier.fillMaxWidth()) {
                             Column(Modifier.padding(12.dp)) {
                                 Text(annotation.label, fontWeight = FontWeight.Bold)
-                                Text(annotation.note.ifBlank { "No note" })
+                                Text(annotation.note.ifBlank { "沒有備註" })
                                 Text(
                                     "t=${annotation.timestampNanos} ns",
                                     style = MaterialTheme.typography.labelSmall,
@@ -234,11 +234,11 @@ private fun SessionRow(session: MeasurementSession, selected: Boolean, onClick: 
             Column(Modifier.weight(1f)) {
                 Text(formatDate(session.startedAtEpochMillis), fontWeight = FontWeight.Bold)
                 Text(
-                    "${session.samples.size} samples · peak linear ${peakText(session.samples.maxOfOrNull { it.linearAccelerationMagnitudeMps2 } ?: 0.0, "m/s²")} · peak angular ${peakText(session.samples.maxOfOrNull { it.angularAccelerationMagnitudeRadPerSec2 } ?: 0.0, "rad/s²")}",
+                    "${session.samples.size} 筆・線性峰值 ${peakText(session.samples.maxOfOrNull { it.linearAccelerationMagnitudeMps2 } ?: 0.0, "m/s²")}・角峰值 ${peakText(session.samples.maxOfOrNull { it.angularAccelerationMagnitudeRadPerSec2 } ?: 0.0, "rad/s²")}",
                     style = MaterialTheme.typography.bodySmall,
                 )
             }
-            FilterChip(selected = selected, onClick = onClick, label = { Text(if (selected) "Open" else "View") })
+            FilterChip(selected = selected, onClick = onClick, label = { Text(if (selected) "已開啟" else "檢視") })
         }
     }
 }
@@ -261,24 +261,24 @@ private fun ComparisonCard(
     val comparisonSegmentAngular = comparisonSegment.maxOfOrNull { it.angularAccelerationMagnitudeRadPerSec2 } ?: 0.0
     Card(Modifier.fillMaxWidth()) {
         Column(Modifier.padding(16.dp)) {
-            Text("Session comparison", style = MaterialTheme.typography.titleMedium)
-            Text("Other session: ${formatDate(comparison.startedAtEpochMillis)}")
+            Text("量測比較", style = MaterialTheme.typography.titleMedium)
+            Text("另一筆量測：${formatDate(comparison.startedAtEpochMillis)}")
             Text(
-                "Full linear peak ${peakText(selectedLinear, "m/s²")} vs ${peakText(comparisonLinear, "m/s²")}",
+                "完整量測線性峰值 ${peakText(selectedLinear, "m/s²")} vs ${peakText(comparisonLinear, "m/s²")}",
                 style = MaterialTheme.typography.bodySmall,
             )
             Text(
-                "Full angular peak ${peakText(selectedAngular, "rad/s²")} vs ${peakText(comparisonAngular, "rad/s²")}",
+                "完整量測角峰值 ${peakText(selectedAngular, "rad/s²")} vs ${peakText(comparisonAngular, "rad/s²")}",
                 style = MaterialTheme.typography.bodySmall,
             )
             Spacer(Modifier.height(6.dp))
-            Text("Same normalized segment", fontWeight = FontWeight.Bold)
+            Text("相同比例區段", fontWeight = FontWeight.Bold)
             Text(
-                "Linear ${peakText(selectedSegmentLinear, "m/s²")} vs ${peakText(comparisonSegmentLinear, "m/s²")}",
+                "線性 ${peakText(selectedSegmentLinear, "m/s²")} vs ${peakText(comparisonSegmentLinear, "m/s²")}",
                 style = MaterialTheme.typography.bodySmall,
             )
             Text(
-                "Angular ${peakText(selectedSegmentAngular, "rad/s²")} vs ${peakText(comparisonSegmentAngular, "rad/s²")}",
+                "角 ${peakText(selectedSegmentAngular, "rad/s²")} vs ${peakText(comparisonSegmentAngular, "rad/s²")}",
                 style = MaterialTheme.typography.bodySmall,
             )
         }
@@ -295,13 +295,13 @@ private fun AnnotationCard(
 ) {
     Card(Modifier.fillMaxWidth()) {
         Column(Modifier.padding(16.dp)) {
-            Text("Add replay annotation", style = MaterialTheme.typography.titleMedium)
+            Text("新增回放標註", style = MaterialTheme.typography.titleMedium)
             Spacer(Modifier.height(8.dp))
             OutlinedTextField(
                 value = label,
                 onValueChange = onLabelChanged,
                 modifier = Modifier.fillMaxWidth(),
-                label = { Text("Label") },
+                label = { Text("標題") },
                 singleLine = true,
             )
             Spacer(Modifier.height(8.dp))
@@ -309,12 +309,12 @@ private fun AnnotationCard(
                 value = note,
                 onValueChange = onNoteChanged,
                 modifier = Modifier.fillMaxWidth(),
-                label = { Text("Note") },
+                label = { Text("備註") },
                 minLines = 2,
             )
             Spacer(Modifier.height(8.dp))
             Button(onClick = onAdd, enabled = label.isNotBlank() || note.isNotBlank()) {
-                Text("Mark latest sample")
+                Text("標記最新資料")
             }
         }
     }
@@ -324,13 +324,13 @@ private fun AnnotationCard(
 private fun ExportCard(onExport: (ExportFormat) -> Unit) {
     Card(Modifier.fillMaxWidth()) {
         Column(Modifier.padding(16.dp)) {
-            Text("Export data and charts", style = MaterialTheme.typography.titleMedium)
-            Text("CSV/JSON contain every sample; SVG is a vector chart of both metrics.")
+            Text("匯出資料與圖表", style = MaterialTheme.typography.titleMedium)
+            Text("CSV／JSON 包含每筆資料；SVG 是兩項指標的向量圖表。")
             Spacer(Modifier.height(8.dp))
             Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                Button(onClick = { onExport(ExportFormat.CSV) }) { Text("Share CSV") }
-                Button(onClick = { onExport(ExportFormat.JSON) }) { Text("Share JSON") }
-                Button(onClick = { onExport(ExportFormat.SVG) }) { Text("Share SVG") }
+                Button(onClick = { onExport(ExportFormat.CSV) }) { Text("分享 CSV") }
+                Button(onClick = { onExport(ExportFormat.JSON) }) { Text("分享 JSON") }
+                Button(onClick = { onExport(ExportFormat.SVG) }) { Text("分享 SVG") }
             }
         }
     }
@@ -342,7 +342,7 @@ private fun sharePayload(context: Context, payload: ExportPayload) {
         putExtra(Intent.EXTRA_SUBJECT, payload.fileName)
         putExtra(Intent.EXTRA_TEXT, payload.content)
     }
-    context.startActivity(Intent.createChooser(shareIntent, "Export ${payload.fileName}"))
+    context.startActivity(Intent.createChooser(shareIntent, "匯出 ${payload.fileName}"))
 }
 
 private fun segmentFor(
@@ -351,8 +351,8 @@ private fun segmentFor(
     endFraction: Float,
 ): List<RawSample> {
     if (session.samples.isEmpty()) return emptyList()
-    val start = (startFraction.coerceIn(0f, 1f) * (session.samples.lastIndex)).roundToInt()
-    val end = (endFraction.coerceIn(startFraction, 1f) * (session.samples.lastIndex)).roundToInt()
+    val start = (startFraction.coerceIn(0f, 1f) * session.samples.lastIndex).roundToInt()
+    val end = (endFraction.coerceIn(startFraction, 1f) * session.samples.lastIndex).roundToInt()
     return session.samples.subList(start.coerceAtMost(end), end.coerceAtLeast(start) + 1)
 }
 
@@ -361,12 +361,12 @@ private fun segmentIndexText(
     startFraction: Float,
     endFraction: Float,
 ): String {
-    if (session.samples.isEmpty()) return "empty session"
+    if (session.samples.isEmpty()) return "空量測"
     val start = (startFraction.coerceIn(0f, 1f) * session.samples.lastIndex).roundToInt()
     val end = (endFraction.coerceIn(startFraction, 1f) * session.samples.lastIndex).roundToInt()
     val startTime = session.samples[start].timestampNanos
     val endTime = session.samples[end].timestampNanos
-    return "samples $start–$end · ${((endTime - startTime).coerceAtLeast(0L) / 1_000_000_000.0).formatSeconds()} s"
+    return "第 $start–$end 筆・${((endTime - startTime).coerceAtLeast(0L) / 1_000_000_000.0).formatSeconds()} 秒"
 }
 
 private fun downsample(samples: List<RawSample>, maxPoints: Int): List<RawSample> {
