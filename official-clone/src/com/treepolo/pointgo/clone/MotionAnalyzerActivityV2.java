@@ -128,9 +128,17 @@ public final class MotionAnalyzerActivityV2 extends Activity {
     private int connectionAttempts;
     private int commandIndex;
     private int packetCount;
+    private long receivedByteCount;
+    private int decodedPacketCount;
     private int decodedSampleCount;
+    private int ignoredPacketCount;
+    private int malformedPacketCount;
+    private int timestampGapCount;
+    private int timestampRegressionCount;
+    private long largestGapMillis;
     private long firstTimestampMillis = Long.MIN_VALUE;
     private long lastTimestampMillis = Long.MIN_VALUE;
+    private long lastExpandedTimestampMillis = Long.MIN_VALUE;
     private long timestampWraps;
     private double peakLinear;
     private double peakLinearSpeed;
@@ -692,9 +700,11 @@ public final class MotionAnalyzerActivityV2 extends Activity {
             });
             return;
         }
-        if (!recording || packet.length == 0) return;
+if (!recording || packet.length == 0) return;
         packetCount++;
+        receivedByteCount += packet.length;
         if ((packet[0] & 0xff) != 0x04) {
+            ignoredPacketCount++;
             updateUi(false);
             return;
         }
@@ -708,11 +718,13 @@ public final class MotionAnalyzerActivityV2 extends Activity {
             }
         }
         if (decoded > 0) {
+            decodedPacketCount++;
             decodedSampleCount += decoded;
-            updateUi(false);
+        } else {
+            malformedPacketCount++;
         }
+        updateUi(false);
     }
-
     private int decodeCapturedPacket(byte[] packet) {
         int[] recordA = new int[13];
         int[] recordB = new int[13];
@@ -755,11 +767,21 @@ public final class MotionAnalyzerActivityV2 extends Activity {
     private void addSample(long rawTimestampMillis, double ax, double ay, double az,
                            double gx, double gy, double gz) {
         long timestamp = rawTimestampMillis & 0xffff_ffffL;
+        long previousExpanded = lastExpandedTimestampMillis;
         if (lastTimestampMillis != Long.MIN_VALUE && timestamp < lastTimestampMillis
                 && lastTimestampMillis - timestamp > 0x8000_0000L) {
             timestampWraps++;
         }
         long expanded = timestamp + timestampWraps * 0x1_0000_0000L;
+        if (previousExpanded != Long.MIN_VALUE) {
+            long deltaMillis = expanded - previousExpanded;
+            if (deltaMillis < 0L) {
+                timestampRegressionCount++;
+            } else {
+                if (deltaMillis > 40L) timestampGapCount++;
+                largestGapMillis = Math.max(largestGapMillis, deltaMillis);
+            }
+        }
         if (firstTimestampMillis == Long.MIN_VALUE) firstTimestampMillis = expanded;
         VendorMotionEngine.RawSample raw = new VendorMotionEngine.RawSample(
                 expanded, ax, ay, az, gx, gy, gz);
@@ -773,6 +795,7 @@ public final class MotionAnalyzerActivityV2 extends Activity {
         peakAngularVelocity = Math.max(peakAngularVelocity, derived.angularVelocityMagnitude);
         peakAngularAcceleration = Math.max(peakAngularAcceleration,
                 derived.angularAccelerationMagnitude);
+        lastExpandedTimestampMillis = expanded;
         lastTimestampMillis = timestamp;
     }
 
@@ -783,9 +806,17 @@ public final class MotionAnalyzerActivityV2 extends Activity {
         }
         motionEngine.reset();
         packetCount = 0;
+        receivedByteCount = 0L;
+        decodedPacketCount = 0;
         decodedSampleCount = 0;
+        ignoredPacketCount = 0;
+        malformedPacketCount = 0;
+        timestampGapCount = 0;
+        timestampRegressionCount = 0;
+        largestGapMillis = 0L;
         firstTimestampMillis = Long.MIN_VALUE;
         lastTimestampMillis = Long.MIN_VALUE;
+        lastExpandedTimestampMillis = Long.MIN_VALUE;
         timestampWraps = 0L;
         peakLinear = 0.0;
         peakLinearSpeed = 0.0;
@@ -799,7 +830,10 @@ public final class MotionAnalyzerActivityV2 extends Activity {
         long now = System.nanoTime();
         if (!force && now - lastUiUpdateNanos < 100_000_000L) return;
         lastUiUpdateNanos = now;
-        countView.setText("封包 " + packetCount + " · 樣本 " + decodedSampleCount);
+        countView.setText(String.format(Locale.US,
+                "封包 %d · 解碼 %d · 樣本 %d\n資料品質：忽略 %d · 格式異常 %d · 大間隔 %d（最大 %d ms） · 回退 %d",
+                packetCount, decodedPacketCount, decodedSampleCount, ignoredPacketCount,
+                malformedPacketCount, timestampGapCount, largestGapMillis, timestampRegressionCount));
         peakView.setText(String.format(Locale.US,
                 "線性加速度峰值 %.3f m/s² · 線性速度峰值 %.3f m/s\n"
                         + "角速度峰值 %.3f rad/s · 角加速度峰值 %.3f rad/s²",
@@ -917,7 +951,11 @@ public final class MotionAnalyzerActivityV2 extends Activity {
             writer.write(jsonEscape(selectedModule.name()));
             writer.write("\",\"analysis\":");
             writer.write(analysisResult == null ? "null" : analysisResult.toJson());
-            writer.write(",\"samples\":[");
+            writer.write(String.format(Locale.US,
+                    ",\"quality\":{\"notificationPackets\":%d,\"decodedPackets\":%d,\"sampleCount\":%d,\"ignoredPackets\":%d,\"malformedPackets\":%d,\"timestampGapsOver40ms\":%d,\"largestGapMs\":%d,\"timestampRegressions\":%d,\"receivedBytes\":%d},\"samples\":[",
+                    packetCount, decodedPacketCount, decodedSampleCount, ignoredPacketCount,
+                    malformedPacketCount, timestampGapCount, largestGapMillis,
+                    timestampRegressionCount, receivedByteCount));
             for (int index = 0; index < values.size(); index++) {
                 if (index > 0) writer.write(",");
                 VendorMotionEngine.DerivedSample sample = values.get(index);
