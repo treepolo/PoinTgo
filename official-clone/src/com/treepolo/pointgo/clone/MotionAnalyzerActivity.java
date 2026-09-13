@@ -633,7 +633,7 @@ public final class MotionAnalyzerActivity extends Activity {
                 fields[0] * accScale,
                 fields[1] * accScale,
                 fields[2] * accScale,
-                fields[3] * accScale,
+                fields[3] * gyroScale,
                 fields[4] * gyroScale,
                 fields[5] * gyroScale);
     }
