@@ -33,6 +33,7 @@ import android.os.Environment;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.ParcelUuid;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
@@ -50,7 +51,6 @@ import java.lang.reflect.Field;
 import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -68,6 +68,10 @@ public final class MotionAnalyzerActivity extends Activity {
     private static final String TAG = "PoinTGoClone";
     private static final String RAW_ACTION = "com.treepolo.pointgo.clone.RAW_PACKET";
     private static final UUID SERVICE_UUID = UUID.fromString("6e400001-b5a3-f393-e0a9-e50e24dcca9e");
+    // Last address observed while reverse-engineering the user's Poin+T.
+    // It is only a fallback after broad scanning; failures simply return to
+    // the normal "not found" status.
+    private static final String LAST_KNOWN_ADDRESS = "D4:7E:7E:48:74:44";
     private static final UUID RX_UUID = UUID.fromString("6e400002-b5a3-f393-e0a9-e50e24dcca9e");
     private static final UUID TX_UUID = UUID.fromString("6e400003-b5a3-f393-e0a9-e50e24dcca9e");
     private static final UUID CCCD_UUID = UUID.fromString("00002902-0000-1000-8000-00805f9b34fb");
@@ -103,6 +107,7 @@ public final class MotionAnalyzerActivity extends Activity {
     private boolean pendingStart;
     private boolean commandsStarted;
     private boolean ownsGatt;
+    private boolean directFallbackAttempted;
     private int commandIndex;
     private int packetCount;
     private int decodedSampleCount;
@@ -347,6 +352,7 @@ public final class MotionAnalyzerActivity extends Activity {
         resetSession();
         recording = true;
         commandsStarted = false;
+        directFallbackAttempted = false;
         setStatus("準備自由記錄…");
         startButton.setEnabled(false);
         stopButton.setEnabled(true);
@@ -452,10 +458,10 @@ public final class MotionAnalyzerActivity extends Activity {
                 setStatus("手機不支援 BLE 掃描");
                 return;
             }
-            List<ScanFilter> filters = Arrays.asList(
-                    new ScanFilter.Builder()
-                            .setServiceUuid(new ParcelUuid(SERVICE_UUID))
-                            .build());
+            // Some firmware revisions omit the NUS UUID from the advertising
+            // payload while waiting for a connection. Scan broadly, then apply
+            // the Poin+T name/service/OUI check in looksLikeSensor().
+            List<ScanFilter> filters = new ArrayList<>();
             ScanSettings settings = new ScanSettings.Builder()
                     .setScanMode(ScanSettings.SCAN_MODE_LOW_LATENCY)
                     .build();
@@ -467,7 +473,9 @@ public final class MotionAnalyzerActivity extends Activity {
                 public void run() {
                     if (scanning) {
                         stopScan();
-                        setStatus("掃描逾時，請確認感測器已開機後重試");
+                        if (!connectKnownDevice()) {
+                            setStatus("掃描逾時，請確認感測器已開機後重試");
+                        }
                     }
                 }
             }, 12_000L);
@@ -476,10 +484,41 @@ public final class MotionAnalyzerActivity extends Activity {
         }
     }
 
+    private boolean connectKnownDevice() {
+        if (directFallbackAttempted || gatt != null) return false;
+        directFallbackAttempted = true;
+        BluetoothManager manager = (BluetoothManager) getSystemService(BLUETOOTH_SERVICE);
+        BluetoothAdapter adapter = manager == null ? null : manager.getAdapter();
+        if (adapter == null || !adapter.isEnabled()) return false;
+        try {
+            BluetoothDevice device = adapter.getRemoteDevice(LAST_KNOWN_ADDRESS);
+            ownsGatt = true;
+            gatt = device.connectGatt(
+                    MotionAnalyzerActivity.this,
+                    false,
+                    gattCallback,
+                    BluetoothDevice.TRANSPORT_LE);
+            connectionView.setText("嘗試直連 · " + LAST_KNOWN_ADDRESS);
+            setStatus("掃描不到裝置，正在嘗試已知 Poin+T 位址…");
+            return true;
+        } catch (IllegalArgumentException | SecurityException error) {
+            Log.d(TAG, "known-address fallback failed: " + error.getMessage());
+            return false;
+        }
+    }
+
     private boolean looksLikeSensor(ScanResult result) {
         BluetoothDevice device = result.getDevice();
         String name = safeName(device).toLowerCase(Locale.US);
-        if (name.contains("poin") || name.contains("point")) return true;
+        String address = device.getAddress();
+        String normalizedAddress = address == null
+                ? ""
+                : address.replace('_', ':').toLowerCase(Locale.US);
+        if (name.contains("poin") || name.contains("point")
+                || normalizedAddress.startsWith("d4:7e:7e")) {
+            Log.d(TAG, "Poin+T candidate name=" + safeName(device) + " address=" + address);
+            return true;
+        }
         ScanRecord record = result.getScanRecord();
         if (record != null && record.getServiceUuids() != null) {
             for (ParcelUuid uuid : record.getServiceUuids()) {
