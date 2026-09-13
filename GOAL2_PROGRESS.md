@@ -10,6 +10,7 @@
 - [x] 私人副本訪客優先 launcher；本機功能不要求登入。
 - [x] 登入按鈕仍可進入原廠 Flutter Google 登入頁；官方套件未修改。
 - [x] `VendorMotionEngine`：校正 profile、重力／姿態估計、全域線性加速度、線性速度、角速度、角加速度與四元數。
+- [x] 原廠六面圖＋重力自動提示校正精靈：面向定義、可捲動底部操作、實機 UIAutomator 與資料不足邊界測試通過；見 `GOAL2_CALIBRATION_UI_VALIDATION_20260914.md`。
 - [x] 動作模組：通用、甩球／投擲、角運動、VBT、1RM、跳躍、反向跳／CMJ；事件、次數與中間量都保留。
 - [x] 1RM 匯出 Epley、Brzycki、Lander、Mayhew、O'Conner 與 LVP 重建欄位。
 - [x] 四面板逐點圖表：線性加速度、線性速度、角速度、角加速度；事件線標記。

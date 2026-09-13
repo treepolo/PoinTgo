@@ -23,6 +23,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -41,6 +43,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.Spinner;
@@ -49,6 +52,7 @@ import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.InputStream;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.lang.reflect.Field;
@@ -115,6 +119,12 @@ public final class MotionAnalyzerActivityV2 extends Activity {
     private Button exportButton;
     private AlertDialog calibrationDialog;
     private TextView calibrationDialogStatus;
+    private ImageView calibrationFaceImage;
+    private TextView calibrationOrientationView;
+    private TextView calibrationFaceSelectionView;
+    private Button calibrationSampleButton;
+    private VendorMotionEngine.Face calibrationFace = VendorMotionEngine.Face.LEFT;
+    private final ArrayList<Button> calibrationFaceButtons = new ArrayList<>();
 
     private BluetoothGatt gatt;
     private BluetoothGattCharacteristic rxCharacteristic;
@@ -843,6 +853,9 @@ if (!recording || packet.length == 0) return;
                 peakLinear, peakLinearSpeed, peakAngularVelocity, peakAngularAcceleration));
         recalculateAnalysis(false);
         graphView.invalidate();
+        if (calibrationDialog != null && calibrationDialog.isShowing()) {
+            updateCalibrationOrientationHint();
+        }
     }
 
     private void recalculateAnalysis(boolean force) {
@@ -994,30 +1007,70 @@ if (!recording || packet.length == 0) return;
     private void showCalibrationDialog() {
         if (calibrationDialog != null && calibrationDialog.isShowing()) return;
         calibrationSession = new VendorMotionEngine.CalibrationSession();
+        calibrationFace = VendorMotionEngine.Face.LEFT;
+        calibrationFaceButtons.clear();
+
         LinearLayout content = new LinearLayout(this);
         content.setOrientation(LinearLayout.VERTICAL);
         content.setPadding(dp(20), dp(8), dp(20), dp(4));
+
         TextView instructions = label(
-                "這裡保留原廠六面校正概念。先按「開始記錄」讓感測器送資料，"
-                        + "再把裝置固定在平面，逐一按下各面取樣；每面取最近 1 秒資料。\n\n"
-                        + "也可以先做靜止陀螺儀偏置校正。完成後 profile 會保存在本機，"
-                        + "下一次啟動仍可直接使用。",
+                "請以感測器外殼的圖示判斷面向，不以使用者的左右手判斷。\n"
+                        + "「前面」圖是感測器正面；正面朝向你時，裝置左側才是「左面」。\n"
+                        + "先按「開始記錄」，每面平放並保持靜止約 2 秒，再按取樣。",
                 13, MUTED);
         instructions.setLineSpacing(0f, 1.2f);
-        content.addView(instructions, lp(-1, -2, 0, 0, 0, dp(8)));
+        content.addView(instructions, lp(-1, -2, 0, 0, 0, dp(6)));
+
+        calibrationFaceSelectionView = label("目前選擇：左面", 14, FG);
+        content.addView(calibrationFaceSelectionView, lp(-1, -2, 0, 0, 0, dp(3)));
+
+        calibrationFaceImage = new ImageView(this);
+        calibrationFaceImage.setAdjustViewBounds(true);
+        calibrationFaceImage.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
+        content.addView(calibrationFaceImage, lp(-1, dp(190), 0, 0, 0, dp(3)));
+
+        calibrationOrientationView = label("重力提示：等待感測器資料", 12, MUTED);
+        calibrationOrientationView.setLineSpacing(0f, 1.15f);
+        content.addView(calibrationOrientationView, lp(-1, -2, 0, 0, 0, dp(5)));
+
         calibrationDialogStatus = label("六面狀態：尚未取樣", 12, FG);
         calibrationDialogStatus.setLineSpacing(0f, 1.15f);
-        content.addView(calibrationDialogStatus, lp(-1, -2, 0, 0, 0, dp(8)));
-        for (final VendorMotionEngine.Face face : VendorMotionEngine.Face.values()) {
-            Button faceButton = actionButton("取樣：" + face.getLabel(), Color.rgb(62, 82, 105));
-            faceButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    captureCalibrationFace(face);
-                }
-            });
-            content.addView(faceButton, lp(-1, dp(42), 0, 0, 0, dp(4)));
-        }
+        content.addView(calibrationDialogStatus, lp(-1, -2, 0, 0, 0, dp(6)));
+
+        LinearLayout firstRow = new LinearLayout(this);
+        firstRow.setOrientation(LinearLayout.HORIZONTAL);
+        firstRow.addView(makeCalibrationFaceButton(VendorMotionEngine.Face.LEFT),
+                rowLp(0, 1f, dp(4)));
+        firstRow.addView(makeCalibrationFaceButton(VendorMotionEngine.Face.RIGHT),
+                rowLp(0, 1f, 0));
+        content.addView(firstRow, lp(-1, dp(42), 0, 0, 0, dp(4)));
+
+        LinearLayout secondRow = new LinearLayout(this);
+        secondRow.setOrientation(LinearLayout.HORIZONTAL);
+        secondRow.addView(makeCalibrationFaceButton(VendorMotionEngine.Face.FRONT),
+                rowLp(0, 1f, dp(4)));
+        secondRow.addView(makeCalibrationFaceButton(VendorMotionEngine.Face.BACK),
+                rowLp(0, 1f, 0));
+        content.addView(secondRow, lp(-1, dp(42), 0, 0, 0, dp(4)));
+
+        LinearLayout thirdRow = new LinearLayout(this);
+        thirdRow.setOrientation(LinearLayout.HORIZONTAL);
+        thirdRow.addView(makeCalibrationFaceButton(VendorMotionEngine.Face.TOP),
+                rowLp(0, 1f, dp(4)));
+        thirdRow.addView(makeCalibrationFaceButton(VendorMotionEngine.Face.BOTTOM),
+                rowLp(0, 1f, 0));
+        content.addView(thirdRow, lp(-1, dp(42), 0, 0, 0, dp(6)));
+
+        calibrationSampleButton = actionButton("取樣目前面：左面", ACCENT);
+        calibrationSampleButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (calibrationFace != null) captureCalibrationFace(calibrationFace);
+            }
+        });
+        content.addView(calibrationSampleButton, lp(-1, dp(46), 0, 0, 0, dp(5)));
+
         Button stillButton = actionButton("以最近資料完成靜止陀螺儀校正", Color.rgb(87, 108, 76));
         stillButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -1026,6 +1079,7 @@ if (!recording || packet.length == 0) return;
             }
         });
         content.addView(stillButton, lp(-1, dp(46), 0, dp(4), 0, dp(4)));
+
         Button finishButton = actionButton("完成六面校正並儲存 profile", PURPLE);
         finishButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -1034,13 +1088,133 @@ if (!recording || packet.length == 0) return;
             }
         });
         content.addView(finishButton, lp(-1, dp(46), 0, 0, 0, 0));
+
+        ScrollView dialogScroll = new ScrollView(this);
+        dialogScroll.setFillViewport(true);
+        dialogScroll.addView(content);
         calibrationDialog = new AlertDialog.Builder(this)
                 .setTitle("原廠相容校正")
-                .setView(content)
+                .setView(dialogScroll)
                 .setNegativeButton("關閉", null)
                 .create();
         calibrationDialog.setOnDismissListener(dialog -> calibrationDialog = null);
         calibrationDialog.show();
+        setCalibrationFace(calibrationFace);
+        updateCalibrationOrientationHint();
+    }
+
+    private Button makeCalibrationFaceButton(final VendorMotionEngine.Face face) {
+        Button button = actionButton(face.getLabel(), Color.rgb(62, 82, 105));
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                setCalibrationFace(face);
+            }
+        });
+        calibrationFaceButtons.add(button);
+        return button;
+    }
+
+    private void setCalibrationFace(VendorMotionEngine.Face face) {
+        if (face == null) return;
+        calibrationFace = face;
+        if (calibrationFaceSelectionView != null) {
+            calibrationFaceSelectionView.setText("目前選擇：" + face.getLabel()
+                    + "（以圖示為準）");
+        }
+        if (calibrationSampleButton != null) {
+            calibrationSampleButton.setText("取樣目前面：" + face.getLabel());
+        }
+        if (calibrationFaceImage != null) {
+            Bitmap image = loadCalibrationBitmap(face);
+            if (image != null) calibrationFaceImage.setImageBitmap(image);
+        }
+        for (int index = 0; index < calibrationFaceButtons.size(); index++) {
+            VendorMotionEngine.Face item = VendorMotionEngine.Face.values()[index];
+            calibrationFaceButtons.get(index).setBackgroundColor(
+                    item == face ? ACCENT : Color.rgb(62, 82, 105));
+        }
+        updateCalibrationOrientationHint();
+    }
+
+    private Bitmap loadCalibrationBitmap(VendorMotionEngine.Face face) {
+        String assetName = faceAssetName(face);
+        try {
+            InputStream stream = getAssets().open(
+                    "flutter_assets/assets/img/device/" + assetName + ".png");
+            try {
+                return BitmapFactory.decodeStream(stream);
+            } finally {
+                stream.close();
+            }
+        } catch (Exception error) {
+            Log.w(TAG, "calibration illustration unavailable: " + assetName, error);
+            return null;
+        }
+    }
+
+    private String faceAssetName(VendorMotionEngine.Face face) {
+        switch (face) {
+            case LEFT: return "left";
+            case RIGHT: return "right";
+            case FRONT: return "front";
+            case BACK: return "back";
+            case TOP: return "top";
+            case BOTTOM: return "bottom";
+            default: return "front";
+        }
+    }
+
+    private void updateCalibrationOrientationHint() {
+        if (calibrationOrientationView == null) return;
+        ArrayList<VendorMotionEngine.DerivedSample> copy;
+        synchronized (sampleLock) {
+            copy = new ArrayList<>(samples);
+        }
+        int from = Math.max(0, copy.size() - 60);
+        int count = copy.size() - from;
+        if (count < 8) {
+            calibrationOrientationView.setText("重力提示：等待至少 8 筆感測器資料");
+            return;
+        }
+        double ax = 0.0;
+        double ay = 0.0;
+        double az = 0.0;
+        for (int index = from; index < copy.size(); index++) {
+            VendorMotionEngine.DerivedSample sample = copy.get(index);
+            ax += sample.gravityAx;
+            ay += sample.gravityAy;
+            az += sample.gravityAz;
+        }
+        ax /= count;
+        ay /= count;
+        az /= count;
+        double magnitude = Math.sqrt(ax * ax + ay * ay + az * az);
+        if (magnitude < VendorMotionEngine.GRAVITY * 0.45) {
+            calibrationOrientationView.setText(
+                    "重力提示：訊號不足，請把感測器平放並保持靜止");
+            return;
+        }
+        VendorMotionEngine.Face suggested;
+        double dominant;
+        if (Math.abs(ax) >= Math.abs(ay) && Math.abs(ax) >= Math.abs(az)) {
+            suggested = ax >= 0 ? VendorMotionEngine.Face.LEFT : VendorMotionEngine.Face.RIGHT;
+            dominant = Math.abs(ax);
+        } else if (Math.abs(ay) >= Math.abs(az)) {
+            suggested = ay >= 0 ? VendorMotionEngine.Face.FRONT : VendorMotionEngine.Face.BACK;
+            dominant = Math.abs(ay);
+        } else {
+            suggested = az >= 0 ? VendorMotionEngine.Face.TOP : VendorMotionEngine.Face.BOTTOM;
+            dominant = Math.abs(az);
+        }
+        double confidence = Math.min(1.0, dominant / Math.max(0.001, magnitude));
+        String match = suggested == calibrationFace
+                ? "目前選擇一致，可取樣"
+                : "目前選擇不同，請先核對圖示";
+        calibrationOrientationView.setText(String.format(Locale.US,
+                "重力推測：%s（信心 %.0f%%） · %s\n"
+                        + "重力向量：%.2f, %.2f, %.2f m/s²",
+                suggested.getLabel(), confidence * 100.0, match, ax, ay, az));
     }
 
     private void captureCalibrationFace(VendorMotionEngine.Face face) {

@@ -57,6 +57,11 @@ New-Item -ItemType Directory -Force -Path $BuildRoot, $NativeClasses, $NativeDex
 Write-Host '[1/6] Copy and patch decoded APK'
 Remove-Item -LiteralPath $WorkRoot -Recurse -Force -ErrorAction SilentlyContinue
 Copy-Item -LiteralPath $DecodedRoot -Destination $WorkRoot -Recurse
+$deviceAssetSource = Join-Path $PSScriptRoot 'assets\device'
+$deviceAssetTarget = Join-Path $WorkRoot 'assets\flutter_assets\assets\img\device'
+if (-not (Test-Path $deviceAssetSource)) { throw "Private device illustration assets not found: $deviceAssetSource" }
+New-Item -ItemType Directory -Force -Path $deviceAssetTarget | Out-Null
+Copy-Item -Path (Join-Path $deviceAssetSource '*') -Destination $deviceAssetTarget -Force
 
 $apktoolConfigPath = Join-Path $WorkRoot 'apktool.yml'
 $apktoolConfig = Get-Content -LiteralPath $apktoolConfigPath -Raw -Encoding UTF8
