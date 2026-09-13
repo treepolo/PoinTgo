@@ -54,9 +54,17 @@ if ($Clean) {
 }
 New-Item -ItemType Directory -Force -Path $BuildRoot, $NativeClasses, $NativeDex, (Split-Path $OutputApk) | Out-Null
 
-Write-Host '[1/7] Copy and patch decoded APK'
+Write-Host '[1/6] Copy and patch decoded APK'
 Remove-Item -LiteralPath $WorkRoot -Recurse -Force -ErrorAction SilentlyContinue
 Copy-Item -LiteralPath $DecodedRoot -Destination $WorkRoot -Recurse
+
+$apktoolConfigPath = Join-Path $WorkRoot 'apktool.yml'
+$apktoolConfig = Get-Content -LiteralPath $apktoolConfigPath -Raw -Encoding UTF8
+if ($apktoolConfig -notmatch '(?m)^- so\s*$') {
+    $newline = if ($apktoolConfig.Contains(([char]13).ToString() + ([char]10).ToString())) { ([char]13).ToString() + ([char]10).ToString() } else { ([char]10).ToString() }
+    $apktoolConfig = [regex]::Replace($apktoolConfig, 'doNotCompress:\r?\n', ('doNotCompress:' + $newline + '- so' + $newline), 1)
+    [IO.File]::WriteAllText($apktoolConfigPath, $apktoolConfig, [Text.UTF8Encoding]::new($false))
+}
 
 $manifestPath = Join-Path $WorkRoot 'AndroidManifest.xml'
 $manifest = Get-Content -LiteralPath $manifestPath -Raw -Encoding UTF8
@@ -100,7 +108,16 @@ $injection = @'
     invoke-virtual {v6, v7}, Landroid/content/Intent;->setPackage(Ljava/lang/String;)Landroid/content/Intent;
     invoke-virtual {v5, v6}, Landroid/content/Context;->sendBroadcast(Landroid/content/Intent;)V
 '@
-$smali = $smali.Replace($needle, "$needle`n$injection")
+# The callback's move-result-object v2 must run before the injected code:
+# v2 is a BluetoothGattCharacteristic until getValue() returns the byte[].
+# Inserting before that move-result makes ART reject the method with a
+# VerifyError when the original Flutter activity starts.
+$moveResult = '    move-result-object v2'
+$needleAt = $smali.IndexOf($needle, [StringComparison]::Ordinal)
+$moveResultAt = $smali.IndexOf($moveResult, $needleAt, [StringComparison]::Ordinal)
+if ($moveResultAt -lt 0) { throw "BLE callback result register not found: $smaliPath" }
+$insertAt = $moveResultAt + $moveResult.Length
+$smali = $smali.Insert($insertAt, "`n$injection")
 $duplicate = '    check-cast v5, Lcom/example/flutter_mocap_lib/service/BLEService;'
 $first = $smali.IndexOf($duplicate)
 $second = $smali.IndexOf($duplicate, $first + $duplicate.Length)
@@ -128,41 +145,37 @@ if (Test-Path $arm64Split) {
     }
 }
 
-Write-Host '[2/7] Compile native launcher and analyzer'
+Write-Host '[2/6] Compile native launcher and analyzer'
 Remove-Item -LiteralPath $NativeClasses -Recurse -Force -ErrorAction SilentlyContinue
 New-Item -ItemType Directory -Force -Path $NativeClasses | Out-Null
 $javaFiles = Get-ChildItem -LiteralPath (Join-Path $PSScriptRoot 'src') -Recurse -Filter '*.java' | ForEach-Object FullName
 $javacArgs = @('-encoding','UTF-8','-source','8','-target','8','-classpath',$AndroidJar,'-d',$NativeClasses) + $javaFiles
 Run $Javac $javacArgs
 
-Write-Host '[3/7] Dex native classes'
+Write-Host '[3/6] Dex native classes'
 Remove-Item -LiteralPath $NativeDex -Recurse -Force -ErrorAction SilentlyContinue
 New-Item -ItemType Directory -Force -Path $NativeDex | Out-Null
 $classFiles = Get-ChildItem -LiteralPath $NativeClasses -Recurse -Filter '*.class' | ForEach-Object FullName
 $d8Args = @('--min-api','24','--lib',$AndroidJar,'--output',$NativeDex) + $classFiles
 Run $D8 $d8Args
+$dexPath = Join-Path $NativeDex 'classes.dex'
+if (-not (Test-Path $dexPath)) { throw "D8 output not found: $dexPath" }
+Copy-Item -LiteralPath $dexPath -Destination (Join-Path $WorkRoot 'classes4.dex') -Force
 
-Write-Host '[4/7] Rebuild decoded APK with Apktool'
+Write-Host '[4/6] Rebuild decoded APK with Apktool'
 Remove-Item -LiteralPath $ApktoolOut -Force -ErrorAction SilentlyContinue
 Run $Apktool @('-jar',$ApktoolJar,'b',$WorkRoot,'-o',$ApktoolOut)
 
-Write-Host '[5/7] Inject native dex'
-$dexPath = Join-Path $NativeDex 'classes.dex'
-if (-not (Test-Path $dexPath)) { throw "D8 output not found: $dexPath" }
-if (-not (Test-Path $ZipInject)) { throw "Dex injector not found: $ZipInject" }
-Remove-Item -LiteralPath $InjectedApk -Force -ErrorAction SilentlyContinue
-Run (Join-Path $env:SystemRoot 'System32\WindowsPowerShell\v1.0\powershell.exe') @('-NoProfile','-ExecutionPolicy','Bypass','-File',$ZipInject,'-Apk',$ApktoolOut,'-Dex',$dexPath,'-Output',$InjectedApk,'-NativeLibRoot',(Join-Path $WorkRoot 'lib'))
-
-Write-Host '[6/7] Align and sign'
+Write-Host '[5/6] Align and sign'
 if (-not (Test-Path $Keystore)) {
     New-Item -ItemType Directory -Force -Path $KeystoreDir | Out-Null
     Run $Keytool @('-genkeypair','-keystore',$Keystore,'-storepass','pointgo-clone','-keypass','pointgo-clone','-alias','pointgo','-keyalg','RSA','-keysize','2048','-validity','10000','-dname','CN=PoinTGo Clone,OU=Private,O=treepolo,L=Taipei,C=TW')
 }
 Remove-Item -LiteralPath $AlignedApk -Force -ErrorAction SilentlyContinue
-Run (Join-Path $BuildTools 'zipalign.exe') @('-f','-p','4',$InjectedApk,$AlignedApk)
+Run (Join-Path $BuildTools 'zipalign.exe') @('-f','-p','4',$ApktoolOut,$AlignedApk)
 Remove-Item -LiteralPath $OutputApk -Force -ErrorAction SilentlyContinue
 Run (Join-Path $BuildTools 'apksigner.bat') @('sign','--ks',$Keystore,'--ks-pass','pass:pointgo-clone','--out',$OutputApk,$AlignedApk)
 
-Write-Host '[7/7] Verify signed APK'
+Write-Host '[6/6] Verify signed APK'
 Run (Join-Path $BuildTools 'apksigner.bat') @('verify','--verbose',$OutputApk)
 Write-Host "Built: $OutputApk"
