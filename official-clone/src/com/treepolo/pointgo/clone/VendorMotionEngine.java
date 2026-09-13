@@ -331,8 +331,56 @@ public final class VendorMotionEngine {
             return builder.toString();
         }
 
+        /**
+         * Returns an actionable warning when captured faces are not sufficiently still
+         * or do not show gravity on the expected axis. An incomplete session is not
+         * treated as a quality failure until all six faces have been captured.
+         */
+        public String qualityWarning() {
+            if (!isComplete()) return "";
+            for (Face face : Face.values()) {
+                ArrayList<RawSample> values = faceSamples.get(face);
+                double[] mean = new double[3];
+                for (RawSample sample : values) {
+                    mean[0] += sample.ax;
+                    mean[1] += sample.ay;
+                    mean[2] += sample.az;
+                }
+                double divisor = Math.max(1, values.size());
+                for (int axis = 0; axis < 3; axis++) mean[axis] /= divisor;
+                int expectedAxis = face == Face.LEFT || face == Face.RIGHT ? 0
+                        : (face == Face.FRONT || face == Face.BACK ? 1 : 2);
+                double dominant = Math.abs(mean[expectedAxis]);
+                double transverseSquared = 0.0;
+                double residualSquared = 0.0;
+                for (int axis = 0; axis < 3; axis++) {
+                    if (axis != expectedAxis) transverseSquared += mean[axis] * mean[axis];
+                }
+                for (RawSample sample : values) {
+                    double dx = sample.ax - mean[0];
+                    double dy = sample.ay - mean[1];
+                    double dz = sample.az - mean[2];
+                    residualSquared += dx * dx + dy * dy + dz * dz;
+                }
+                double residualRms = Math.sqrt(residualSquared / Math.max(1, values.size()));
+                if (dominant < GRAVITY * 0.45) {
+                    return face.getLabel() + " 的重力軸不足，請讓該面平放並保持靜止";
+                }
+                if (dominant < Math.sqrt(transverseSquared) * 1.4) {
+                    return face.getLabel() + " 的方向不明，請重新對準平面";
+                }
+                if (residualRms > GRAVITY * 0.15) {
+                    return face.getLabel() + " 取樣期間晃動過大，請保持靜止後重取";
+                }
+            }
+            return "";
+        }
+
+        public boolean isQualitySufficient() {
+            return qualityWarning().isEmpty();
+        }
         public Profile finish(Profile base) {
-            if (!isComplete()) return base;
+            if (!isComplete() || !isQualitySufficient()) return base;
             double[][] means = new double[Face.values().length][3];
             double[][] gyroMeans = new double[Face.values().length][3];
             for (Face face : Face.values()) {
@@ -376,9 +424,11 @@ public final class VendorMotionEngine {
         }
 
         private static double scaleFor(double positive, double negative) {
-            double halfRange = Math.abs(positive - negative) / 2.0;
-            if (halfRange < 0.05) return 1.0;
-            return GRAVITY / halfRange;
+            double signedRange = positive - negative;
+            if (Math.abs(signedRange) < 0.10) return 1.0;
+            // Preserve the physical axis direction. Taking abs(range) would make an
+            // inverted sensor report the opposite global direction after calibration.
+            return 2.0 * GRAVITY / signedRange;
         }
 
         private static double averageGyro(double[][] values, int axis) {

@@ -20,6 +20,7 @@
 - [x] Samsung SM-N9810 實機安裝；launcher、自由分析、訪客相容頁、校正對話框及可選登入路徑無啟動崩潰。
 - [x] 引擎合成資料 smoke test：600 samples，線性與角加速度峰值非零，JSON 可序列化。
 - [x] 確定性 `VendorMotionEngine` regression vectors：六面校正、通用／甩球／角運動、VBT、1RM、跳躍／CMJ。
+- [x] Calibration quality regression; see `GOAL2_CALIBRATION_VALIDATION_20260914.md`.
 - [x] BLE 資料品質計數與 JSON metadata：notification／解碼／忽略／格式異常／時間間隔／回退與 received bytes。
 - [x] 全 session min/max envelope 圖表與觸控游標，不再只繪製尾端 1,000 筆。
 - [x] 校正 profile 匯出實際 bias／scale／gyro bias；VBT 匯出逐 rep 中間量與繁體中文摘要標籤。

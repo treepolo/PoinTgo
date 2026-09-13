@@ -1050,8 +1050,10 @@ if (!recording || packet.length == 0) return;
         }
         int count = calibrationSession.add(face, copy);
         if (calibrationDialogStatus != null) {
+            String quality = calibrationSession.qualityWarning();
+            String suffix = quality.isEmpty() ? "" : "\n品質提示：" + quality;
             calibrationDialogStatus.setText("六面狀態：" + calibrationSession.status()
-                    + "\n本次取樣 " + count + " 筆");
+                    + "\n本次取樣 " + count + " 筆" + suffix);
         }
         if (count < 8) {
             Toast.makeText(this, "資料太少，請保持該面朝上並持續記錄", Toast.LENGTH_SHORT).show();
@@ -1078,6 +1080,11 @@ if (!recording || packet.length == 0) return;
     private void finishSixFaceCalibration() {
         if (!calibrationSession.isComplete()) {
             Toast.makeText(this, "六個面都要各取樣一次（每面至少 8 筆）", Toast.LENGTH_LONG).show();
+            return;
+        }
+        String qualityWarning = calibrationSession.qualityWarning();
+        if (!qualityWarning.isEmpty()) {
+            Toast.makeText(this, "校正未儲存：" + qualityWarning, Toast.LENGTH_LONG).show();
             return;
         }
         profile = calibrationSession.finish(profile);

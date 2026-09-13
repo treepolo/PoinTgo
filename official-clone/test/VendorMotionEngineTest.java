@@ -13,6 +13,7 @@ public final class VendorMotionEngineTest {
 
     public static void main(String[] args) throws Exception {
         testSixFaceCalibration();
+        testCalibrationPreservesAxisSignAndRejectsBadFaces();
         testStillGyroCalibration();
         testDerivedPipeline();
         testThrowAndRotationEvents();
@@ -59,6 +60,48 @@ public final class VendorMotionEngineTest {
         assertNear(0.0, calibrated.gy, 0.0001, "calibrated gyro Y");
     }
 
+    private static void testCalibrationPreservesAxisSignAndRejectsBadFaces() {
+        VendorMotionEngine.CalibrationSession inverted =
+                new VendorMotionEngine.CalibrationSession();
+        for (VendorMotionEngine.Face face : VendorMotionEngine.Face.values()) {
+            ArrayList<VendorMotionEngine.RawSample> values = new ArrayList<>();
+            for (int index = 0; index < 16; index++) {
+                double ax = 0.15;
+                double ay = -0.09;
+                double az = 0.04;
+                if (face == VendorMotionEngine.Face.LEFT) ax -= G;
+                if (face == VendorMotionEngine.Face.RIGHT) ax += G;
+                if (face == VendorMotionEngine.Face.FRONT) ay -= G;
+                if (face == VendorMotionEngine.Face.BACK) ay += G;
+                if (face == VendorMotionEngine.Face.TOP) az -= G;
+                if (face == VendorMotionEngine.Face.BOTTOM) az += G;
+                values.add(new VendorMotionEngine.RawSample(index * 8L,
+                        ax, ay, az, 0.0, 0.0, 0.0));
+            }
+            inverted.add(face, values);
+        }
+        assertTrue(inverted.isQualitySufficient(), "inverted faces quality");
+        VendorMotionEngine.Profile profile = inverted.finish(
+                VendorMotionEngine.Profile.defaultProfile());
+        VendorMotionEngine.DerivedSample calibrated = new VendorMotionEngine(profile).process(
+                new VendorMotionEngine.RawSample(0L, -G + 0.15, -0.09, 0.04,
+                        0.0, 0.0, 0.0));
+        assertNear(G, calibrated.calibratedAx, 0.0001, "inverted +X convention");
+
+        VendorMotionEngine.CalibrationSession bad =
+                new VendorMotionEngine.CalibrationSession();
+        for (VendorMotionEngine.Face face : VendorMotionEngine.Face.values()) {
+            ArrayList<VendorMotionEngine.RawSample> values = new ArrayList<>();
+            for (int index = 0; index < 16; index++) {
+                values.add(new VendorMotionEngine.RawSample(index * 8L,
+                        0.0, 0.0, 0.0, 0.0, 0.0, 0.0));
+            }
+            bad.add(face, values);
+        }
+        assertTrue(!bad.isQualitySufficient(), "bad faces rejected");
+        assertTrue(!bad.finish(VendorMotionEngine.Profile.defaultProfile()).isSixFaceComplete(),
+                "bad profile not saved");
+    }
     private static void testStillGyroCalibration() {
         ArrayList<VendorMotionEngine.RawSample> values = new ArrayList<>();
         for (int index = 0; index < 16; index++) {
