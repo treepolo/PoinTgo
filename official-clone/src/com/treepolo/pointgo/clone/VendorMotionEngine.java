@@ -1030,14 +1030,48 @@ public final class VendorMotionEngine {
         if ("peakLinearSpeedMps".equals(key)) return "線性速度峰值（m/s）";
         if ("peakAngularVelocityRadps".equals(key)) return "角速度峰值（rad/s）";
         if ("peakAngularAccelerationRadps2".equals(key)) return "角加速度峰值（rad/s²）";
+        if ("linearAccelerationRmsMps2".equals(key)) return "線性加速度 RMS（m/s²）";
+        if ("angularVelocityRmsRadps".equals(key)) return "角速度 RMS（rad/s）";
+        if ("sampleCount".equals(key)) return "樣本數";
+        if ("repetitionCount".equals(key)) return "判定次數";
+        if ("vbtPeakVelocityMps".equals(key)) return "VBT 峰值速度（m/s）";
+        if ("vbtLastPeakVelocityMps".equals(key)) return "VBT 最後峰值速度（m/s）";
+        if ("rangeOfMotionM".equals(key) || "rangeOfMotion".equals(key)) {
+            return "動作幅度（m）";
+        }
+        if ("meanVelocityMps".equals(key)) return "平均速度（m/s）";
+        if ("meanPowerPerMassWPerKg".equals(key)
+                || "meanPowerPerMass".equals(key)) return "平均相對功率（W/kg）";
+        if ("maxPowerPerMass".equals(key)) return "最大相對功率（W/kg）";
+        if ("eccentricDuration".equals(key)) return "離心時間（秒）";
+        if ("eccentricMeanVelocity".equals(key)) return "離心平均速度（m/s）";
+        if ("eccentricMaxVelocity".equals(key)) return "離心最大速度（m/s）";
+        if ("eccentricRom".equals(key)) return "離心動作幅度（m）";
+        if ("tempoRatio".equals(key)) return "節奏比（離心／向心）";
+        if ("timeToPeakVelocity".equals(key)) return "達峰時間（秒）";
+        if ("rfdPerMass".equals(key)) return "相對發力率";
+        if ("decelerationRate".equals(key)) return "減速率（m/s²）";
+        if ("relativeTimeToPeak".equals(key)) return "相對達峰時間";
+        if ("eccentricConcentricRatio".equals(key)) return "離心／向心時間比";
+        if ("peakTimestampSeconds".equals(key)) return "峰值時間（秒）";
+        if ("loadKg".equals(key)) return "負荷（kg）";
+        if ("reps".equals(key)) return "次數";
+        if ("epley1RmKg".equals(key)) return "Epley 估計 1RM（kg）";
+        if ("brzycki1RmKg".equals(key)) return "Brzycki 估計 1RM（kg）";
+        if ("lander1RmKg".equals(key)) return "Lander 估計 1RM（kg）";
+        if ("mayhew1RmKg".equals(key)) return "Mayhew 估計 1RM（kg）";
+        if ("oconner1RmKg".equals(key)) return "O'Conner 估計 1RM（kg）";
+        if ("lvpSlopeKgPerMps".equals(key)) return "LVP 斜率（kg／m/s）";
+        if ("lvpZeroVelocityLoadKg".equals(key)) return "LVP 零速度負荷（kg）";
+        if ("lvpInputCount".equals(key)) return "LVP 輸入筆數";
         if ("jumpHeightM".equals(key)) return "跳高（m）";
         if ("flightTimeSeconds".equals(key)) return "飛行時間（秒）";
-        if ("reactiveStrengthIndex".equals(key)) return "RSI";
+        if ("contactTimeSeconds".equals(key)) return "接觸時間（秒）";
+        if ("reactiveStrengthIndex".equals(key)) return "反應力量指數（RSI）";
+        if ("comSwayRmsM".equals(key)) return "重心擺動 RMS（m）";
         if ("velocityLoss".equals(key)) return "速度損失";
-        if (key.endsWith("1RmKg")) return key.replace("1RmKg", " 1RM（kg）");
         return key;
     }
-
     private static double magnitude(double x, double y, double z) {
         return Math.sqrt(x * x + y * y + z * z);
     }
