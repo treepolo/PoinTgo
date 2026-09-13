@@ -124,6 +124,7 @@ public final class MotionAnalyzerActivityV2 extends Activity {
     private boolean commandsStarted;
     private boolean ownsGatt;
     private boolean directFallbackAttempted;
+    private int connectionAttempts;
     private int commandIndex;
     private int packetCount;
     private int decodedSampleCount;
@@ -150,6 +151,7 @@ public final class MotionAnalyzerActivityV2 extends Activity {
         public void onScanResult(int callbackType, ScanResult result) {
             if (!recording || gatt != null || !looksLikeSensor(result)) return;
             BluetoothDevice device = result.getDevice();
+            connectionAttempts++;
             stopScan();
             setStatus("找到感測器，正在連線…");
             try {
@@ -184,10 +186,20 @@ public final class MotionAnalyzerActivityV2 extends Activity {
                             setStatus("服務探索權限不足");
                         }
                     }
-                }, 220L);
-            } else if (newState == BluetoothProfile.STATE_DISCONNECTED) {
+                }, 220L);            } else if (newState == BluetoothProfile.STATE_DISCONNECTED) {
                 commandsStarted = false;
+                gatt = null;
+                rxCharacteristic = null;
+                txCharacteristic = null;
                 postStatus("感測器已斷線（" + status + "）", "未連線");
+                if (recording && connectionAttempts < 3) {
+                    main.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (recording && gatt == null) beginScan();
+                        }
+                    }, 1400L);
+                }
             }
         }
 
@@ -448,6 +460,7 @@ public final class MotionAnalyzerActivityV2 extends Activity {
         recording = true;
         commandsStarted = false;
         directFallbackAttempted = false;
+        connectionAttempts = 0;
         startButton.setEnabled(false);
         stopButton.setEnabled(true);
         setStatus("準備記錄：不需要先選模式…");
@@ -580,6 +593,7 @@ public final class MotionAnalyzerActivityV2 extends Activity {
         if (adapter == null || !adapter.isEnabled()) return false;
         try {
             BluetoothDevice device = adapter.getRemoteDevice(LAST_KNOWN_ADDRESS);
+            connectionAttempts++;
             ownsGatt = true;
             gatt = device.connectGatt(this, false, gattCallback, BluetoothDevice.TRANSPORT_LE);
             connectionView.setText("嘗試直連 · " + LAST_KNOWN_ADDRESS);
@@ -593,6 +607,7 @@ public final class MotionAnalyzerActivityV2 extends Activity {
 
     private boolean looksLikeSensor(ScanResult result) {
         BluetoothDevice device = result.getDevice();
+            connectionAttempts++;
         String name = safeName(device).toLowerCase(Locale.US);
         String address = device.getAddress();
         String normalized = address == null ? "" : address.replace('_', ':').toLowerCase(Locale.US);
