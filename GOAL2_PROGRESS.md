@@ -19,6 +19,12 @@
 - [x] 隔離 JDK／Android SDK／Apktool 建置、v2/v3 簽章驗證成功。
 - [x] Samsung SM-N9810 實機安裝；launcher、自由分析、訪客相容頁、校正對話框及可選登入路徑無啟動崩潰。
 - [x] 引擎合成資料 smoke test：600 samples，線性與角加速度峰值非零，JSON 可序列化。
+- [x] 確定性 `VendorMotionEngine` regression vectors：六面校正、通用／甩球／角運動、VBT、1RM、跳躍／CMJ。
+- [x] BLE 資料品質計數與 JSON metadata：notification／解碼／忽略／格式異常／時間間隔／回退與 received bytes。
+- [x] 全 session min/max envelope 圖表與觸控游標，不再只繪製尾端 1,000 筆。
+- [x] 校正 profile 匯出實際 bias／scale／gyro bias；VBT 匯出逐 rep 中間量與繁體中文摘要標籤。
+- [x] 控制列固定在圖表前，記錄期間可直接停止／匯出，降低圖表觸控造成的捲動阻礙。
+- [x] 最新實機短 session：2,792 notification／2,769 解碼封包／5,538 samples，無 >40 ms gap、無 timestamp regression；見 `GOAL2_REAL_DEVICE_VALIDATION_20260914.md`。
 
 ## 尚待完成的實機驗證
 

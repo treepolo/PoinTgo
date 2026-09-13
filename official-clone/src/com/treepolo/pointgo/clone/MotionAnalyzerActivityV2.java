@@ -370,21 +370,6 @@ public final class MotionAnalyzerActivityV2 extends Activity {
         inputRow.addView(loadField, rowLp(0, 1f, 0));
         root.addView(inputRow, lp(-1, dp(50), 0, 0, 0, dp(7)));
 
-        graphView = new AnalyzerGraphView(this);
-        root.addView(graphView, lp(-1, dp(730), 0, 0, 0, dp(10)));
-
-        countView = label("封包 0 · 樣本 0", 14, FG);
-        root.addView(countView, lp(-1, -2, 0, 0, 0, dp(4)));
-        peakView = label("線性加速度峰值 0.000 m/s² · 線性速度峰值 0.000 m/s\n"
-                + "角速度峰值 0.000 rad/s · 角加速度峰值 0.000 rad/s²", 13, FG);
-        peakView.setLineSpacing(0f, 1.2f);
-        root.addView(peakView, lp(-1, -2, 0, 0, 0, dp(8)));
-        analysisView = label("逐點分析：尚未有資料", 13, FG);
-        analysisView.setLineSpacing(0f, 1.16f);
-        root.addView(analysisView, lp(-1, -2, 0, 0, 0, dp(8)));
-        eventView = label("事件：尚未有資料", 12, MUTED);
-        eventView.setLineSpacing(0f, 1.16f);
-        root.addView(eventView, lp(-1, -2, 0, 0, 0, dp(10)));
 
         LinearLayout actions = new LinearLayout(this);
         actions.setOrientation(LinearLayout.HORIZONTAL);
@@ -414,6 +399,24 @@ public final class MotionAnalyzerActivityV2 extends Activity {
         actions.addView(stopButton, rowLp(0, 1f, dp(3)));
         actions.addView(exportButton, rowLp(0, 1f, 0));
         root.addView(actions, lp(-1, dp(54), 0, 0, 0, dp(9)));
+
+        graphView = new AnalyzerGraphView(this);
+        root.addView(graphView, lp(-1, dp(730), 0, 0, 0, dp(10)));
+
+        countView = label("封包 0 · 樣本 0", 14, FG);
+        root.addView(countView, lp(-1, -2, 0, 0, 0, dp(4)));
+        peakView = label("線性加速度峰值 0.000 m/s² · 線性速度峰值 0.000 m/s\n"
+                + "角速度峰值 0.000 rad/s · 角加速度峰值 0.000 rad/s²", 13, FG);
+        peakView.setLineSpacing(0f, 1.2f);
+        root.addView(peakView, lp(-1, -2, 0, 0, 0, dp(8)));
+        analysisView = label("逐點分析：尚未有資料", 13, FG);
+        analysisView.setLineSpacing(0f, 1.16f);
+        root.addView(analysisView, lp(-1, -2, 0, 0, 0, dp(8)));
+        eventView = label("事件：尚未有資料", 12, MUTED);
+        eventView.setLineSpacing(0f, 1.16f);
+        root.addView(eventView, lp(-1, -2, 0, 0, 0, dp(10)));
+
+
 
         Button backToLauncher = actionButton("返回訪客工作台", Color.rgb(70, 76, 88));
         backToLauncher.setOnClickListener(new View.OnClickListener() {
