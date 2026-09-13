@@ -1,0 +1,3 @@
+<resources>
+    <style name="Theme.PointGoAnalyzer" parent="android:style/Theme.Material.Light.NoActionBar" />
+</resources>
