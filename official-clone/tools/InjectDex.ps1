@@ -1,7 +1,8 @@
 param(
     [Parameter(Mandatory = $true)][string]$Apk,
     [Parameter(Mandatory = $true)][string]$Dex,
-    [Parameter(Mandatory = $true)][string]$Output
+    [Parameter(Mandatory = $true)][string]$Output,
+    [string]$NativeLibRoot
 )
 
 $ErrorActionPreference = 'Stop'
@@ -20,6 +21,20 @@ try {
     $input = [System.IO.File]::OpenRead($Dex)
     $stream = $entry.Open()
     try { $input.CopyTo($stream) } finally { $stream.Dispose(); $input.Dispose() }
+
+    if ($NativeLibRoot -and (Test-Path -LiteralPath $NativeLibRoot)) {
+        $root = (Resolve-Path -LiteralPath $NativeLibRoot).Path
+        foreach ($file in Get-ChildItem -LiteralPath $root -Recurse -File) {
+            $relative = $file.FullName.Substring($root.Length).TrimStart('\', '/')
+            $entryName = ('lib/' + $relative.Replace('\', '/'))
+            $oldEntry = $archive.GetEntry($entryName)
+            if ($null -ne $oldEntry) { $oldEntry.Delete() }
+            $libEntry = $archive.CreateEntry($entryName, [System.IO.Compression.CompressionLevel]::Optimal)
+            $libInput = [System.IO.File]::OpenRead($file.FullName)
+            $libStream = $libEntry.Open()
+            try { $libInput.CopyTo($libStream) } finally { $libStream.Dispose(); $libInput.Dispose() }
+        }
+    }
 } finally {
     $archive.Dispose()
 }

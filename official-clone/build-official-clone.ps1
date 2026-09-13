@@ -124,7 +124,7 @@ if (Test-Path $arm64Split) {
     Add-Type -AssemblyName System.IO.Compression.FileSystem
     [System.IO.Compression.ZipFile]::ExtractToDirectory($arm64Split, $tempLib)
     if (Test-Path (Join-Path $tempLib 'lib\arm64-v8a')) {
-        Copy-Item -LiteralPath (Join-Path $tempLib 'lib\arm64-v8a\*') -Destination $libRoot -Force
+        Copy-Item -Path (Join-Path $tempLib 'lib\arm64-v8a\*') -Destination $libRoot -Force
     }
 }
 
@@ -151,7 +151,7 @@ $dexPath = Join-Path $NativeDex 'classes.dex'
 if (-not (Test-Path $dexPath)) { throw "D8 output not found: $dexPath" }
 if (-not (Test-Path $ZipInject)) { throw "Dex injector not found: $ZipInject" }
 Remove-Item -LiteralPath $InjectedApk -Force -ErrorAction SilentlyContinue
-Run (Join-Path $env:SystemRoot 'System32\WindowsPowerShell\v1.0\powershell.exe') @('-NoProfile','-ExecutionPolicy','Bypass','-File',$ZipInject,'-Apk',$ApktoolOut,'-Dex',$dexPath,'-Output',$InjectedApk)
+Run (Join-Path $env:SystemRoot 'System32\WindowsPowerShell\v1.0\powershell.exe') @('-NoProfile','-ExecutionPolicy','Bypass','-File',$ZipInject,'-Apk',$ApktoolOut,'-Dex',$dexPath,'-Output',$InjectedApk,'-NativeLibRoot',(Join-Path $WorkRoot 'lib'))
 
 Write-Host '[6/7] Align and sign'
 if (-not (Test-Path $Keystore)) {
