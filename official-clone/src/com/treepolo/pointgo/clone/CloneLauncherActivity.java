@@ -1,12 +1,16 @@
 package com.treepolo.pointgo.clone;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
@@ -18,6 +22,7 @@ import android.widget.TextView;
  * functions never require an account.
  */
 public final class CloneLauncherActivity extends Activity {
+    private static final int REQUEST_BLUETOOTH = 7101;
     private static final int BG = Color.rgb(18, 20, 24);
     private static final int FG = Color.rgb(245, 247, 250);
     private static final int MUTED = Color.rgb(177, 184, 196);
@@ -27,6 +32,7 @@ public final class CloneLauncherActivity extends Activity {
     @Override
     protected void onCreate(Bundle state) {
         super.onCreate(state);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         getWindow().setStatusBarColor(BG);
         getWindow().setNavigationBarColor(BG);
         setTitle("Poin+T GO 私人分析副本");
@@ -42,7 +48,7 @@ public final class CloneLauncherActivity extends Activity {
         TextView title = text("Poin+T GO 私人分析副本", 25, FG);
         title.setGravity(Gravity.CENTER_HORIZONTAL);
         root.addView(title, lp(-1, -2, 0, 0, 0, dp(8)));
-        TextView visitor = text("訪客離線模式已啟用", 16, PURPLE);
+        TextView visitor = text("訪客模式已啟用 · 啟動即自動連線", 16, PURPLE);
         visitor.setGravity(Gravity.CENTER_HORIZONTAL);
         root.addView(visitor, lp(-1, -2, 0, 0, 0, dp(4)));
         TextView subtitle = text(
@@ -100,6 +106,43 @@ public final class CloneLauncherActivity extends Activity {
         build.setGravity(Gravity.CENTER_HORIZONTAL);
         root.addView(build, lp(-1, -2, 0, dp(26), 0, 0));
         setContentView(scroll);
+        ensureSensorConnection();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        ensureSensorConnection();
+    }
+
+    private void ensureSensorConnection() {
+        if (Build.VERSION.SDK_INT >= 31) {
+            boolean scan = checkSelfPermission(Manifest.permission.BLUETOOTH_SCAN)
+                    == PackageManager.PERMISSION_GRANTED;
+            boolean connect = checkSelfPermission(Manifest.permission.BLUETOOTH_CONNECT)
+                    == PackageManager.PERMISSION_GRANTED;
+            if (!scan || !connect) {
+                requestPermissions(new String[]{Manifest.permission.BLUETOOTH_SCAN,
+                        Manifest.permission.BLUETOOTH_CONNECT}, REQUEST_BLUETOOTH);
+                return;
+            }
+        } else if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_BLUETOOTH);
+            return;
+        }
+        SensorConnectionService.ensureStarted(this);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] results) {
+        super.onRequestPermissionsResult(requestCode, permissions, results);
+        if (requestCode != REQUEST_BLUETOOTH) return;
+        for (int result : results) {
+            if (result != PackageManager.PERMISSION_GRANTED) return;
+        }
+        SensorConnectionService.ensureStarted(this);
     }
 
     private void openAnalyzer(boolean officialMode, boolean openCalibration) {

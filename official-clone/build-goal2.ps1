@@ -37,6 +37,11 @@ if ($manifest -notmatch 'MotionAnalyzerActivityV2') {
     [IO.File]::WriteAllText($manifestPath, $manifest, [Text.UTF8Encoding]::new($false))
 }
 
+if ($manifest -notmatch 'SensorConnectionService') {
+    $manifest = $manifest.Replace('</application>', '        <service android:name="com.treepolo.pointgo.clone.SensorConnectionService" android:exported="false" android:stopWithTask="false" />' + [Environment]::NewLine + '    </application>')
+    [IO.File]::WriteAllText($manifestPath, $manifest, [Text.UTF8Encoding]::new($false))
+}
+
 $buildScript = Join-Path $PSScriptRoot 'build-official-clone.ps1'
 if ($Clean) { & $buildScript -Clean } else { & $buildScript }
 if ($LASTEXITCODE -ne 0) { throw "Official clone build failed ($LASTEXITCODE)" }

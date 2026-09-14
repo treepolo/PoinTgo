@@ -36,6 +36,7 @@ import android.os.ParcelUuid;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
@@ -243,6 +244,8 @@ public final class MotionAnalyzerActivity extends Activity {
     @Override
     protected void onCreate(Bundle state) {
         super.onCreate(state);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        SensorConnectionService.ensureStarted(this);
         getWindow().setStatusBarColor(BG);
         getWindow().setNavigationBarColor(BG);
         setTitle("自由動作分析");

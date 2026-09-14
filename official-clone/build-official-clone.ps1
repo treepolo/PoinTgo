@@ -23,6 +23,7 @@ $BuildTools = Join-Path $AndroidRoot 'build-tools\35.0.0'
 $ApktoolJar = Join-Path $ToolRoot 'apktool\apktool.jar'
 $Apktool = Join-Path $JdkRoot 'bin\java.exe'
 $Javac = Join-Path $JdkRoot 'bin\javac.exe'
+$Jar = Join-Path $JdkRoot 'bin\jar.exe'
 $Keytool = Join-Path $JdkRoot 'bin\keytool.exe'
 $D8 = Join-Path $BuildTools 'd8.bat'
 $ApktoolOut = Join-Path $BuildRoot 'unsigned-apktool.apk'
@@ -160,8 +161,12 @@ Run $Javac $javacArgs
 Write-Host '[3/6] Dex native classes'
 Remove-Item -LiteralPath $NativeDex -Recurse -Force -ErrorAction SilentlyContinue
 New-Item -ItemType Directory -Force -Path $NativeDex | Out-Null
-$classFiles = Get-ChildItem -LiteralPath $NativeClasses -Recurse -Filter '*.class' | ForEach-Object FullName
-$d8Args = @('--min-api','24','--lib',$AndroidJar,'--output',$NativeDex) + $classFiles
+$NativeJar = Join-Path $WorkRoot 'native-classes.jar'
+Remove-Item -LiteralPath $NativeJar -Force -ErrorAction SilentlyContinue
+# Passing every .class path directly to d8 exceeds Windows' command-line limit as
+# the native clone grows. Package the compiled classes first and pass one jar.
+Run $Jar @('cf',$NativeJar,'-C',$NativeClasses,'.')
+$d8Args = @('--min-api','24','--lib',$AndroidJar,'--output',$NativeDex,$NativeJar)
 Run $D8 $d8Args
 $dexPath = Join-Path $NativeDex 'classes.dex'
 if (-not (Test-Path $dexPath)) { throw "D8 output not found: $dexPath" }

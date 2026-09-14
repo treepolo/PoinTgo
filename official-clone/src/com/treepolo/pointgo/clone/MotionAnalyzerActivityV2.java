@@ -40,6 +40,7 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -155,6 +156,16 @@ public final class MotionAnalyzerActivityV2 extends Activity {
     private double peakAngularVelocity;
     private double peakAngularAcceleration;
     private long lastUiUpdateNanos;
+
+    private final BroadcastReceiver statusReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (!SensorConnectionService.STATUS_ACTION.equals(intent.getAction())) return;
+            String status = intent.getStringExtra(SensorConnectionService.EXTRA_STATUS);
+            String connection = intent.getStringExtra(SensorConnectionService.EXTRA_CONNECTION);
+            postStatus(status == null ? "" : status, connection == null ? "" : connection);
+        }
+    };
 
     private final BroadcastReceiver rawReceiver = new BroadcastReceiver() {
         @Override
@@ -284,6 +295,8 @@ public final class MotionAnalyzerActivityV2 extends Activity {
     @Override
     protected void onCreate(Bundle state) {
         super.onCreate(state);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        SensorConnectionService.ensureStarted(this);
         getWindow().setStatusBarColor(BG);
         getWindow().setNavigationBarColor(BG);
         profile = VendorMotionEngine.Profile.load(
@@ -312,7 +325,7 @@ public final class MotionAnalyzerActivityV2 extends Activity {
 
         connectionView = label("未連線", 14, MUTED);
         root.addView(connectionView, lp(-1, -2, 0, 0, 0, dp(3)));
-        statusView = label("按「開始記錄」即可掃描並啟動感測器", 14, MUTED);
+        statusView = label("開啟頁面即自動連線；按「開始記錄」才開始取樣", 14, MUTED);
         root.addView(statusView, lp(-1, -2, 0, 0, 0, dp(9)));
 
         profileView = label("校正 profile：" + profile.describe(), 12, MUTED);
@@ -438,10 +451,13 @@ public final class MotionAnalyzerActivityV2 extends Activity {
         root.addView(backToLauncher, lp(-1, dp(50), 0, 0, 0, 0));
 
         IntentFilter filter = new IntentFilter(RAW_ACTION);
+        IntentFilter statusFilter = new IntentFilter(SensorConnectionService.STATUS_ACTION);
         if (Build.VERSION.SDK_INT >= 33) {
             registerReceiver(rawReceiver, filter, Context.RECEIVER_NOT_EXPORTED);
+            registerReceiver(statusReceiver, statusFilter, Context.RECEIVER_NOT_EXPORTED);
         } else {
             registerReceiver(rawReceiver, filter);
+            registerReceiver(statusReceiver, statusFilter);
         }
         setContentView(scroll);
         if (openCalibration) {
@@ -458,6 +474,11 @@ public final class MotionAnalyzerActivityV2 extends Activity {
     protected void onDestroy() {
         try {
             unregisterReceiver(rawReceiver);
+        } catch (IllegalArgumentException ignored) {
+            // Activity was not registered.
+        }
+        try {
+            unregisterReceiver(statusReceiver);
         } catch (IllegalArgumentException ignored) {
             // Activity was not registered.
         }
@@ -485,8 +506,8 @@ public final class MotionAnalyzerActivityV2 extends Activity {
         connectionAttempts = 0;
         startButton.setEnabled(false);
         stopButton.setEnabled(true);
-        setStatus("準備記錄：不需要先選模式…");
-        if (!reuseExistingGatt()) beginScan();
+        SensorConnectionService.startStreaming(this);
+        setStatus("開始記錄；連線由 App 共用服務維持…");
     }
 
     private void stopRecording() {
@@ -494,7 +515,7 @@ public final class MotionAnalyzerActivityV2 extends Activity {
         recording = false;
         commandsStarted = false;
         stopScan();
-        writeBytes(new byte[]{0x03, 0x03});
+        SensorConnectionService.stopStreaming(this);
         startButton.setEnabled(true);
         stopButton.setEnabled(false);
         setStatus("已停止；可在上方切換模組、回放圖表或匯出完整資料");
