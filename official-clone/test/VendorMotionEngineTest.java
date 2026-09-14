@@ -184,6 +184,8 @@ public final class VendorMotionEngineTest {
         assertTrue(vbt.repetitionCount == 3, "VBT repetition count");
         assertTrue(vbt.metrics.containsKey("vbtPeakVelocityMps"), "VBT peak metric");
         assertTrue(vbt.metrics.containsKey("velocityLoss"), "VBT velocity loss");
+        assertTrue(hasEvent(vbt, "vbtEccentric"), "VBT eccentric phase event");
+        assertTrue(hasEvent(vbt, "vbtConcentric"), "VBT concentric phase event");
 
         VendorMotionEngine.AnalysisResult oneRm = VendorMotionEngine.analyze(
                 values, VendorMotionEngine.Module.ONE_RM, 75.0, 20.0);
@@ -193,6 +195,10 @@ public final class VendorMotionEngineTest {
         assertTrue(oneRm.metrics.containsKey("lander1RmKg"), "1RM Lander");
         assertTrue(oneRm.metrics.containsKey("mayhew1RmKg"), "1RM Mayhew");
         assertTrue(oneRm.metrics.containsKey("oconner1RmKg"), "1RM O'Conner");
+        assertTrue(oneRm.metrics.containsKey("lombardi1RmKg"), "1RM Lombardi");
+        assertTrue(oneRm.metrics.containsKey("wathan1RmKg"), "1RM Wathan");
+        assertTrue(oneRm.metrics.containsKey("average1RmKg"), "1RM formula average");
+        assertTrue(oneRm.metrics.containsKey("formulaSpreadKg"), "1RM formula spread");
         assertTrue(oneRm.metrics.containsKey("lvpSlopeKgPerMps"), "1RM LVP slope");
     }
 
@@ -215,7 +221,12 @@ public final class VendorMotionEngineTest {
                 values, VendorMotionEngine.Module.CMJ, 75.0, 20.0);
         assertTrue(cmj.repetitionCount == 2, "CMJ repetition count");
         assertTrue(hasEvent(cmj, "countermovement"), "CMJ countermovement event");
+        assertTrue(hasEvent(cmj, "concentric"), "CMJ concentric event");
         assertTrue(cmj.metrics.containsKey("reactiveStrengthIndex"), "CMJ RSI");
+        assertTrue(cmj.metrics.containsKey("takeoffVelocityMps"), "CMJ takeoff velocity");
+        assertTrue(cmj.metrics.containsKey("landingVelocityMps"), "CMJ landing velocity");
+        assertTrue(cmj.metrics.containsKey("countermovementDepthM"), "CMJ depth");
+        assertTrue(cmj.metrics.containsKey("concentricDurationSeconds"), "CMJ concentric duration");
     }
 
     private static boolean hasEvent(VendorMotionEngine.AnalysisResult result, String kind) {

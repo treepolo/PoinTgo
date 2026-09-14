@@ -714,11 +714,11 @@ public final class VendorMotionEngine {
         populateGeneralMetrics(result, values);
         switch (selected) {
             case THROW:
-                detectThresholdReps(result, values, false);
+                detectThrowReps(result, values);
                 result.status = "甩球／投擲事件";
                 break;
             case ROTATION:
-                detectThresholdReps(result, values, true);
+                detectRotationReps(result, values);
                 result.status = "角速度週期事件";
                 break;
             case VBT:
@@ -773,6 +773,159 @@ public final class VendorMotionEngine {
         result.metrics.put("sampleCount", (double) values.size());
     }
 
+    private static void detectThrowReps(AnalysisResult result,
+                                        List<DerivedSample> values) {
+        boolean active = false;
+        int start = -1;
+        int peakIndex = -1;
+        double peakSpeed = 0.0;
+        double peakAcceleration = 0.0;
+        int refractory = 0;
+        double totalPeakSpeed = 0.0;
+        double totalPeakAcceleration = 0.0;
+        for (int index = 0; index < values.size(); index++) {
+            if (refractory > 0) refractory--;
+            DerivedSample sample = values.get(index);
+            double speed = sample.linearSpeed;
+            if (!active && refractory == 0 && speed >= 0.85) {
+                active = true;
+                start = index;
+                peakIndex = index;
+                peakSpeed = speed;
+                peakAcceleration = sample.linearMagnitude;
+                continue;
+            }
+            if (!active) continue;
+            if (speed > peakSpeed) {
+                peakSpeed = speed;
+                peakIndex = index;
+            }
+            peakAcceleration = Math.max(peakAcceleration, sample.linearMagnitude);
+            if (index - start >= 4 && speed <= 0.30) {
+                addEvent(result, "throw", "甩球／投擲",
+                        values, start, index, peakSpeed);
+                addEvent(result, "throwRelease", "甩球／投擲釋放",
+                        values, peakIndex, peakIndex, peakAcceleration);
+                result.repetitionCount++;
+                totalPeakSpeed += peakSpeed;
+                totalPeakAcceleration += peakAcceleration;
+                active = false;
+                refractory = 8;
+            }
+        }
+        if (active && start >= 0) {
+            addEvent(result, "throw", "甩球／投擲",
+                    values, start, values.size() - 1, peakSpeed);
+            addEvent(result, "throwRelease", "甩球／投擲釋放",
+                    values, peakIndex, peakIndex, peakAcceleration);
+            result.repetitionCount++;
+            totalPeakSpeed += peakSpeed;
+            totalPeakAcceleration += peakAcceleration;
+        }
+        if (result.repetitionCount > 0) {
+            result.metrics.put("throwPeakSpeedMps",
+                    totalPeakSpeed / result.repetitionCount);
+            result.metrics.put("throwPeakAccelerationMps2",
+                    totalPeakAcceleration / result.repetitionCount);
+            result.metrics.put("throwHighThresholdMps", 0.85);
+            result.metrics.put("throwLowThresholdMps", 0.30);
+        }
+    }
+
+    /**
+     * Rotation entry uses a dominant signed gyro axis and hysteresis. Direction
+     * changes are recorded separately from completed cycles.
+     */
+    private static void detectRotationReps(AnalysisResult result,
+                                           List<DerivedSample> values) {
+        double[] energy = new double[3];
+        for (DerivedSample sample : values) {
+            energy[0] += sample.gx * sample.gx;
+            energy[1] += sample.gy * sample.gy;
+            energy[2] += sample.gz * sample.gz;
+        }
+        int axis = energy[1] > energy[0] ? 1 : 0;
+        if (energy[2] > energy[axis]) axis = 2;
+        // Use a robust median across the recording rather than assuming the
+        // first 30 samples are stationary; recordings may begin mid-repetition.
+        double bias = 0.0;
+        if (!values.isEmpty()) {
+            double[] biasSamples = new double[values.size()];
+            for (int index = 0; index < values.size(); index++) {
+                biasSamples[index] = signedGyro(values.get(index), axis);
+            }
+            java.util.Arrays.sort(biasSamples);
+            // Lower median avoids a 50/50 active-vs-rest recording
+            // producing a threshold-suppressing midpoint bias.
+            int middle = (biasSamples.length - 1) / 2;
+            bias = biasSamples[middle];
+        }
+        boolean active = false;
+        int start = -1;
+        int lastDirection = 0;
+        int directionChanges = 0;
+        double peak = 0.0;
+        double peakAngularAcceleration = 0.0;
+        double totalPeak = 0.0;
+        double totalPeakAngularAcceleration = 0.0;
+        int refractory = 0;
+        for (int index = 0; index < values.size(); index++) {
+            if (refractory > 0) refractory--;
+            DerivedSample sample = values.get(index);
+            double signed = signedGyro(sample, axis) - bias;
+            double magnitude = Math.abs(signed);
+            int direction = signed >= 0.0 ? 1 : -1;
+            if (!active && refractory == 0 && magnitude >= 0.55) {
+                active = true;
+                start = index;
+                lastDirection = direction;
+                directionChanges = 0;
+                peak = magnitude;
+                peakAngularAcceleration = sample.angularAccelerationMagnitude;
+                continue;
+            }
+            if (!active) continue;
+            peak = Math.max(peak, magnitude);
+            peakAngularAcceleration = Math.max(
+                    peakAngularAcceleration, sample.angularAccelerationMagnitude);
+            if (direction != lastDirection && magnitude >= 0.20) {
+                directionChanges++;
+                lastDirection = direction;
+                addEvent(result, "rotationDirectionChange", "角運動方向變化",
+                        values, index, index, signed);
+            }
+            if (index - start >= 4 && magnitude <= 0.20) {
+                addEvent(result, "rotation", "角運動週期",
+                        values, start, index, peak);
+                result.repetitionCount++;
+                totalPeak += peak;
+                totalPeakAngularAcceleration += peakAngularAcceleration;
+                active = false;
+                refractory = 8;
+            }
+        }
+        if (active && start >= 0) {
+            addEvent(result, "rotation", "角運動週期",
+                    values, start, values.size() - 1, peak);
+            result.repetitionCount++;
+            totalPeak += peak;
+            totalPeakAngularAcceleration += peakAngularAcceleration;
+        }
+        result.metrics.put("rotationDominantAxis", (double) axis);
+        result.metrics.put("rotationDirectionChanges", (double) directionChanges);
+        if (result.repetitionCount > 0) {
+            result.metrics.put("rotationPeakAngularVelocityRadps",
+                    totalPeak / result.repetitionCount);
+            result.metrics.put("rotationPeakAngularAccelerationRadps2",
+                    totalPeakAngularAcceleration / result.repetitionCount);
+        }
+    }
+
+    private static double signedGyro(DerivedSample sample, int axis) {
+        if (axis == 1) return sample.gy;
+        if (axis == 2) return sample.gz;
+        return sample.gx;
+    }
     private static void detectThresholdReps(AnalysisResult result,
                                             List<DerivedSample> values, boolean angular) {
         boolean active = false;
@@ -913,6 +1066,10 @@ public final class VendorMotionEngine {
             totalDecelerationRate += decelerationRate;
             totalRelativeTimeToPeak += relativeTimeToPeak;
             totalEccentricConcentricRatio += eccentricConcentricRatio;
+            addEvent(result, "vbtEccentric", "離心階段",
+                    values, start, peakIndex, eccentricMeanVelocity);
+            addEvent(result, "vbtConcentric", "向心階段",
+                    values, peakIndex, end, meanVelocity);
             addEvent(result, "vbtRep", "VBT 第 " + (rep + 1) + " 次",
                     values, start, end, peakVelocity);
             result.repetitionCount++;
@@ -969,8 +1126,45 @@ public final class VendorMotionEngine {
         result.metrics.put("oconner1RmKg", loadKg * (1.0 + reps / 40.0));
         double peakVelocity = value(result.metrics, "vbtPeakVelocityMps");
         result.metrics.put("lvpSlopeKgPerMps", peakVelocity > 1.0e-6 ? -loadKg / peakVelocity : 0.0);
-        result.metrics.put("lvpZeroVelocityLoadKg", loadKg * (1.0 + peakVelocity / 0.3));
+        double lvpZeroVelocity = loadKg * (1.0 + peakVelocity / 0.3);
+        result.metrics.put("lvpZeroVelocityLoadKg", lvpZeroVelocity);
+        result.metrics.put("lvpVelocityBased1RmKg", lvpZeroVelocity);
         result.metrics.put("lvpInputCount", 1.0);
+
+        // The official app exposes several conventional repetition-to-1RM
+        // estimators alongside its velocity profile. Keep every estimator
+        // visible so a session can be audited instead of silently choosing one.
+        double lombardi = loadKg * Math.pow(Math.max(1.0, reps), 0.10);
+        double wathan = loadKg * 100.0
+                / (48.8 + 53.8 * Math.exp(-0.075 * reps));
+        result.metrics.put("lombardi1RmKg", lombardi);
+        result.metrics.put("wathan1RmKg", wathan);
+        double sum = 0.0;
+        double minimum = Double.POSITIVE_INFINITY;
+        double maximum = Double.NEGATIVE_INFINITY;
+        String[] formulaKeys = new String[]{
+                "epley1RmKg", "brzycki1RmKg", "lander1RmKg",
+                "mayhew1RmKg", "oconner1RmKg", "lombardi1RmKg", "wathan1RmKg"};
+        for (String key : formulaKeys) {
+            double estimate = value(result.metrics, key);
+            if (estimate <= 0.0) continue;
+            sum += estimate;
+            minimum = Math.min(minimum, estimate);
+            maximum = Math.max(maximum, estimate);
+        }
+        int estimateCount = 0;
+        for (String key : formulaKeys) {
+            if (value(result.metrics, key) > 0.0) estimateCount++;
+        }
+        result.metrics.put("average1RmKg", estimateCount == 0 ? 0.0 : sum / estimateCount);
+        result.metrics.put("minimum1RmKg",
+                minimum == Double.POSITIVE_INFINITY ? 0.0 : minimum);
+        result.metrics.put("maximum1RmKg",
+                maximum == Double.NEGATIVE_INFINITY ? 0.0 : maximum);
+        result.metrics.put("formulaSpreadKg",
+                minimum == Double.POSITIVE_INFINITY ? 0.0 : maximum - minimum);
+        result.metrics.put("lvpMeanVelocityMps", value(result.metrics, "meanVelocityMps"));
+        result.metrics.put("lvpQualityInputCount", 1.0);
     }
 
     private static void detectJump(AnalysisResult result, List<DerivedSample> values,
@@ -978,23 +1172,61 @@ public final class VendorMotionEngine {
         boolean airborne = false;
         int takeoff = -1;
         int counterStart = -1;
+        int counterBottom = -1;
         double previousVz = values.get(0).velocityZ;
         int previousLanding = -1;
+        double totalHeight = 0.0;
+        double bestHeight = 0.0;
+        double totalFlight = 0.0;
+        double lastFlight = 0.0;
+        double totalTakeoffVelocity = 0.0;
+        double totalLandingVelocity = 0.0;
+        double bestFlightVelocity = 0.0;
+        double totalCountermovementDepth = 0.0;
+        int countermovementCount = 0;
+        double totalConcentricDuration = 0.0;
+        double totalContact = 0.0;
+        int contactCount = 0;
+
         for (int index = 1; index < values.size(); index++) {
             DerivedSample sample = values.get(index);
             double vz = sample.velocityZ;
-            if (!airborne && vz < -0.20 && counterStart < 0) {
-                counterStart = index;
+            if (!airborne && vz < -0.20) {
+                if (counterStart < 0) counterStart = index;
+                if (counterBottom < 0
+                        || vz < values.get(counterBottom).velocityZ) {
+                    counterBottom = index;
+                }
             }
             if (!airborne && vz > 0.55 && previousVz <= 0.55) {
                 takeoff = index;
                 airborne = true;
+                int concentricStart = counterBottom >= 0
+                        ? counterBottom : Math.max(0, index - 1);
+                double depth = counterStart >= 0
+                        ? integrateNegativeVelocity(values, counterStart,
+                        Math.max(counterStart, concentricStart)) : 0.0;
                 if (counterMovement && counterStart >= 0) {
                     addEvent(result, "countermovement", "下沉／離心",
-                            values, counterStart, index, Math.abs(values.get(counterStart).velocityZ));
+                            values, counterStart, Math.max(counterStart, concentricStart), depth);
+                    countermovementCount++;
+                    totalCountermovementDepth += depth;
                 }
-                addEvent(result, "takeoff", "起跳",
-                        values, index, index, vz);
+                addEvent(result, "concentric", "向心推蹬",
+                        values, concentricStart, index, vz);
+                addEvent(result, "takeoff", "起跳", values, index, index, vz);
+                totalConcentricDuration += Math.max(0.0,
+                        values.get(index).elapsedSeconds
+                                - values.get(concentricStart).elapsedSeconds);
+                if (previousLanding >= 0) {
+                    double contact = values.get(index).elapsedSeconds
+                            - values.get(previousLanding).elapsedSeconds;
+                    if (contact > 0.0) {
+                        totalContact += contact;
+                        contactCount++;
+                        result.metrics.put("contactTimeSeconds", contact);
+                    }
+                }
                 continue;
             }
             if (airborne && index - takeoff > 8 && vz < -0.25
@@ -1003,32 +1235,71 @@ public final class VendorMotionEngine {
                 double flight = Math.max(0.0,
                         sample.elapsedSeconds - values.get(takeoff).elapsedSeconds);
                 double height = GRAVITY * flight * flight / 8.0;
-                addEvent(result, "flight", "飛行",
-                        values, takeoff, landing, flight);
+                double peakFlightVelocity = 0.0;
+                for (int cursor = takeoff; cursor <= landing; cursor++) {
+                    peakFlightVelocity = Math.max(peakFlightVelocity,
+                            Math.abs(values.get(cursor).velocityZ));
+                }
+                addEvent(result, "flight", "飛行", values, takeoff, landing, flight);
                 addEvent(result, "landing", "落地／吸收",
                         values, landing, landing, Math.abs(vz));
                 result.metrics.put("jumpHeightM", Math.max(
                         value(result.metrics, "jumpHeightM"), height));
                 result.metrics.put("flightTimeSeconds", flight);
-                if (previousLanding >= 0) {
-                    double contact = values.get(takeoff).elapsedSeconds
-                            - values.get(previousLanding).elapsedSeconds;
-                    if (contact > 0.0) result.metrics.put("contactTimeSeconds", contact);
-                }
+                totalHeight += height;
+                bestHeight = Math.max(bestHeight, height);
+                totalFlight += flight;
+                lastFlight = flight;
+                totalTakeoffVelocity += values.get(takeoff).velocityZ;
+                totalLandingVelocity += Math.abs(vz);
+                bestFlightVelocity = Math.max(bestFlightVelocity, peakFlightVelocity);
                 previousLanding = landing;
                 result.repetitionCount++;
                 airborne = false;
                 takeoff = -1;
                 counterStart = -1;
+                counterBottom = -1;
             }
             previousVz = vz;
         }
         if (result.repetitionCount > 0) {
-            double height = value(result.metrics, "jumpHeightM");
             double contact = value(result.metrics, "contactTimeSeconds");
-            result.metrics.put("reactiveStrengthIndex", contact > 1.0e-6 ? height / contact : 0.0);
+            result.metrics.put("jumpCount", (double) result.repetitionCount);
+            result.metrics.put("bestJumpHeightM", bestHeight);
+            result.metrics.put("meanJumpHeightM", totalHeight / result.repetitionCount);
+            result.metrics.put("meanFlightTimeSeconds", totalFlight / result.repetitionCount);
+            result.metrics.put("jumpDurationSeconds", totalFlight / result.repetitionCount);
+            result.metrics.put("takeoffVelocityMps",
+                    totalTakeoffVelocity / result.repetitionCount);
+            result.metrics.put("landingVelocityMps",
+                    totalLandingVelocity / result.repetitionCount);
+            result.metrics.put("peakFlightVelocityMps", bestFlightVelocity);
+            result.metrics.put("countermovementDepthM", countermovementCount > 0
+                    ? totalCountermovementDepth / countermovementCount : 0.0);
+            result.metrics.put("concentricDurationSeconds",
+                    totalConcentricDuration / result.repetitionCount);
+            if (contactCount > 0) {
+                result.metrics.put("meanContactTimeSeconds", totalContact / contactCount);
+            }
+            result.metrics.put("reactiveStrengthIndex",
+                    contact > 1.0e-6 ? bestHeight / contact : 0.0);
         }
         computeComSway(result, values);
+    }
+
+    private static double integrateNegativeVelocity(List<DerivedSample> values,
+                                                    int start, int end) {
+        double distance = 0.0;
+        int safeStart = Math.max(0, Math.min(values.size() - 1, start));
+        int safeEnd = Math.max(safeStart, Math.min(values.size() - 1, end));
+        for (int index = safeStart; index <= safeEnd; index++) {
+            double dt = index == safeStart ? 1.0 / 120.0
+                    : Math.max(1.0 / 240.0,
+                    values.get(index).elapsedSeconds
+                            - values.get(index - 1).elapsedSeconds);
+            distance += Math.max(0.0, -values.get(index).velocityZ) * dt;
+        }
+        return distance;
     }
 
     private static void computeComSway(AnalysisResult result, List<DerivedSample> values) {
@@ -1084,6 +1355,16 @@ public final class VendorMotionEngine {
         if ("angularVelocityRmsRadps".equals(key)) return "角速度 RMS（rad/s）";
         if ("sampleCount".equals(key)) return "樣本數";
         if ("repetitionCount".equals(key)) return "判定次數";
+        if ("throwPeakSpeedMps".equals(key)) return "投擲峰值速度（m/s）";
+        if ("throwPeakAccelerationMps2".equals(key)) return "投擲峰值加速度（m/s²）";
+        if ("throwHighThresholdMps".equals(key)) return "投擲啟動門檻（m/s）";
+        if ("throwLowThresholdMps".equals(key)) return "投擲結束門檻（m/s）";
+        if ("rotationDominantAxis".equals(key)) return "角運動主軸（0=X／1=Y／2=Z）";
+        if ("rotationDirectionChanges".equals(key)) return "角運動方向變化次數";
+        if ("rotationPeakAngularVelocityRadps".equals(key)) return "角運動峰值角速度（rad/s）";
+        if ("rotationPeakAngularAccelerationRadps2".equals(key)) {
+            return "角運動峰值角加速度（rad/s²）";
+        }
         if ("vbtPeakVelocityMps".equals(key)) return "VBT 峰值速度（m/s）";
         if ("vbtLastPeakVelocityMps".equals(key)) return "VBT 最後峰值速度（m/s）";
         if ("rangeOfMotionM".equals(key) || "rangeOfMotion".equals(key)) {
@@ -1111,12 +1392,31 @@ public final class VendorMotionEngine {
         if ("lander1RmKg".equals(key)) return "Lander 估計 1RM（kg）";
         if ("mayhew1RmKg".equals(key)) return "Mayhew 估計 1RM（kg）";
         if ("oconner1RmKg".equals(key)) return "O'Conner 估計 1RM（kg）";
+        if ("lombardi1RmKg".equals(key)) return "Lombardi 估計 1RM（kg）";
+        if ("wathan1RmKg".equals(key)) return "Wathan 估計 1RM（kg）";
+        if ("average1RmKg".equals(key)) return "公式平均 1RM（kg）";
+        if ("minimum1RmKg".equals(key)) return "公式最低 1RM（kg）";
+        if ("maximum1RmKg".equals(key)) return "公式最高 1RM（kg）";
+        if ("formulaSpreadKg".equals(key)) return "公式差距（kg）";
         if ("lvpSlopeKgPerMps".equals(key)) return "LVP 斜率（kg／m/s）";
-        if ("lvpZeroVelocityLoadKg".equals(key)) return "LVP 零速度負荷（kg）";
-        if ("lvpInputCount".equals(key)) return "LVP 輸入筆數";
-        if ("jumpHeightM".equals(key)) return "跳高（m）";
-        if ("flightTimeSeconds".equals(key)) return "飛行時間（秒）";
-        if ("contactTimeSeconds".equals(key)) return "接觸時間（秒）";
+        if ("lvpZeroVelocityLoadKg".equals(key)
+                || "lvpVelocityBased1RmKg".equals(key)) return "LVP 零速度 1RM（kg）";
+        if ("lvpMeanVelocityMps".equals(key)) return "LVP 平均速度輸入（m/s）";
+        if ("lvpInputCount".equals(key)
+                || "lvpQualityInputCount".equals(key)) return "LVP 輸入筆數";
+        if ("jumpCount".equals(key)) return "跳躍次數";
+        if ("jumpHeightM".equals(key) || "bestJumpHeightM".equals(key)) return "跳高（m）";
+        if ("meanJumpHeightM".equals(key)) return "平均跳高（m）";
+        if ("flightTimeSeconds".equals(key)
+                || "meanFlightTimeSeconds".equals(key)) return "飛行時間（秒）";
+        if ("jumpDurationSeconds".equals(key)) return "跳躍週期時間（秒）";
+        if ("takeoffVelocityMps".equals(key)) return "起跳速度（m/s）";
+        if ("landingVelocityMps".equals(key)) return "落地速度（m/s）";
+        if ("peakFlightVelocityMps".equals(key)) return "飛行峰值速度（m/s）";
+        if ("countermovementDepthM".equals(key)) return "反向下沉深度（m）";
+        if ("concentricDurationSeconds".equals(key)) return "向心推蹬時間（秒）";
+        if ("meanContactTimeSeconds".equals(key)
+                || "contactTimeSeconds".equals(key)) return "接觸時間（秒）";
         if ("reactiveStrengthIndex".equals(key)) return "反應力量指數（RSI）";
         if ("comSwayRmsM".equals(key)) return "重心擺動 RMS（m）";
         if ("velocityLoss".equals(key)) return "速度損失";

@@ -898,16 +898,14 @@ if (!recording || packet.length == 0) return;
         if (analysisResult.events.isEmpty()) {
             events.append("目前沒有符合門檻的事件（可切換模組或持續記錄）");
         } else {
-            int shown = Math.min(8, analysisResult.events.size());
-            for (int index = 0; index < shown; index++) {
+            // The page is already inside a ScrollView; keep every detected phase
+            // visible so the graph markers and the textual event log agree.
+            for (int index = 0; index < analysisResult.events.size(); index++) {
                 VendorMotionEngine.Event event = analysisResult.events.get(index);
                 events.append("\n").append(index + 1).append(". ")
                         .append(event.label).append(" ")
                         .append(String.format(Locale.US, "%.2f–%.2f 秒，值 %.3f",
                                 event.startSeconds, event.endSeconds, event.value));
-            }
-            if (analysisResult.events.size() > shown) {
-                events.append("\n… 共 ").append(analysisResult.events.size()).append(" 個事件");
             }
         }
         eventView.setText(events.toString());

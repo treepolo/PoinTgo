@@ -265,7 +265,7 @@ public final class MotionAnalyzerActivity extends Activity {
 
         connectionView = label("未連線", 14, MUTED);
         root.addView(connectionView, lp(-1, -2, 0, 0, 0, dp(4)));
-        statusView = label("按「開始自由記錄」即可掃描並啟動感測器", 14, MUTED);
+        statusView = label("開啟頁面即自動連線；按「開始自由記錄」才開始取樣", 14, MUTED);
         root.addView(statusView, lp(-1, -2, 0, 0, 0, dp(12)));
 
         graphView = new AnalyzerGraphView(this);
