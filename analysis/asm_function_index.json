@@ -1,0 +1,713 @@
+{
+  "generated": "2026-09-15",
+  "aot_asm_root": "analysis/aot_unflutter/asm",
+  "recursive_asm_txt_count": 46790,
+  "recursive_asm_txt_bytes": 107073436,
+  "owner_count": 4474,
+  "assembly_files_without_pc": 0,
+  "function_count": 46790,
+  "functions_with_asm_match": 46790,
+  "functions_without_asm_match": 0,
+  "largest_owners": [
+    {
+      "owner": "asm",
+      "asm_txt_count": 9305
+    },
+    {
+      "owner": "SZh",
+      "asm_txt_count": 1572
+    },
+    {
+      "owner": "SFr",
+      "asm_txt_count": 1545
+    },
+    {
+      "owner": "SKo",
+      "asm_txt_count": 1537
+    },
+    {
+      "owner": "SEs",
+      "asm_txt_count": 1505
+    },
+    {
+      "owner": "SEn",
+      "asm_txt_count": 1502
+    },
+    {
+      "owner": "SDe",
+      "asm_txt_count": 1474
+    },
+    {
+      "owner": "SJa",
+      "asm_txt_count": 1425
+    },
+    {
+      "owner": "SZhTw",
+      "asm_txt_count": 1288
+    },
+    {
+      "owner": "EditableTextState",
+      "asm_txt_count": 213
+    },
+    {
+      "owner": "HtmlTokenizer",
+      "asm_txt_count": 146
+    },
+    {
+      "owner": "RenderEditable",
+      "asm_txt_count": 139
+    },
+    {
+      "owner": "SemanticsConfiguration",
+      "asm_txt_count": 87
+    },
+    {
+      "owner": "VBTPage",
+      "asm_txt_count": 79
+    },
+    {
+      "owner": "ObjectBoxC",
+      "asm_txt_count": 78
+    },
+    {
+      "owner": "XmlEventParser",
+      "asm_txt_count": 74
+    },
+    {
+      "owner": "_Uri@0150898",
+      "asm_txt_count": 71
+    },
+    {
+      "owner": "_RenderRangeSlider@174317193",
+      "asm_txt_count": 70
+    },
+    {
+      "owner": "Element",
+      "asm_txt_count": 70
+    },
+    {
+      "owner": "PlatformDispatcher",
+      "asm_txt_count": 65
+    },
+    {
+      "owner": "RawScrollbarState",
+      "asm_txt_count": 61
+    },
+    {
+      "owner": "_RenderDecoration@149019562",
+      "asm_txt_count": 60
+    },
+    {
+      "owner": "_RenderSlider@184231897",
+      "asm_txt_count": 60
+    },
+    {
+      "owner": "_NativeSocket@15069316",
+      "asm_txt_count": 59
+    },
+    {
+      "owner": "Matrix4",
+      "asm_txt_count": 58
+    },
+    {
+      "owner": "_InkResponseState@146059085",
+      "asm_txt_count": 55
+    },
+    {
+      "owner": "NavigatorState",
+      "asm_txt_count": 55
+    },
+    {
+      "owner": "_Future@5048458",
+      "asm_txt_count": 52
+    },
+    {
+      "owner": "WeightliftingPage",
+      "asm_txt_count": 51
+    },
+    {
+      "owner": "_GrowableList@0150898",
+      "asm_txt_count": 50
+    }
+  ],
+  "important": [
+    {
+      "term": "BleMocapDataParser.parseReceivedPacket",
+      "functions": [
+        {
+          "name": "BleMocapDataParser.parseReceivedPacket_1b946c",
+          "owner": "BleMocapDataParser",
+          "pc": "0x83fdac",
+          "size": 352,
+          "asm_paths": [
+            "analysis/aot_unflutter/asm/BleMocapDataParser/parseReceivedPacket_1b946c.txt"
+          ]
+        }
+      ]
+    },
+    {
+      "term": "_parseRawImuBatch",
+      "functions": [
+        {
+          "name": "BleMocapDataParser._parseRawImuBatch@859188570_1b967c",
+          "owner": "BleMocapDataParser",
+          "pc": "0x83ffbc",
+          "size": 3228,
+          "asm_paths": [
+            "analysis/aot_unflutter/asm/BleMocapDataParser/_parseRawImuBatch@859188570_1b967c.txt"
+          ]
+        }
+      ]
+    },
+    {
+      "term": "_parseRawAccelGyroPrsTmp",
+      "functions": [
+        {
+          "name": "BleMocapDataParser._parseRawAccelGyroPrsTmp@859188570_1bd880",
+          "owner": "BleMocapDataParser",
+          "pc": "0x8441c0",
+          "size": 2844,
+          "asm_paths": [
+            "analysis/aot_unflutter/asm/BleMocapDataParser/_parseRawAccelGyroPrsTmp@859188570_1bd880.txt"
+          ]
+        }
+      ]
+    },
+    {
+      "term": "_parseQuatAclVelPos",
+      "functions": [
+        {
+          "name": "BleMocapDataParser._parseQuatAclVelPos@859188570_1be39c",
+          "owner": "BleMocapDataParser",
+          "pc": "0x844cdc",
+          "size": 5088,
+          "asm_paths": [
+            "analysis/aot_unflutter/asm/BleMocapDataParser/_parseQuatAclVelPos@859188570_1be39c.txt"
+          ]
+        }
+      ]
+    },
+    {
+      "term": "_parseQuatAgzVgzPgz",
+      "functions": [
+        {
+          "name": "BleMocapDataParser._parseQuatAgzVgzPgz@859188570_1bf77c",
+          "owner": "BleMocapDataParser",
+          "pc": "0x8460bc",
+          "size": 2976,
+          "asm_paths": [
+            "analysis/aot_unflutter/asm/BleMocapDataParser/_parseQuatAgzVgzPgz@859188570_1bf77c.txt"
+          ]
+        }
+      ]
+    },
+    {
+      "term": "_parseQuaternionPacket",
+      "functions": [
+        {
+          "name": "BleMocapDataParser._parseQuaternionPacket@859188570_1c031c",
+          "owner": "BleMocapDataParser",
+          "pc": "0x846c5c",
+          "size": 1920,
+          "asm_paths": [
+            "analysis/aot_unflutter/asm/BleMocapDataParser/_parseQuaternionPacket@859188570_1c031c.txt"
+          ]
+        }
+      ]
+    },
+    {
+      "term": "CommandMeasureRawImuHighRate.command",
+      "functions": [
+        {
+          "name": "CommandMeasureRawImuHighRate.command_772edc",
+          "owner": "CommandMeasureRawImuHighRate",
+          "pc": "0xdf981c",
+          "size": 152,
+          "asm_paths": [
+            "analysis/aot_unflutter/asm/CommandMeasureRawImuHighRate/command_772edc.txt"
+          ]
+        }
+      ]
+    },
+    {
+      "term": "BleApiImpl.startBleDeviceScan",
+      "functions": [
+        {
+          "name": "BleApiImpl.startBleDeviceScan_1b6a20",
+          "owner": "BleApiImpl",
+          "pc": "0x83d360",
+          "size": 76,
+          "asm_paths": [
+            "analysis/aot_unflutter/asm/BleApiImpl/startBleDeviceScan_1b6a20.txt"
+          ]
+        }
+      ]
+    },
+    {
+      "term": "BleApiImpl.connectDevice",
+      "functions": [
+        {
+          "name": "BleApiImpl.connectDevice_8a7ebc",
+          "owner": "BleApiImpl",
+          "pc": "0xf2e7fc",
+          "size": 136,
+          "asm_paths": [
+            "analysis/aot_unflutter/asm/BleApiImpl/connectDevice_8a7ebc.txt"
+          ]
+        }
+      ]
+    },
+    {
+      "term": "BleApiImpl.disconnectDevice",
+      "functions": [
+        {
+          "name": "BleApiImpl.disconnectDevice_1d9cd4",
+          "owner": "BleApiImpl",
+          "pc": "0x860614",
+          "size": 136,
+          "asm_paths": [
+            "analysis/aot_unflutter/asm/BleApiImpl/disconnectDevice_1d9cd4.txt"
+          ]
+        }
+      ]
+    },
+    {
+      "term": "BleApiImpl._onReceivePacketFromBleDevice",
+      "functions": [
+        {
+          "name": "BleApiImpl._onReceivePacketFromBleDevice@859188570_1b70b0",
+          "owner": "BleApiImpl",
+          "pc": "0x83d9f0",
+          "size": 280,
+          "asm_paths": [
+            "analysis/aot_unflutter/asm/BleApiImpl/_onReceivePacketFromBleDevice@859188570_1b70b0.txt"
+          ]
+        }
+      ]
+    },
+    {
+      "term": "DeviceConnectionManager.connect",
+      "functions": [
+        {
+          "name": "DeviceConnectionManager.connect_8a7974",
+          "owner": "DeviceConnectionManager",
+          "pc": "0xf2e2b4",
+          "size": 264,
+          "asm_paths": [
+            "analysis/aot_unflutter/asm/DeviceConnectionManager/connect_8a7974.txt"
+          ]
+        }
+      ]
+    },
+    {
+      "term": "DeviceConnectionManager.disconnect",
+      "functions": [
+        {
+          "name": "DeviceConnectionManager.disconnect_1d9a28",
+          "owner": "DeviceConnectionManager",
+          "pc": "0x860368",
+          "size": 280,
+          "asm_paths": [
+            "analysis/aot_unflutter/asm/DeviceConnectionManager/disconnect_1d9a28.txt"
+          ]
+        }
+      ]
+    },
+    {
+      "term": "DeviceConnectionManager._onConnectionEvent",
+      "functions": [
+        {
+          "name": "DeviceConnectionManager._onConnectionEvent@1123470780_8a63dc",
+          "owner": "DeviceConnectionManager",
+          "pc": "0xf2cd1c",
+          "size": 60,
+          "asm_paths": [
+            "analysis/aot_unflutter/asm/DeviceConnectionManager/_onConnectionEvent@1123470780_8a63dc.txt"
+          ]
+        },
+        {
+          "name": "DeviceConnectionManager._onConnectionEvent@1123470780_8a6418",
+          "owner": "DeviceConnectionManager",
+          "pc": "0xf2cd58",
+          "size": 996,
+          "asm_paths": [
+            "analysis/aot_unflutter/asm/DeviceConnectionManager/_onConnectionEvent@1123470780_8a6418.txt"
+          ]
+        }
+      ]
+    },
+    {
+      "term": "DeviceConnectionManager._onDeviceDiscovered",
+      "functions": [
+        {
+          "name": "DeviceConnectionManager._onDeviceDiscovered@1123470780_8a70a8",
+          "owner": "DeviceConnectionManager",
+          "pc": "0xf2d9e8",
+          "size": 60,
+          "asm_paths": [
+            "analysis/aot_unflutter/asm/DeviceConnectionManager/_onDeviceDiscovered@1123470780_8a70a8.txt"
+          ]
+        },
+        {
+          "name": "DeviceConnectionManager._onDeviceDiscovered@1123470780_8a70e4",
+          "owner": "DeviceConnectionManager",
+          "pc": "0xf2da24",
+          "size": 1200,
+          "asm_paths": [
+            "analysis/aot_unflutter/asm/DeviceConnectionManager/_onDeviceDiscovered@1123470780_8a70e4.txt"
+          ]
+        }
+      ]
+    },
+    {
+      "term": "DeviceConnectionManager._autoRescan",
+      "functions": [
+        {
+          "name": "DeviceConnectionManager._autoRescan@1123470780_8a67fc",
+          "owner": "DeviceConnectionManager",
+          "pc": "0xf2d13c",
+          "size": 296,
+          "asm_paths": [
+            "analysis/aot_unflutter/asm/DeviceConnectionManager/_autoRescan@1123470780_8a67fc.txt"
+          ]
+        }
+      ]
+    },
+    {
+      "term": "AccelCalibrationUtil.resetAccelMeasureStateForOffsetAxisCal",
+      "functions": [
+        {
+          "name": "AccelCalibrationUtil.resetAccelMeasureStateForOffsetAxisCal_1bbf48",
+          "owner": "AccelCalibrationUtil",
+          "pc": "0x842888",
+          "size": 504,
+          "asm_paths": [
+            "analysis/aot_unflutter/asm/AccelCalibrationUtil/resetAccelMeasureStateForOffsetAxisCal_1bbf48.txt"
+          ]
+        }
+      ]
+    },
+    {
+      "term": "isAccelMeasuredAllMocapPositionForBiasCal",
+      "functions": [
+        {
+          "name": "AccelCalibrationUtil.isAccelMeasuredAllMocapPositionForBiasCal_1bc390",
+          "owner": "AccelCalibrationUtil",
+          "pc": "0x842cd0",
+          "size": 576,
+          "asm_paths": [
+            "analysis/aot_unflutter/asm/AccelCalibrationUtil/isAccelMeasuredAllMocapPositionForBiasCal_1bc390.txt"
+          ]
+        }
+      ]
+    },
+    {
+      "term": "validateAccelXYZAndUpdateMeasureStateForAccelBiasCal",
+      "functions": [
+        {
+          "name": "AccelCalibrationUtil.validateAccelXYZAndUpdateMeasureStateForAccelBiasCal_1bc5d0",
+          "owner": "AccelCalibrationUtil",
+          "pc": "0x842f10",
+          "size": 492,
+          "asm_paths": [
+            "analysis/aot_unflutter/asm/AccelCalibrationUtil/validateAccelXYZAndUpdateMeasureStateForAccelBiasCal_1bc5d0.txt"
+          ]
+        }
+      ]
+    },
+    {
+      "term": "updateMeasureStateForAccelBiasCal",
+      "functions": [
+        {
+          "name": "AccelCalibrationUtil.updateMeasureStateForAccelBiasCal_1bc7bc",
+          "owner": "AccelCalibrationUtil",
+          "pc": "0x8430fc",
+          "size": 500,
+          "asm_paths": [
+            "analysis/aot_unflutter/asm/AccelCalibrationUtil/updateMeasureStateForAccelBiasCal_1bc7bc.txt"
+          ]
+        }
+      ]
+    },
+    {
+      "term": "isAccelMeasuredAllMocapPositionForOffsetAxisCal",
+      "functions": [
+        {
+          "name": "AccelCalibrationUtil.isAccelMeasuredAllMocapPositionForOffsetAxisCal_1bd260",
+          "owner": "AccelCalibrationUtil",
+          "pc": "0x843ba0",
+          "size": 576,
+          "asm_paths": [
+            "analysis/aot_unflutter/asm/AccelCalibrationUtil/isAccelMeasuredAllMocapPositionForOffsetAxisCal_1bd260.txt"
+          ]
+        }
+      ]
+    },
+    {
+      "term": "validateAccelXYZAndUpdateMeasureStateForOffsetAxisCal",
+      "functions": [
+        {
+          "name": "AccelCalibrationUtil.validateAccelXYZAndUpdateMeasureStateForOffsetAxisCal_1bd4a0",
+          "owner": "AccelCalibrationUtil",
+          "pc": "0x843de0",
+          "size": 492,
+          "asm_paths": [
+            "analysis/aot_unflutter/asm/AccelCalibrationUtil/validateAccelXYZAndUpdateMeasureStateForOffsetAxisCal_1bd4a0.txt"
+          ]
+        }
+      ]
+    },
+    {
+      "term": "updateAccelMeasureStateForOffsetAxisCal",
+      "functions": [
+        {
+          "name": "AccelCalibrationUtil.updateAccelMeasureStateForOffsetAxisCal_1bd68c",
+          "owner": "AccelCalibrationUtil",
+          "pc": "0x843fcc",
+          "size": 500,
+          "asm_paths": [
+            "analysis/aot_unflutter/asm/AccelCalibrationUtil/updateAccelMeasureStateForOffsetAxisCal_1bd68c.txt"
+          ]
+        }
+      ]
+    },
+    {
+      "term": "_parseAccelOffsetAxisCalibrationPacket",
+      "functions": [
+        {
+          "name": "BleMocapDataParser._parseAccelOffsetAxisCalibrationPacket@859188570_1bcc40",
+          "owner": "BleMocapDataParser",
+          "pc": "0x843580",
+          "size": 1568,
+          "asm_paths": [
+            "analysis/aot_unflutter/asm/BleMocapDataParser/_parseAccelOffsetAxisCalibrationPacket@859188570_1bcc40.txt"
+          ]
+        }
+      ]
+    },
+    {
+      "term": "_parseAccelBiasCalibrationPacket",
+      "functions": [
+        {
+          "name": "BleMocapDataParser._parseAccelBiasCalibrationPacket@859188570_1bb788",
+          "owner": "BleMocapDataParser",
+          "pc": "0x8420c8",
+          "size": 1984,
+          "asm_paths": [
+            "analysis/aot_unflutter/asm/BleMocapDataParser/_parseAccelBiasCalibrationPacket@859188570_1bb788.txt"
+          ]
+        }
+      ]
+    },
+    {
+      "term": "_parseGyroCalibrationPacket",
+      "functions": [
+        {
+          "name": "BleMocapDataParser._parseGyroCalibrationPacket@859188570_1bb5ec",
+          "owner": "BleMocapDataParser",
+          "pc": "0x841f2c",
+          "size": 412,
+          "asm_paths": [
+            "analysis/aot_unflutter/asm/BleMocapDataParser/_parseGyroCalibrationPacket@859188570_1bb5ec.txt"
+          ]
+        }
+      ]
+    },
+    {
+      "term": "JsWeightliftingCalculator._parseMetrics",
+      "functions": [
+        {
+          "name": "JsWeightliftingCalculator._parseMetrics@1493039605_249010",
+          "owner": "JsWeightliftingCalculator",
+          "pc": "0x8cf950",
+          "size": 14740,
+          "asm_paths": [
+            "analysis/aot_unflutter/asm/JsWeightliftingCalculator/_parseMetrics@1493039605_249010.txt"
+          ]
+        }
+      ]
+    },
+    {
+      "term": "JsWeightliftingCalculator.processMotionData",
+      "functions": [
+        {
+          "name": "JsWeightliftingCalculator.processMotionData_24d1f8",
+          "owner": "JsWeightliftingCalculator",
+          "pc": "0x8d3b38",
+          "size": 396,
+          "asm_paths": [
+            "analysis/aot_unflutter/asm/JsWeightliftingCalculator/processMotionData_24d1f8.txt"
+          ]
+        }
+      ]
+    },
+    {
+      "term": "JsWeightliftingCalculator._handleCalibrationComplete",
+      "functions": [
+        {
+          "name": "JsWeightliftingCalculator._handleCalibrationComplete@1493039605_248704",
+          "owner": "JsWeightliftingCalculator",
+          "pc": "0x8cf044",
+          "size": 1160,
+          "asm_paths": [
+            "analysis/aot_unflutter/asm/JsWeightliftingCalculator/_handleCalibrationComplete@1493039605_248704.txt"
+          ]
+        }
+      ]
+    },
+    {
+      "term": "JsVbtCalculator._parseRep",
+      "functions": [
+        {
+          "name": "JsVbtCalculator._parseRep@1345406029_2dbcf0",
+          "owner": "JsVbtCalculator",
+          "pc": "0x962630",
+          "size": 4108,
+          "asm_paths": [
+            "analysis/aot_unflutter/asm/JsVbtCalculator/_parseRep@1345406029_2dbcf0.txt"
+          ]
+        }
+      ]
+    },
+    {
+      "term": "JsVbtCalculator.flushPendingEmits",
+      "functions": [
+        {
+          "name": "JsVbtCalculator.flushPendingEmits_37a9ec",
+          "owner": "JsVbtCalculator",
+          "pc": "0xa0132c",
+          "size": 1040,
+          "asm_paths": [
+            "analysis/aot_unflutter/asm/JsVbtCalculator/flushPendingEmits_37a9ec.txt"
+          ]
+        }
+      ]
+    },
+    {
+      "term": "JsRotationCalculator._parseRep",
+      "functions": [
+        {
+          "name": "JsRotationCalculator._parseRep@1421269909_315a30",
+          "owner": "JsRotationCalculator",
+          "pc": "0x99c370",
+          "size": 3448,
+          "asm_paths": [
+            "analysis/aot_unflutter/asm/JsRotationCalculator/_parseRep@1421269909_315a30.txt"
+          ]
+        }
+      ]
+    },
+    {
+      "term": "OneRmTest.calculateLvp",
+      "functions": [
+        {
+          "name": "OneRmTest.calculateLvp_2e839c",
+          "owner": "OneRmTest",
+          "pc": "0x96ecdc",
+          "size": 924,
+          "asm_paths": [
+            "analysis/aot_unflutter/asm/OneRmTest/calculateLvp_2e839c.txt"
+          ]
+        }
+      ]
+    },
+    {
+      "term": "JsOneRmCalculator.calculateLvp",
+      "functions": [
+        {
+          "name": "JsOneRmCalculator.calculateLvp_2f05e8",
+          "owner": "JsOneRmCalculator",
+          "pc": "0x976f28",
+          "size": 256,
+          "asm_paths": [
+            "analysis/aot_unflutter/asm/JsOneRmCalculator/calculateLvp_2f05e8.txt"
+          ]
+        }
+      ]
+    },
+    {
+      "term": "JumpRunner.pushBatch",
+      "functions": [
+        {
+          "name": "JumpRunner.pushBatch_2779b0",
+          "owner": "JumpRunner",
+          "pc": "0x8fe2f0",
+          "size": 920,
+          "asm_paths": [
+            "analysis/aot_unflutter/asm/JumpRunner/pushBatch_2779b0.txt"
+          ]
+        }
+      ]
+    },
+    {
+      "term": "detectJumpCountermovement",
+      "functions": [
+        {
+          "name": "detectJumpCountermovement_27c6ac",
+          "owner": null,
+          "pc": "0x902fec",
+          "size": 912,
+          "asm_paths": [
+            "analysis/aot_unflutter/asm/detectJumpCountermovement_27c6ac.txt"
+          ]
+        }
+      ]
+    },
+    {
+      "term": "JumpFeedbackAnalyzer.analyze",
+      "functions": [
+        {
+          "name": "JumpFeedbackAnalyzer.analyze_2a5f64",
+          "owner": "JumpFeedbackAnalyzer",
+          "pc": "0x92c8a4",
+          "size": 1112,
+          "asm_paths": [
+            "analysis/aot_unflutter/asm/JumpFeedbackAnalyzer/analyze_2a5f64.txt"
+          ]
+        }
+      ]
+    },
+    {
+      "term": "AuthService.authStateChanges",
+      "functions": [
+        {
+          "name": "AuthService.authStateChanges_12d198",
+          "owner": "AuthService",
+          "pc": "0x7b3ad8",
+          "size": 56,
+          "asm_paths": [
+            "analysis/aot_unflutter/asm/AuthService/authStateChanges_12d198.txt"
+          ]
+        }
+      ]
+    },
+    {
+      "term": "AuthService.validateSession",
+      "functions": [
+        {
+          "name": "AuthService.validateSession_8c7924",
+          "owner": "AuthService",
+          "pc": "0xf4e264",
+          "size": 572,
+          "asm_paths": [
+            "analysis/aot_unflutter/asm/AuthService/validateSession_8c7924.txt"
+          ]
+        }
+      ]
+    },
+    {
+      "term": "LoginPage.build",
+      "functions": [
+        {
+          "name": "LoginPage.build_3bb3e0",
+          "owner": "LoginPage",
+          "pc": "0xa41d20",
+          "size": 1344,
+          "asm_paths": [
+            "analysis/aot_unflutter/asm/LoginPage/build_3bb3e0.txt"
+          ]
+        }
+      ]
+    }
+  ]
+}

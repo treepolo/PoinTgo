@@ -1,0 +1,533 @@
+{
+  "generated": "2026-09-15",
+  "source": "official Poin*T Go 1.3.5 preserved APK set",
+  "phone_required": false,
+  "official_apks": [
+    {
+      "file": "analysis\\official_clone\\original\\base.apk",
+      "bytes": 73228712,
+      "sha256": "94d764aa9234f2687ea4c129a4a3645c15b968e191229aeb4466e1c14c7f7a10",
+      "zip_entries": 525,
+      "categories": {
+        "android_resource": 152,
+        "dex": 3,
+        "flutter_asset": 158,
+        "other": 126,
+        "signature_or_metadata": 86
+      },
+      "notable_entries": [
+        "AndroidManifest.xml",
+        "assets/flutter_assets/NativeAssetsManifest.json",
+        "classes.dex",
+        "resources.arsc"
+      ]
+    },
+    {
+      "file": "analysis\\official_clone\\original\\split_config.arm64_v8a.apk",
+      "bytes": 48665828,
+      "sha256": "7e8f0cde58813901855c7df9162d9f76ee80a936fd6fedc0b786fee959d33dfd",
+      "zip_entries": 16,
+      "categories": {
+        "native_lib": 11,
+        "other": 2,
+        "signature_or_metadata": 3
+      },
+      "notable_entries": [
+        "AndroidManifest.xml",
+        "lib/arm64-v8a/libapp.so",
+        "lib/arm64-v8a/libflutter.so"
+      ]
+    },
+    {
+      "file": "analysis\\official_clone\\original\\split_config.en.apk",
+      "bytes": 45465,
+      "sha256": "3ecafec87302cbf0afa6874b7b5ec075230d4d56f9716374e9e9e363b5a98545",
+      "zip_entries": 6,
+      "categories": {
+        "other": 3,
+        "signature_or_metadata": 3
+      },
+      "notable_entries": [
+        "AndroidManifest.xml",
+        "resources.arsc"
+      ]
+    },
+    {
+      "file": "analysis\\official_clone\\original\\split_config.xxhdpi.apk",
+      "bytes": 100918,
+      "sha256": "2665f4bc590318ab3da7ef125f91654aed3964e707601de94a56b24939047cd8",
+      "zip_entries": 66,
+      "categories": {
+        "android_resource": 60,
+        "other": 3,
+        "signature_or_metadata": 3
+      },
+      "notable_entries": [
+        "AndroidManifest.xml",
+        "resources.arsc"
+      ]
+    },
+    {
+      "file": "analysis\\official_clone\\original\\split_config.zh.apk",
+      "bytes": 33177,
+      "sha256": "40b44b7669cc591958cf31c8cabbf48b31fea354523a72192e69793bd3ca5b7d",
+      "zip_entries": 6,
+      "categories": {
+        "other": 3,
+        "signature_or_metadata": 3
+      },
+      "notable_entries": [
+        "AndroidManifest.xml",
+        "resources.arsc"
+      ]
+    }
+  ],
+  "decoded_base": {
+    "files": 15943,
+    "bytes": 198148620,
+    "by_extension": {
+      ".a": 1,
+      ".b": 1,
+      ".bin": 4,
+      ".css": 1,
+      ".dev": 1,
+      ".frag": 2,
+      ".js": 5,
+      ".json": 4,
+      ".jsonfactory": 1,
+      ".kotlin_builtins": 8,
+      ".l0": 1,
+      ".md": 1,
+      ".mf": 1,
+      ".mp3": 15,
+      ".objectcodec": 1,
+      ".otf": 7,
+      ".png": 114,
+      ".product": 1,
+      ".prof": 1,
+      ".profm": 1,
+      ".properties": 31,
+      ".proto": 77,
+      ".s": 1,
+      ".smali": 15400,
+      ".svg": 12,
+      ".task": 1,
+      ".textproto": 1,
+      ".tflite": 1,
+      ".ttf": 1,
+      ".txt": 3,
+      ".u": 1,
+      ".version": 73,
+      ".xml": 166,
+      ".y": 1,
+      ".yml": 1,
+      ".z": 1,
+      "<none>": 1
+    },
+    "by_top_level": {
+      "AndroidManifest.xml": 1,
+      "apktool.yml": 1,
+      "assets": 163,
+      "original": 2,
+      "res": 172,
+      "smali": 10662,
+      "smali_classes2": 134,
+      "smali_classes3": 4604,
+      "unknown": 204
+    }
+  },
+  "manifest": {
+    "path": "analysis\\reverse_engineering\\original_decoded\\base\\AndroidManifest.xml",
+    "package": "kr.piehealthcare.point.sensor",
+    "application": "com.pairip.application.Application",
+    "component_count": 133,
+    "components": [
+      "android.ext.adservices",
+      "android.hardware.camera",
+      "android.hardware.camera.any",
+      "android.hardware.camera.autofocus",
+      "android.intent.action.BOOT_COMPLETED",
+      "android.intent.action.MAIN",
+      "android.intent.action.MY_PACKAGE_REPLACED",
+      "android.intent.action.PROCESS_TEXT",
+      "android.intent.action.QUICKBOOT_POWERON",
+      "android.intent.action.VIEW",
+      "android.intent.category.BROWSABLE",
+      "android.intent.category.DEFAULT",
+      "android.intent.category.LAUNCHER",
+      "android.permission.ACCESS_ADSERVICES_AD_ID",
+      "android.permission.ACCESS_ADSERVICES_ATTRIBUTION",
+      "android.permission.ACCESS_COARSE_LOCATION",
+      "android.permission.ACCESS_FINE_LOCATION",
+      "android.permission.ACCESS_NETWORK_STATE",
+      "android.permission.ACTIVITY_RECOGNITION",
+      "android.permission.BLUETOOTH",
+      "android.permission.BLUETOOTH_ADMIN",
+      "android.permission.BLUETOOTH_CONNECT",
+      "android.permission.BLUETOOTH_SCAN",
+      "android.permission.BODY_SENSORS",
+      "android.permission.CAMERA",
+      "android.permission.FOREGROUND_SERVICE",
+      "android.permission.FOREGROUND_SERVICE_HEALTH",
+      "android.permission.FOREGROUND_SERVICE_MEDIA_PROJECTION",
+      "android.permission.HIGH_SAMPLING_RATE_SENSORS",
+      "android.permission.INTERNET",
+      "android.permission.POST_NOTIFICATIONS",
+      "android.permission.READ_EXTERNAL_STORAGE",
+      "android.permission.RECEIVE_BOOT_COMPLETED",
+      "android.permission.RECORD_AUDIO",
+      "android.permission.SERVICE",
+      "android.permission.USE_BIOMETRIC",
+      "android.permission.USE_FINGERPRINT",
+      "android.permission.VIBRATE",
+      "android.permission.WAKE_LOCK",
+      "android.permission.WRITE_EXTERNAL_STORAGE",
+      "androidx.camera.core.impl.MetadataHolderService",
+      "androidx.camera.core.impl.MetadataHolderService.DEFAULT_CONFIG_PROVIDER",
+      "androidx.credentials.CREDENTIAL_PROVIDER_KEY",
+      "androidx.credentials.playservices.CredentialProviderMetadataHolder",
+      "androidx.credentials.playservices.controllers.identityauth.HiddenActivity",
+      "androidx.credentials.playservices.controllers.identitycredentials.IdentityCredentialApiHiddenActivity",
+      "androidx.lifecycle.ProcessLifecycleInitializer",
+      "androidx.profileinstaller.ProfileInstallReceiver",
+      "androidx.profileinstaller.ProfileInstallerInitializer",
+      "androidx.profileinstaller.action.BENCHMARK_OPERATION",
+      "androidx.profileinstaller.action.INSTALL_PROFILE",
+      "androidx.profileinstaller.action.SAVE_PROFILE",
+      "androidx.profileinstaller.action.SKIP_FILE",
+      "androidx.startup.InitializationProvider",
+      "androidx.window.extensions",
+      "androidx.window.sidecar",
+      "backend:com.google.android.datatransport.cct.CctBackendFactory",
+      "com.android.stamp.source",
+      "com.android.stamp.type",
+      "com.android.vending.CHECK_LICENSE",
+      "com.android.vending.derived.apk.id",
+      "com.android.vending.splits",
+      "com.android.vending.splits.required",
+      "com.dexterous.flutterlocalnotifications.ScheduledNotificationBootReceiver",
+      "com.dexterous.flutterlocalnotifications.ScheduledNotificationReceiver",
+      "com.example.flutter_mocap_lib.service.BLEService",
+      "com.google.android.c2dm.intent.RECEIVE",
+      "com.google.android.c2dm.permission.RECEIVE",
+      "com.google.android.datatransport.runtime.backends.TransportBackendDiscovery",
+      "com.google.android.datatransport.runtime.scheduling.jobscheduling.AlarmManagerSchedulerBroadcastReceiver",
+      "com.google.android.datatransport.runtime.scheduling.jobscheduling.JobInfoSchedulerService",
+      "com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE",
+      "com.google.android.gms.auth.api.signin.RevocationBoundService",
+      "com.google.android.gms.auth.api.signin.internal.SignInHubActivity",
+      "com.google.android.gms.cloudmessaging.FINISHED_AFTER_HANDLED",
+      "com.google.android.gms.common.api.GoogleApiActivity",
+      "com.google.android.gms.measurement.AppMeasurementJobService",
+      "com.google.android.gms.measurement.AppMeasurementReceiver",
+      "com.google.android.gms.measurement.AppMeasurementService",
+      "com.google.android.gms.permission.AD_ID",
+      "com.google.android.gms.version",
+      "com.google.android.play.core.common.PlayCoreDialogWrapperActivity",
+      "com.google.android.providers.gsf.permission.READ_GSERVICES",
+      "com.google.firebase.MESSAGING_EVENT",
+      "com.google.firebase.auth.internal.GenericIdpActivity",
+      "com.google.firebase.auth.internal.RecaptchaActivity",
+      "com.google.firebase.components.ComponentDiscoveryService",
+      "com.google.firebase.components:com.google.firebase.FirebaseCommonKtxRegistrar",
+      "com.google.firebase.components:com.google.firebase.analytics.connector.internal.AnalyticsConnectorRegistrar",
+      "com.google.firebase.components:com.google.firebase.auth.FirebaseAuthRegistrar",
+      "com.google.firebase.components:com.google.firebase.crashlytics.CrashlyticsRegistrar",
+      "com.google.firebase.components:com.google.firebase.crashlytics.FirebaseCrashlyticsKtxRegistrar",
+      "com.google.firebase.components:com.google.firebase.datatransport.TransportRegistrar",
+      "com.google.firebase.components:com.google.firebase.firestore.FirebaseFirestoreKtxRegistrar",
+      "com.google.firebase.components:com.google.firebase.firestore.FirestoreRegistrar",
+      "com.google.firebase.components:com.google.firebase.installations.FirebaseInstallationsKtxRegistrar",
+      "com.google.firebase.components:com.google.firebase.installations.FirebaseInstallationsRegistrar",
+      "com.google.firebase.components:com.google.firebase.messaging.FirebaseMessagingKtxRegistrar",
+      "com.google.firebase.components:com.google.firebase.messaging.FirebaseMessagingRegistrar",
+      "com.google.firebase.components:com.google.firebase.sessions.FirebaseSessionsRegistrar",
+      "com.google.firebase.components:io.flutter.plugins.firebase.analytics.FlutterFirebaseAppRegistrar",
+      "com.google.firebase.components:io.flutter.plugins.firebase.auth.FlutterFirebaseAuthRegistrar",
+      "com.google.firebase.components:io.flutter.plugins.firebase.core.FlutterFirebaseCoreRegistrar",
+      "com.google.firebase.components:io.flutter.plugins.firebase.crashlytics.FlutterFirebaseAppRegistrar",
+      "com.google.firebase.components:io.flutter.plugins.firebase.firestore.FlutterFirebaseFirestoreRegistrar",
+      "com.google.firebase.components:io.flutter.plugins.firebase.messaging.FlutterFirebaseAppRegistrar",
+      "com.google.firebase.iid.FirebaseInstanceIdReceiver",
+      "com.google.firebase.messaging.FirebaseMessagingService",
+      "com.google.firebase.messaging.default_notification_icon",
+      "com.google.firebase.provider.FirebaseInitProvider",
+      "com.google.firebase.sessions.SessionLifecycleService",
+      "com.htc.intent.action.QUICKBOOT_POWERON",
+      "com.pairip.application.Application",
+      "com.pairip.licensecheck.LicenseActivity",
+      "flutterEmbedding",
+      "io.flutter.embedding.android.NormalTheme",
+      "io.flutter.plugins.firebase.messaging.FlutterFirebaseMessagingBackgroundService",
+      "io.flutter.plugins.firebase.messaging.FlutterFirebaseMessagingInitProvider",
+      "io.flutter.plugins.firebase.messaging.FlutterFirebaseMessagingReceiver",
+      "io.flutter.plugins.firebase.messaging.FlutterFirebaseMessagingService",
+      "io.flutter.plugins.urllauncher.WebViewActivity",
+      "kr.piehealthcare.point.sensor.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION",
+      "kr.piehealthcare.point.sensor.MainActivity",
+      "kr.piehealthcare.point.sensor.ScreenRecorderService",
+      "libOpenCL-car.so",
+      "libOpenCL-pixel.so",
+      "libOpenCL.so"
+    ],
+    "permissions": [
+      "android.permission.ACCESS_ADSERVICES_AD_ID",
+      "android.permission.ACCESS_ADSERVICES_ATTRIBUTION",
+      "android.permission.ACCESS_COARSE_LOCATION",
+      "android.permission.ACCESS_FINE_LOCATION",
+      "android.permission.ACCESS_NETWORK_STATE",
+      "android.permission.ACTIVITY_RECOGNITION",
+      "android.permission.BLUETOOTH",
+      "android.permission.BLUETOOTH_ADMIN",
+      "android.permission.BLUETOOTH_CONNECT",
+      "android.permission.BLUETOOTH_SCAN",
+      "android.permission.BODY_SENSORS",
+      "android.permission.CAMERA",
+      "android.permission.FOREGROUND_SERVICE",
+      "android.permission.FOREGROUND_SERVICE_HEALTH",
+      "android.permission.FOREGROUND_SERVICE_MEDIA_PROJECTION",
+      "android.permission.HIGH_SAMPLING_RATE_SENSORS",
+      "android.permission.INTERNET",
+      "android.permission.POST_NOTIFICATIONS",
+      "android.permission.READ_EXTERNAL_STORAGE",
+      "android.permission.RECEIVE_BOOT_COMPLETED",
+      "android.permission.RECORD_AUDIO",
+      "android.permission.SERVICE",
+      "android.permission.USE_BIOMETRIC",
+      "android.permission.USE_FINGERPRINT",
+      "android.permission.VIBRATE",
+      "android.permission.WAKE_LOCK",
+      "android.permission.WRITE_EXTERNAL_STORAGE",
+      "com.android.vending.CHECK_LICENSE",
+      "com.google.android.c2dm.permission.RECEIVE",
+      "com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE",
+      "com.google.android.gms.permission.AD_ID",
+      "com.google.android.providers.gsf.permission.READ_GSERVICES",
+      "kr.piehealthcare.point.sensor.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+    ],
+    "lines": 182
+  },
+  "dex_smali": {
+    "smali": {
+      "files": 10662,
+      "bytes": 90974239,
+      "packages": 454
+    },
+    "smali_classes2": {
+      "files": 134,
+      "bytes": 1474552,
+      "packages": 6
+    },
+    "smali_classes3": {
+      "files": 4604,
+      "bytes": 41984618,
+      "packages": 245
+    },
+    "native_dex": {
+      "files": 1,
+      "bytes": 131456
+    }
+  },
+  "flutter_assets": {
+    "files": 158,
+    "bytes": 47013076,
+    "top_level_counts": {
+      ".env.dev": 1,
+      ".env.product": 1,
+      "AssetManifest.bin": 1,
+      "FontManifest.json": 1,
+      "NOTICES.Z": 1,
+      "NativeAssetsManifest.json": 1,
+      "assets": 137,
+      "fonts": 1,
+      "packages": 12,
+      "shaders": 2
+    },
+    "examples": {
+      ".env.dev": [
+        ".env.dev"
+      ],
+      ".env.product": [
+        ".env.product"
+      ],
+      "AssetManifest.bin": [
+        "AssetManifest.bin"
+      ],
+      "FontManifest.json": [
+        "FontManifest.json"
+      ],
+      "NOTICES.Z": [
+        "NOTICES.Z"
+      ],
+      "NativeAssetsManifest.json": [
+        "NativeAssetsManifest.json"
+      ],
+      "assets": [
+        "assets/app_update.bin",
+        "assets/app_update_1_5_0.bin",
+        "assets/data/jump_norms.json",
+        "assets/icon/features/isometric.svg",
+        "assets/icon/features/jump.svg",
+        "assets/icon/features/mobility.svg",
+        "assets/icon/features/one_rm.svg",
+        "assets/icon/features/rotation.svg",
+        "assets/icon/features/rsi.svg",
+        "assets/icon/features/slam.svg",
+        "assets/icon/features/swing.svg",
+        "assets/icon/features/vbt.svg"
+      ],
+      "fonts": [
+        "fonts/MaterialIcons-Regular.otf"
+      ],
+      "packages": [
+        "packages/cupertino_icons/assets/CupertinoIcons.ttf",
+        "packages/flutter_js/assets/js/fetch.js",
+        "packages/flutter_local_notifications_web/web/notifications_service_worker.js",
+        "packages/fluttertoast/assets/toastify.css",
+        "packages/fluttertoast/assets/toastify.js",
+        "packages/point_design_system/fonts/WantedSans/WantedSans-Black.otf",
+        "packages/point_design_system/fonts/WantedSans/WantedSans-Bold.otf",
+        "packages/point_design_system/fonts/WantedSans/WantedSans-ExtraBold.otf",
+        "packages/point_design_system/fonts/WantedSans/WantedSans-Medium.otf",
+        "packages/point_design_system/fonts/WantedSans/WantedSans-Regular.otf",
+        "packages/point_design_system/fonts/WantedSans/WantedSans-SemiBold.otf",
+        "packages/wakelock_plus/assets/no_sleep.js"
+      ],
+      "shaders": [
+        "shaders/ink_sparkle.frag",
+        "shaders/stretch_effect.frag"
+      ]
+    }
+  },
+  "aot": {
+    "classes.jsonl": {
+      "bytes": 2316429,
+      "lines": 6696
+    },
+    "functions.jsonl": {
+      "bytes": 4658663,
+      "lines": 46790
+    },
+    "index.jsonl": {
+      "bytes": 8379222,
+      "lines": 46790
+    },
+    "string_refs.jsonl": {
+      "bytes": 7792098,
+      "lines": 42304
+    },
+    "call_edges.jsonl": {
+      "bytes": 25872651,
+      "lines": 214034
+    },
+    "objects.jsonl": {
+      "bytes": 6604238,
+      "lines": 59235
+    },
+    "edges.jsonl": {
+      "bytes": 7909147,
+      "lines": 153557
+    },
+    "code_map.jsonl": {
+      "bytes": 4851390,
+      "lines": 45521
+    },
+    "asm_txt": {
+      "files": 9305,
+      "bytes": 18309399
+    },
+    "important_symbol_hits": {
+      "BleMocapDataParser": {
+        "function_lines": 46,
+        "asm_files": 0
+      },
+      "Command": {
+        "function_lines": 175,
+        "asm_files": 25
+      },
+      "GlobalAcceleration": {
+        "function_lines": 9,
+        "asm_files": 2
+      },
+      "GlobalVelocity": {
+        "function_lines": 8,
+        "asm_files": 1
+      },
+      "RotationQuaternion": {
+        "function_lines": 11,
+        "asm_files": 2
+      },
+      "JsWeightliftingCalculator": {
+        "function_lines": 55,
+        "asm_files": 1
+      },
+      "JsVbtCalculator": {
+        "function_lines": 22,
+        "asm_files": 1
+      },
+      "JsRotationCalculator": {
+        "function_lines": 17,
+        "asm_files": 1
+      },
+      "JsOneRmCalculator": {
+        "function_lines": 10,
+        "asm_files": 1
+      },
+      "OneRmTest": {
+        "function_lines": 20,
+        "asm_files": 2
+      },
+      "JumpRunner": {
+        "function_lines": 9,
+        "asm_files": 1
+      },
+      "JumpFeedbackAnalyzer": {
+        "function_lines": 12,
+        "asm_files": 0
+      },
+      "AuthService": {
+        "function_lines": 33,
+        "asm_files": 4
+      },
+      "LoginPage": {
+        "function_lines": 8,
+        "asm_files": 0
+      },
+      "History": {
+        "function_lines": 228,
+        "asm_files": 20
+      },
+      "Settings": {
+        "function_lines": 90,
+        "asm_files": 16
+      }
+    },
+    "string_file": {
+      "bytes": 1346919,
+      "lines": 79986,
+      "keyword_hits": {
+        "登入": 0,
+        "Google": 58,
+        "裝置": 0,
+        "校正": 0,
+        "跳": 0,
+        "RSI": 702,
+        "1RM": 121,
+        "velocity": 426,
+        "acceleration": 27,
+        "rotation": 417,
+        "throw": 160,
+        "weight": 570,
+        "history": 85,
+        "setting": 223,
+        "firebase": 228,
+        "BLE": 1367
+      }
+    }
+  },
+  "libapp_so": {
+    "file": "analysis\\apk_protocol\\unpacked_arm64\\lib\\arm64-v8a\\libapp.so",
+    "bytes": 16122800,
+    "sha256": "7ea3d30692b31cf8a2346b422fbe1407663b5bd86693738790fbfa7392fb97b4"
+  }
+}
