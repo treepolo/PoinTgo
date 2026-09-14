@@ -1,0 +1,2493 @@
+{
+  "generated": "2026-09-15",
+  "function_count": 46790,
+  "class_count": 6696,
+  "categories": {
+    "ble_transport": {
+      "function_count": 173,
+      "percent_of_functions": 0.37,
+      "code_bytes_sum": 59400,
+      "top_owners": [
+        {
+          "owner": "DeviceConnectionManager",
+          "count": 29
+        },
+        {
+          "owner": "BleApiImpl",
+          "count": 26
+        },
+        {
+          "owner": "BleMocapDataParser",
+          "count": 23
+        },
+        {
+          "owner": "(none)",
+          "count": 22
+        },
+        {
+          "owner": "Quaternion",
+          "count": 12
+        },
+        {
+          "owner": "BleDeviceList",
+          "count": 11
+        },
+        {
+          "owner": "BleScanStatus",
+          "count": 9
+        },
+        {
+          "owner": "SensorManager",
+          "count": 8
+        },
+        {
+          "owner": "DeviceEventListener",
+          "count": 6
+        },
+        {
+          "owner": "RawImuBatch",
+          "count": 3
+        },
+        {
+          "owner": "_$RotationQuaternionImpl@1097462921",
+          "count": 2
+        },
+        {
+          "owner": "RotationQuaternion",
+          "count": 2
+        },
+        {
+          "owner": "AccelCalibrationUtil",
+          "count": 2
+        },
+        {
+          "owner": "_BlendedDecorationImagePainter@489297748",
+          "count": 2
+        },
+        {
+          "owner": "_$BleDeviceImpl@1250046950",
+          "count": 2
+        },
+        {
+          "owner": "BleApi",
+          "count": 1
+        },
+        {
+          "owner": "BleDevice",
+          "count": 1
+        },
+        {
+          "owner": "RawImuStreamEvent",
+          "count": 1
+        },
+        {
+          "owner": "Color",
+          "count": 1
+        },
+        {
+          "owner": "BleDeviceState",
+          "count": 1
+        },
+        {
+          "owner": "BleMocapCommandType",
+          "count": 1
+        },
+        {
+          "owner": "MocapPosition",
+          "count": 1
+        },
+        {
+          "owner": "BleScanEvent",
+          "count": 1
+        },
+        {
+          "owner": "BLEDfuUpdateState",
+          "count": 1
+        },
+        {
+          "owner": "BleScanState",
+          "count": 1
+        },
+        {
+          "owner": "BlendMode",
+          "count": 1
+        },
+        {
+          "owner": "CommandMeasureQuaternionAccelVelocityPosition",
+          "count": 1
+        },
+        {
+          "owner": "CommandMeasureRawImuHighRate",
+          "count": 1
+        },
+        {
+          "owner": "_BlendedDecorationImage@489297748",
+          "count": 1
+        }
+      ],
+      "examples": [
+        {
+          "name": "SensorManager.transmitBlePacket_1b58ac",
+          "pc": "0x83c1ec",
+          "size": 252,
+          "owner": "SensorManager"
+        },
+        {
+          "name": "BleApiImpl.transmitBleCommandPacket_1b59a8",
+          "pc": "0x83c2e8",
+          "size": 188,
+          "owner": "BleApiImpl"
+        },
+        {
+          "name": "BleApiImpl._callMethod@859188570_1b5a64",
+          "pc": "0x83c3a4",
+          "size": 448,
+          "owner": "BleApiImpl"
+        },
+        {
+          "name": "BleOperationResult_1b5c24",
+          "pc": "0x83c564",
+          "size": 12,
+          "owner": null
+        },
+        {
+          "name": "BleApi.BleApi._1b6100",
+          "pc": "0x83ca40",
+          "size": 92,
+          "owner": "BleApi"
+        },
+        {
+          "name": "BleApiImpl.BleApiImpl._1b615c",
+          "pc": "0x83ca9c",
+          "size": 172,
+          "owner": "BleApiImpl"
+        },
+        {
+          "name": "BleApiImpl._onBleDfuStateUpdated@859188570_1b6658",
+          "pc": "0x83cf98",
+          "size": 276,
+          "owner": "BleApiImpl"
+        },
+        {
+          "name": "SensorManager.onBleDfuStateUpdated_1b676c",
+          "pc": "0x83d0ac",
+          "size": 476,
+          "owner": "SensorManager"
+        },
+        {
+          "name": "BleApiImpl.startBleDeviceScan_1b6a20",
+          "pc": "0x83d360",
+          "size": 76,
+          "owner": "BleApiImpl"
+        },
+        {
+          "name": "BLEDfuUpdate_1b6a6c",
+          "pc": "0x83d3ac",
+          "size": 12,
+          "owner": null
+        },
+        {
+          "name": "BLEDfuUploading_1b6a9c",
+          "pc": "0x83d3dc",
+          "size": 12,
+          "owner": null
+        },
+        {
+          "name": "BleApiImpl._onBleDfuFailed@859188570_1b6aa8",
+          "pc": "0x83d3e8",
+          "size": 176,
+          "owner": "BleApiImpl"
+        },
+        {
+          "name": "SensorManager.onBleDfuFailed_1b6b58",
+          "pc": "0x83d498",
+          "size": 136,
+          "owner": "SensorManager"
+        },
+        {
+          "name": "BLEDfuFailed_1b6be0",
+          "pc": "0x83d520",
+          "size": 12,
+          "owner": null
+        },
+        {
+          "name": "BleApiImpl._onBleDfuCompleted@859188570_1b6bec",
+          "pc": "0x83d52c",
+          "size": 176,
+          "owner": "BleApiImpl"
+        },
+        {
+          "name": "SensorManager.onBleDfuCompleted_1b6c9c",
+          "pc": "0x83d5dc",
+          "size": 136,
+          "owner": "SensorManager"
+        },
+        {
+          "name": "BLEDfuCompleted_1b6d24",
+          "pc": "0x83d664",
+          "size": 12,
+          "owner": null
+        },
+        {
+          "name": "BleApiImpl._onBleDfuFirmwareUploadingProgressUpdated@859188570_1b6d30",
+          "pc": "0x83d670",
+          "size": 284,
+          "owner": "BleApiImpl"
+        },
+        {
+          "name": "SensorManager.onBleDfuFirmwareUploadingProgressUpdated_1b6e4c",
+          "pc": "0x83d78c",
+          "size": 288,
+          "owner": "SensorManager"
+        },
+        {
+          "name": "BleApiImpl._onBleDfuStarted@859188570_1b6f6c",
+          "pc": "0x83d8ac",
+          "size": 176,
+          "owner": "BleApiImpl"
+        }
+      ]
+    },
+    "calibration": {
+      "function_count": 132,
+      "percent_of_functions": 0.28,
+      "code_bytes_sum": 20184,
+      "top_owners": [
+        {
+          "owner": "(none)",
+          "count": 30
+        },
+        {
+          "owner": "AccelCalibrationUtil",
+          "count": 7
+        },
+        {
+          "owner": "SDe",
+          "count": 6
+        },
+        {
+          "owner": "SEn",
+          "count": 6
+        },
+        {
+          "owner": "SEs",
+          "count": 6
+        },
+        {
+          "owner": "SFr",
+          "count": 6
+        },
+        {
+          "owner": "SKo",
+          "count": 6
+        },
+        {
+          "owner": "SZh",
+          "count": 6
+        },
+        {
+          "owner": "SJa",
+          "count": 5
+        },
+        {
+          "owner": "SZhTw",
+          "count": 5
+        },
+        {
+          "owner": "_$WeightliftingCalibrationImpl@1129372492",
+          "count": 3
+        },
+        {
+          "owner": "CalibrationRecordRepository",
+          "count": 3
+        },
+        {
+          "owner": "_$GlobalAccelerationImpl@1097462921",
+          "count": 3
+        },
+        {
+          "owner": "CalibrationStateNotifier",
+          "count": 3
+        },
+        {
+          "owner": "GyroCalibrationWidget",
+          "count": 3
+        },
+        {
+          "owner": "JsWeightliftingCalculator",
+          "count": 2
+        },
+        {
+          "owner": "_$AccelAxisCalibrationResImpl@1117427666",
+          "count": 2
+        },
+        {
+          "owner": "_$AccelBiasCalibrationResImpl@1117427666",
+          "count": 2
+        },
+        {
+          "owner": "_$AccelCalibrationDataImpl@1117427666",
+          "count": 2
+        },
+        {
+          "owner": "CalibrationPopup",
+          "count": 1
+        },
+        {
+          "owner": "AccelAxisCalibrationWidget",
+          "count": 1
+        },
+        {
+          "owner": "AccelAxisCalibrationStateNotifier",
+          "count": 1
+        },
+        {
+          "owner": "GyroCalibrationStateNotifier",
+          "count": 1
+        },
+        {
+          "owner": "Slam",
+          "count": 1
+        },
+        {
+          "owner": "JsVbtCalculator",
+          "count": 1
+        },
+        {
+          "owner": "AccelOffsetAxisCalibrationCommandType",
+          "count": 1
+        },
+        {
+          "owner": "SensorCalibrationSensorType",
+          "count": 1
+        },
+        {
+          "owner": "GyroCalibrationCommand",
+          "count": 1
+        },
+        {
+          "owner": "AccelOffsetAndAxisCalibrationEvent",
+          "count": 1
+        },
+        {
+          "owner": "AccelBiasCalibrationEvent",
+          "count": 1
+        }
+      ],
+      "examples": [
+        {
+          "name": "SDe.get:dashboard_metricMaxAccel_8134",
+          "pc": "0x68ea74",
+          "size": 12,
+          "owner": "SDe"
+        },
+        {
+          "name": "SEn.get:dashboard_metricMaxAccel_8140",
+          "pc": "0x68ea80",
+          "size": 12,
+          "owner": "SEn"
+        },
+        {
+          "name": "SEs.get:dashboard_metricMaxAccel_814c",
+          "pc": "0x68ea8c",
+          "size": 12,
+          "owner": "SEs"
+        },
+        {
+          "name": "SFr.get:dashboard_metricMaxAccel_8158",
+          "pc": "0x68ea98",
+          "size": 12,
+          "owner": "SFr"
+        },
+        {
+          "name": "SKo.get:dashboard_metricMaxAccel_8164",
+          "pc": "0x68eaa4",
+          "size": 12,
+          "owner": "SKo"
+        },
+        {
+          "name": "SZh.get:dashboard_metricMaxAccel_8170",
+          "pc": "0x68eab0",
+          "size": 12,
+          "owner": "SZh"
+        },
+        {
+          "name": "SDe.get:device_needCalibrationAfterFirmware_343dc",
+          "pc": "0x6bad1c",
+          "size": 12,
+          "owner": "SDe"
+        },
+        {
+          "name": "SEn.get:device_needCalibrationAfterFirmware_343e8",
+          "pc": "0x6bad28",
+          "size": 12,
+          "owner": "SEn"
+        },
+        {
+          "name": "SEs.get:device_needCalibrationAfterFirmware_343f4",
+          "pc": "0x6bad34",
+          "size": 12,
+          "owner": "SEs"
+        },
+        {
+          "name": "SFr.get:device_needCalibrationAfterFirmware_34400",
+          "pc": "0x6bad40",
+          "size": 12,
+          "owner": "SFr"
+        },
+        {
+          "name": "SJa.get:device_needCalibrationAfterFirmware_3440c",
+          "pc": "0x6bad4c",
+          "size": 12,
+          "owner": "SJa"
+        },
+        {
+          "name": "SKo.get:device_needCalibrationAfterFirmware_34418",
+          "pc": "0x6bad58",
+          "size": 12,
+          "owner": "SKo"
+        },
+        {
+          "name": "SZhTw.get:device_needCalibrationAfterFirmware_34424",
+          "pc": "0x6bad64",
+          "size": 12,
+          "owner": "SZhTw"
+        },
+        {
+          "name": "SZh.get:device_needCalibrationAfterFirmware_34430",
+          "pc": "0x6bad70",
+          "size": 12,
+          "owner": "SZh"
+        },
+        {
+          "name": "SDe.get:device_needPeriodicCalibration_3449c",
+          "pc": "0x6baddc",
+          "size": 12,
+          "owner": "SDe"
+        },
+        {
+          "name": "SEn.get:device_needPeriodicCalibration_344a8",
+          "pc": "0x6bade8",
+          "size": 12,
+          "owner": "SEn"
+        },
+        {
+          "name": "SEs.get:device_needPeriodicCalibration_344b4",
+          "pc": "0x6badf4",
+          "size": 12,
+          "owner": "SEs"
+        },
+        {
+          "name": "SFr.get:device_needPeriodicCalibration_344c0",
+          "pc": "0x6bae00",
+          "size": 12,
+          "owner": "SFr"
+        },
+        {
+          "name": "SJa.get:device_needPeriodicCalibration_344cc",
+          "pc": "0x6bae0c",
+          "size": 12,
+          "owner": "SJa"
+        },
+        {
+          "name": "SKo.get:device_needPeriodicCalibration_344d8",
+          "pc": "0x6bae18",
+          "size": 12,
+          "owner": "SKo"
+        }
+      ]
+    },
+    "motion_algorithms": {
+      "function_count": 1948,
+      "percent_of_functions": 4.16,
+      "code_bytes_sum": 772332,
+      "top_owners": [
+        {
+          "owner": "(none)",
+          "count": 397
+        },
+        {
+          "owner": "SEn",
+          "count": 102
+        },
+        {
+          "owner": "SZh",
+          "count": 100
+        },
+        {
+          "owner": "SDe",
+          "count": 99
+        },
+        {
+          "owner": "SFr",
+          "count": 99
+        },
+        {
+          "owner": "SEs",
+          "count": 97
+        },
+        {
+          "owner": "SKo",
+          "count": 96
+        },
+        {
+          "owner": "SJa",
+          "count": 84
+        },
+        {
+          "owner": "SZhTw",
+          "count": 73
+        },
+        {
+          "owner": "OneRmDataNotifier",
+          "count": 32
+        },
+        {
+          "owner": "VBTDataNotifier",
+          "count": 29
+        },
+        {
+          "owner": "WeightliftingNotifier",
+          "count": 28
+        },
+        {
+          "owner": "JumpDataNotifier",
+          "count": 27
+        },
+        {
+          "owner": "JsWeightliftingCalculator",
+          "count": 24
+        },
+        {
+          "owner": "RsiDataNotifier",
+          "count": 22
+        },
+        {
+          "owner": "RotationDataNotifier",
+          "count": 21
+        },
+        {
+          "owner": "VbtFeedbackAnalyzer",
+          "count": 15
+        },
+        {
+          "owner": "WeightliftingFeedbackAnalyzer",
+          "count": 11
+        },
+        {
+          "owner": "Rsi",
+          "count": 10
+        },
+        {
+          "owner": "VelocityProfileChart",
+          "count": 10
+        },
+        {
+          "owner": "Weightlifting",
+          "count": 9
+        },
+        {
+          "owner": "_$WeightliftingLiftImpl@1410498253",
+          "count": 9
+        },
+        {
+          "owner": "JsVbtCalculator",
+          "count": 8
+        },
+        {
+          "owner": "WeightliftingDetailSection",
+          "count": 8
+        },
+        {
+          "owner": "VBTPage",
+          "count": 8
+        },
+        {
+          "owner": "ReplayVelocityChart",
+          "count": 8
+        },
+        {
+          "owner": "VbtDetailSection",
+          "count": 7
+        },
+        {
+          "owner": "JsRotationCalculator",
+          "count": 7
+        },
+        {
+          "owner": "_$WeightliftingVelocityTraceImpl@1194399554",
+          "count": 6
+        },
+        {
+          "owner": "OneRmFeedbackAnalyzer",
+          "count": 6
+        }
+      ],
+      "examples": [
+        {
+          "name": "SDe.get:mobility_test_hipExternalRotation_3ec",
+          "pc": "0x686d2c",
+          "size": 12,
+          "owner": "SDe"
+        },
+        {
+          "name": "SEn.get:mobility_test_hipExternalRotation_3f8",
+          "pc": "0x686d38",
+          "size": 12,
+          "owner": "SEn"
+        },
+        {
+          "name": "SEs.get:mobility_test_hipExternalRotation_404",
+          "pc": "0x686d44",
+          "size": 12,
+          "owner": "SEs"
+        },
+        {
+          "name": "SFr.get:mobility_test_hipExternalRotation_410",
+          "pc": "0x686d50",
+          "size": 12,
+          "owner": "SFr"
+        },
+        {
+          "name": "SJa.get:mobility_test_hipExternalRotation_41c",
+          "pc": "0x686d5c",
+          "size": 12,
+          "owner": "SJa"
+        },
+        {
+          "name": "SKo.get:mobility_test_hipExternalRotation_428",
+          "pc": "0x686d68",
+          "size": 12,
+          "owner": "SKo"
+        },
+        {
+          "name": "SZhTw.get:mobility_test_hipExternalRotation_434",
+          "pc": "0x686d74",
+          "size": 12,
+          "owner": "SZhTw"
+        },
+        {
+          "name": "SZh.get:mobility_test_hipExternalRotation_440",
+          "pc": "0x686d80",
+          "size": 12,
+          "owner": "SZh"
+        },
+        {
+          "name": "SDe.get:templates_exercises_hipInternalRotation_16d4",
+          "pc": "0x688014",
+          "size": 12,
+          "owner": "SDe"
+        },
+        {
+          "name": "SEn.get:templates_exercises_hipInternalRotation_16e0",
+          "pc": "0x688020",
+          "size": 12,
+          "owner": "SEn"
+        },
+        {
+          "name": "SEs.get:templates_exercises_hipInternalRotation_16ec",
+          "pc": "0x68802c",
+          "size": 12,
+          "owner": "SEs"
+        },
+        {
+          "name": "SFr.get:templates_exercises_hipInternalRotation_16f8",
+          "pc": "0x688038",
+          "size": 12,
+          "owner": "SFr"
+        },
+        {
+          "name": "SJa.get:templates_exercises_hipInternalRotation_1704",
+          "pc": "0x688044",
+          "size": 12,
+          "owner": "SJa"
+        },
+        {
+          "name": "SKo.get:templates_exercises_hipInternalRotation_1710",
+          "pc": "0x688050",
+          "size": 12,
+          "owner": "SKo"
+        },
+        {
+          "name": "SZhTw.get:templates_exercises_hipInternalRotation_171c",
+          "pc": "0x68805c",
+          "size": 12,
+          "owner": "SZhTw"
+        },
+        {
+          "name": "SZh.get:templates_exercises_hipInternalRotation_1728",
+          "pc": "0x688068",
+          "size": 12,
+          "owner": "SZh"
+        },
+        {
+          "name": "SDe.get:mobility_test_hipInternalRotation_1734",
+          "pc": "0x688074",
+          "size": 12,
+          "owner": "SDe"
+        },
+        {
+          "name": "SEn.get:mobility_test_hipInternalRotation_1740",
+          "pc": "0x688080",
+          "size": 12,
+          "owner": "SEn"
+        },
+        {
+          "name": "SEs.get:mobility_test_hipInternalRotation_174c",
+          "pc": "0x68808c",
+          "size": 12,
+          "owner": "SEs"
+        },
+        {
+          "name": "SFr.get:mobility_test_hipInternalRotation_1758",
+          "pc": "0x688098",
+          "size": 12,
+          "owner": "SFr"
+        }
+      ]
+    },
+    "product_pages": {
+      "function_count": 1626,
+      "percent_of_functions": 3.48,
+      "code_bytes_sum": 548244,
+      "top_owners": [
+        {
+          "owner": "(none)",
+          "count": 210
+        },
+        {
+          "owner": "SEs",
+          "count": 68
+        },
+        {
+          "owner": "SFr",
+          "count": 68
+        },
+        {
+          "owner": "SEn",
+          "count": 67
+        },
+        {
+          "owner": "SKo",
+          "count": 66
+        },
+        {
+          "owner": "SDe",
+          "count": 64
+        },
+        {
+          "owner": "SZh",
+          "count": 64
+        },
+        {
+          "owner": "SJa",
+          "count": 59
+        },
+        {
+          "owner": "SZhTw",
+          "count": 53
+        },
+        {
+          "owner": "NavigatorState",
+          "count": 50
+        },
+        {
+          "owner": "ModalRoute",
+          "count": 34
+        },
+        {
+          "owner": "ReplayPlaybackClock",
+          "count": 24
+        },
+        {
+          "owner": "TransitionRoute",
+          "count": 23
+        },
+        {
+          "owner": "SetReplayCaptureService",
+          "count": 22
+        },
+        {
+          "owner": "LineChartPainter",
+          "count": 17
+        },
+        {
+          "owner": "ReplayPathPainter",
+          "count": 17
+        },
+        {
+          "owner": "Route",
+          "count": 14
+        },
+        {
+          "owner": "ReplayChromeController",
+          "count": 14
+        },
+        {
+          "owner": "_RouteEntry@266124995",
+          "count": 13
+        },
+        {
+          "owner": "_PagePosition@274030489",
+          "count": 13
+        },
+        {
+          "owner": "RenderBaseChart",
+          "count": 13
+        },
+        {
+          "owner": "SetReplayStore",
+          "count": 11
+        },
+        {
+          "owner": "SlamPage",
+          "count": 11
+        },
+        {
+          "owner": "DailyMeasurementCarousel",
+          "count": 10
+        },
+        {
+          "owner": "AxisChartPainter",
+          "count": 10
+        },
+        {
+          "owner": "_PredictiveBackSharedElementPageTransitionState@170428833",
+          "count": 10
+        },
+        {
+          "owner": "_MaterialPageRoute&PageRoute&MaterialRouteTransitionMixin@166331911",
+          "count": 10
+        },
+        {
+          "owner": "ModalBottomSheetRoute",
+          "count": 8
+        },
+        {
+          "owner": "_ReplayRecordCard@1438123796",
+          "count": 8
+        },
+        {
+          "owner": "_CupertinoPageTransitionState@520053933",
+          "count": 8
+        }
+      ],
+      "examples": [
+        {
+          "name": "SDe.get:dailyMeasurement_noMeasurements_3bc4",
+          "pc": "0x68a504",
+          "size": 12,
+          "owner": "SDe"
+        },
+        {
+          "name": "SEn.get:dailyMeasurement_noMeasurements_3bd0",
+          "pc": "0x68a510",
+          "size": 12,
+          "owner": "SEn"
+        },
+        {
+          "name": "SEs.get:dailyMeasurement_noMeasurements_3bdc",
+          "pc": "0x68a51c",
+          "size": 12,
+          "owner": "SEs"
+        },
+        {
+          "name": "SFr.get:dailyMeasurement_noMeasurements_3be8",
+          "pc": "0x68a528",
+          "size": 12,
+          "owner": "SFr"
+        },
+        {
+          "name": "SJa.get:dailyMeasurement_noMeasurements_3bf4",
+          "pc": "0x68a534",
+          "size": 12,
+          "owner": "SJa"
+        },
+        {
+          "name": "SKo.get:dailyMeasurement_noMeasurements_3c00",
+          "pc": "0x68a540",
+          "size": 12,
+          "owner": "SKo"
+        },
+        {
+          "name": "SZhTw.get:dailyMeasurement_noMeasurements_3c0c",
+          "pc": "0x68a54c",
+          "size": 12,
+          "owner": "SZhTw"
+        },
+        {
+          "name": "SZh.get:dailyMeasurement_noMeasurements_3c18",
+          "pc": "0x68a558",
+          "size": 12,
+          "owner": "SZh"
+        },
+        {
+          "name": "SEs.get:bodyMeasurement_trendTitle_5288",
+          "pc": "0x68bbc8",
+          "size": 12,
+          "owner": "SEs"
+        },
+        {
+          "name": "SDe.get:bodyMeasurement_deleteConfirmDesc_5294",
+          "pc": "0x68bbd4",
+          "size": 12,
+          "owner": "SDe"
+        },
+        {
+          "name": "SEn.get:bodyMeasurement_deleteConfirmDesc_52a0",
+          "pc": "0x68bbe0",
+          "size": 12,
+          "owner": "SEn"
+        },
+        {
+          "name": "SEs.get:bodyMeasurement_deleteConfirmDesc_52ac",
+          "pc": "0x68bbec",
+          "size": 12,
+          "owner": "SEs"
+        },
+        {
+          "name": "SFr.get:bodyMeasurement_deleteConfirmDesc_52b8",
+          "pc": "0x68bbf8",
+          "size": 12,
+          "owner": "SFr"
+        },
+        {
+          "name": "SJa.get:bodyMeasurement_deleteConfirmDesc_52c4",
+          "pc": "0x68bc04",
+          "size": 12,
+          "owner": "SJa"
+        },
+        {
+          "name": "SKo.get:bodyMeasurement_deleteConfirmDesc_52d0",
+          "pc": "0x68bc10",
+          "size": 12,
+          "owner": "SKo"
+        },
+        {
+          "name": "SZhTw.get:bodyMeasurement_deleteConfirmDesc_52dc",
+          "pc": "0x68bc1c",
+          "size": 12,
+          "owner": "SZhTw"
+        },
+        {
+          "name": "SZh.get:bodyMeasurement_deleteConfirmDesc_52e8",
+          "pc": "0x68bc28",
+          "size": 12,
+          "owner": "SZh"
+        },
+        {
+          "name": "SDe.get:bodyMeasurement_deleteConfirmTitle_52f4",
+          "pc": "0x68bc34",
+          "size": 12,
+          "owner": "SDe"
+        },
+        {
+          "name": "SEn.get:bodyMeasurement_deleteConfirmTitle_5300",
+          "pc": "0x68bc40",
+          "size": 12,
+          "owner": "SEn"
+        },
+        {
+          "name": "SEs.get:bodyMeasurement_deleteConfirmTitle_530c",
+          "pc": "0x68bc4c",
+          "size": 12,
+          "owner": "SEs"
+        }
+      ]
+    },
+    "auth_cloud_data": {
+      "function_count": 679,
+      "percent_of_functions": 1.45,
+      "code_bytes_sum": 212484,
+      "top_owners": [
+        {
+          "owner": "(none)",
+          "count": 165
+        },
+        {
+          "owner": "AthleteProfileDataSource",
+          "count": 27
+        },
+        {
+          "owner": "UndoHistoryState",
+          "count": 21
+        },
+        {
+          "owner": "PersonalProfileDataSource",
+          "count": 18
+        },
+        {
+          "owner": "MethodChannelFirebaseAuth",
+          "count": 16
+        },
+        {
+          "owner": "AuthService",
+          "count": 16
+        },
+        {
+          "owner": "ProfileRepository",
+          "count": 12
+        },
+        {
+          "owner": "SDe",
+          "count": 11
+        },
+        {
+          "owner": "SEn",
+          "count": 11
+        },
+        {
+          "owner": "SEs",
+          "count": 11
+        },
+        {
+          "owner": "SFr",
+          "count": 11
+        },
+        {
+          "owner": "SJa",
+          "count": 11
+        },
+        {
+          "owner": "SKo",
+          "count": 11
+        },
+        {
+          "owner": "SZhTw",
+          "count": 11
+        },
+        {
+          "owner": "SZh",
+          "count": 11
+        },
+        {
+          "owner": "FirebaseAuth",
+          "count": 11
+        },
+        {
+          "owner": "FirebaseFirestoreHostApi",
+          "count": 10
+        },
+        {
+          "owner": "ExerciseSessionBox",
+          "count": 9
+        },
+        {
+          "owner": "FirebaseFirestore",
+          "count": 8
+        },
+        {
+          "owner": "FragmentProgram",
+          "count": 7
+        },
+        {
+          "owner": "_History@266124995",
+          "count": 7
+        },
+        {
+          "owner": "AuthRepositoryImpl",
+          "count": 7
+        },
+        {
+          "owner": "_SessionOverviewCard@1374353912",
+          "count": 7
+        },
+        {
+          "owner": "_HistoryProperty@266124995",
+          "count": 6
+        },
+        {
+          "owner": "FirebaseCrashlytics",
+          "count": 6
+        },
+        {
+          "owner": "MethodChannelFirebaseFirestore",
+          "count": 6
+        },
+        {
+          "owner": "ProgramService",
+          "count": 6
+        },
+        {
+          "owner": "ProgramBox",
+          "count": 6
+        },
+        {
+          "owner": "MethodChannelFirebase",
+          "count": 5
+        },
+        {
+          "owner": "FirebaseAuthHostApi",
+          "count": 5
+        }
+      ],
+      "examples": [
+        {
+          "name": "SDe.get:program_defaultPrograms_644",
+          "pc": "0x686f84",
+          "size": 12,
+          "owner": "SDe"
+        },
+        {
+          "name": "SEn.get:program_defaultPrograms_650",
+          "pc": "0x686f90",
+          "size": 12,
+          "owner": "SEn"
+        },
+        {
+          "name": "SEs.get:program_defaultPrograms_65c",
+          "pc": "0x686f9c",
+          "size": 12,
+          "owner": "SEs"
+        },
+        {
+          "name": "SFr.get:program_defaultPrograms_668",
+          "pc": "0x686fa8",
+          "size": 12,
+          "owner": "SFr"
+        },
+        {
+          "name": "SJa.get:program_defaultPrograms_674",
+          "pc": "0x686fb4",
+          "size": 12,
+          "owner": "SJa"
+        },
+        {
+          "name": "SKo.get:program_defaultPrograms_680",
+          "pc": "0x686fc0",
+          "size": 12,
+          "owner": "SKo"
+        },
+        {
+          "name": "SZhTw.get:program_defaultPrograms_68c",
+          "pc": "0x686fcc",
+          "size": 12,
+          "owner": "SZhTw"
+        },
+        {
+          "name": "SZh.get:program_defaultPrograms_698",
+          "pc": "0x686fd8",
+          "size": 12,
+          "owner": "SZh"
+        },
+        {
+          "name": "SDe.get:session_incompleteSession_1494",
+          "pc": "0x687dd4",
+          "size": 12,
+          "owner": "SDe"
+        },
+        {
+          "name": "SEn.get:session_incompleteSession_14a0",
+          "pc": "0x687de0",
+          "size": 12,
+          "owner": "SEn"
+        },
+        {
+          "name": "SEs.get:session_incompleteSession_14ac",
+          "pc": "0x687dec",
+          "size": 12,
+          "owner": "SEs"
+        },
+        {
+          "name": "SFr.get:session_incompleteSession_14b8",
+          "pc": "0x687df8",
+          "size": 12,
+          "owner": "SFr"
+        },
+        {
+          "name": "SJa.get:session_incompleteSession_14c4",
+          "pc": "0x687e04",
+          "size": 12,
+          "owner": "SJa"
+        },
+        {
+          "name": "SKo.get:session_incompleteSession_14d0",
+          "pc": "0x687e10",
+          "size": 12,
+          "owner": "SKo"
+        },
+        {
+          "name": "SZhTw.get:session_incompleteSession_14dc",
+          "pc": "0x687e1c",
+          "size": 12,
+          "owner": "SZhTw"
+        },
+        {
+          "name": "SZh.get:session_incompleteSession_14e8",
+          "pc": "0x687e28",
+          "size": 12,
+          "owner": "SZh"
+        },
+        {
+          "name": "SDe.get:dashboard_noHistory_85a8",
+          "pc": "0x68eee8",
+          "size": 12,
+          "owner": "SDe"
+        },
+        {
+          "name": "SEn.get:dashboard_noHistory_85b4",
+          "pc": "0x68eef4",
+          "size": 12,
+          "owner": "SEn"
+        },
+        {
+          "name": "SEs.get:dashboard_noHistory_85c0",
+          "pc": "0x68ef00",
+          "size": 12,
+          "owner": "SEs"
+        },
+        {
+          "name": "SFr.get:dashboard_noHistory_85cc",
+          "pc": "0x68ef0c",
+          "size": 12,
+          "owner": "SFr"
+        }
+      ]
+    },
+    "media_notifications": {
+      "function_count": 590,
+      "percent_of_functions": 1.26,
+      "code_bytes_sum": 140508,
+      "top_owners": [
+        {
+          "owner": "(none)",
+          "count": 126
+        },
+        {
+          "owner": "AndroidCameraCameraX",
+          "count": 24
+        },
+        {
+          "owner": "MethodChannelCamera",
+          "count": 21
+        },
+        {
+          "owner": "VideoPlayerController",
+          "count": 19
+        },
+        {
+          "owner": "AudioPlayer",
+          "count": 18
+        },
+        {
+          "owner": "CameraController",
+          "count": 14
+        },
+        {
+          "owner": "AudioService",
+          "count": 13
+        },
+        {
+          "owner": "_AudioplayersPlatform&AudioplayersPlatformInterface&MethodChannelAudioplayersPlatform@610091016",
+          "count": 10
+        },
+        {
+          "owner": "CameraRecordingService",
+          "count": 9
+        },
+        {
+          "owner": "VideoPlayerInstanceApi",
+          "count": 9
+        },
+        {
+          "owner": "AndroidVideoPlayer",
+          "count": 8
+        },
+        {
+          "owner": "NotificationService",
+          "count": 8
+        },
+        {
+          "owner": "AndroidFlutterLocalNotificationsPlugin",
+          "count": 8
+        },
+        {
+          "owner": "ProcessCameraProvider",
+          "count": 8
+        },
+        {
+          "owner": "_VideoPlayerState@1437128454",
+          "count": 8
+        },
+        {
+          "owner": "ScrollNotificationObserverState",
+          "count": 7
+        },
+        {
+          "owner": "CameraInfo",
+          "count": 6
+        },
+        {
+          "owner": "AudioCache",
+          "count": 6
+        },
+        {
+          "owner": "VideoPlayerPlatform",
+          "count": 6
+        },
+        {
+          "owner": "AndroidVideoPlayerApi",
+          "count": 5
+        },
+        {
+          "owner": "FlutterLocalNotificationsPlugin",
+          "count": 5
+        },
+        {
+          "owner": "Recorder",
+          "count": 5
+        },
+        {
+          "owner": "AudioLogger",
+          "count": 5
+        },
+        {
+          "owner": "CameraPreview",
+          "count": 5
+        },
+        {
+          "owner": "SZhTw",
+          "count": 4
+        },
+        {
+          "owner": "SZh",
+          "count": 4
+        },
+        {
+          "owner": "CameraRecordingNotifier",
+          "count": 4
+        },
+        {
+          "owner": "VideoPlayerValue",
+          "count": 4
+        },
+        {
+          "owner": "Camera2CameraInfo",
+          "count": 4
+        },
+        {
+          "owner": "VideoRecordEventListener",
+          "count": 4
+        }
+      ],
+      "examples": [
+        {
+          "name": "AudioLogLevel.compareTo_35800",
+          "pc": "0x6bc140",
+          "size": 120,
+          "owner": "AudioLogLevel"
+        },
+        {
+          "name": "SZhTw.get:isometric_recordWithCamera_37138",
+          "pc": "0x6bda78",
+          "size": 12,
+          "owner": "SZhTw"
+        },
+        {
+          "name": "SZh.get:isometric_recordWithCamera_37144",
+          "pc": "0x6bda84",
+          "size": 12,
+          "owner": "SZh"
+        },
+        {
+          "name": "SDe.get:multiSensor_recordWithCamera_455ac",
+          "pc": "0x6cbeec",
+          "size": 12,
+          "owner": "SDe"
+        },
+        {
+          "name": "CameraRecordingNotifier_7c4ac",
+          "pc": "0x702dec",
+          "size": 12,
+          "owner": null
+        },
+        {
+          "name": "CameraRecordingNotifier.disposeCalculator_8898c",
+          "pc": "0x70f2cc",
+          "size": 84,
+          "owner": "CameraRecordingNotifier"
+        },
+        {
+          "name": "CameraRecordingService.dispose_889e0",
+          "pc": "0x70f320",
+          "size": 304,
+          "owner": "CameraRecordingService"
+        },
+        {
+          "name": "CameraController.dispose_88b10",
+          "pc": "0x70f450",
+          "size": 56,
+          "owner": "CameraController"
+        },
+        {
+          "name": "CameraRecordingService.CameraRecordingService._internal@1232440115_88c50",
+          "pc": "0x70f590",
+          "size": 140,
+          "owner": "CameraRecordingService"
+        },
+        {
+          "name": "CameraRecordingService_88cfc",
+          "pc": "0x70f63c",
+          "size": 12,
+          "owner": null
+        },
+        {
+          "name": "_$AudioSettingImpl@1234411512.dyn:toJson_88e70",
+          "pc": "0x70f7b0",
+          "size": 72,
+          "owner": "_$AudioSettingImpl@1234411512"
+        },
+        {
+          "name": "_$$AudioSettingImplToJson@1234411512_88eb8",
+          "pc": "0x70f7f8",
+          "size": 164,
+          "owner": null
+        },
+        {
+          "name": "_$CameraRecordingSettingImpl@1234411512.dyn:toJson_88f5c",
+          "pc": "0x70f89c",
+          "size": 72,
+          "owner": "_$CameraRecordingSettingImpl@1234411512"
+        },
+        {
+          "name": "_$$CameraRecordingSettingImplToJson@1234411512_88fa4",
+          "pc": "0x70f8e4",
+          "size": 196,
+          "owner": null
+        },
+        {
+          "name": "Notification.dispatch_b0adc",
+          "pc": "0x73741c",
+          "size": 68,
+          "owner": "Notification"
+        },
+        {
+          "name": "Element.dispatchNotification_b0b20",
+          "pc": "0x737460",
+          "size": 68,
+          "owner": "Element"
+        },
+        {
+          "name": "_NotificationNode@246042623.dispatchNotification_b0b64",
+          "pc": "0x7374a4",
+          "size": 144,
+          "owner": "_NotificationNode@246042623"
+        },
+        {
+          "name": "NavigationNotification_b0c2c",
+          "pc": "0x73756c",
+          "size": 12,
+          "owner": null
+        },
+        {
+          "name": "ScrollEndNotification_b99f8",
+          "pc": "0x740338",
+          "size": 12,
+          "owner": null
+        },
+        {
+          "name": "ScrollUpdateNotification.ScrollUpdateNotification._b9c48",
+          "pc": "0x740588",
+          "size": 416,
+          "owner": "ScrollUpdateNotification"
+        }
+      ]
+    },
+    "localization": {
+      "function_count": 9611,
+      "percent_of_functions": 20.54,
+      "code_bytes_sum": 225860,
+      "top_owners": [
+        {
+          "owner": "SZh",
+          "count": 1387
+        },
+        {
+          "owner": "SEs",
+          "count": 1321
+        },
+        {
+          "owner": "SEn",
+          "count": 1314
+        },
+        {
+          "owner": "SZhTw",
+          "count": 1142
+        },
+        {
+          "owner": "(none)",
+          "count": 263
+        },
+        {
+          "owner": "MaterialLocalizationAr",
+          "count": 46
+        },
+        {
+          "owner": "MaterialLocalizationLt",
+          "count": 46
+        },
+        {
+          "owner": "MaterialLocalizationGa",
+          "count": 46
+        },
+        {
+          "owner": "MaterialLocalizationSrLatn",
+          "count": 45
+        },
+        {
+          "owner": "MaterialLocalizationHy",
+          "count": 45
+        },
+        {
+          "owner": "MaterialLocalizationLv",
+          "count": 45
+        },
+        {
+          "owner": "MaterialLocalizationZu",
+          "count": 45
+        },
+        {
+          "owner": "MaterialLocalizationSk",
+          "count": 44
+        },
+        {
+          "owner": "MaterialLocalizationSr",
+          "count": 44
+        },
+        {
+          "owner": "MaterialLocalizationUk",
+          "count": 44
+        },
+        {
+          "owner": "MaterialLocalizationAm",
+          "count": 44
+        },
+        {
+          "owner": "MaterialLocalizationBo",
+          "count": 44
+        },
+        {
+          "owner": "MaterialLocalizationCy",
+          "count": 44
+        },
+        {
+          "owner": "MaterialLocalizationEl",
+          "count": 44
+        },
+        {
+          "owner": "MaterialLocalizationFa",
+          "count": 44
+        },
+        {
+          "owner": "MaterialLocalizationIs",
+          "count": 44
+        },
+        {
+          "owner": "MaterialLocalizationKm",
+          "count": 44
+        },
+        {
+          "owner": "MaterialLocalizationSq",
+          "count": 44
+        },
+        {
+          "owner": "MaterialLocalizationTa",
+          "count": 44
+        },
+        {
+          "owner": "MaterialLocalizationUr",
+          "count": 44
+        },
+        {
+          "owner": "MaterialLocalizationBe",
+          "count": 43
+        },
+        {
+          "owner": "MaterialLocalizationRo",
+          "count": 43
+        },
+        {
+          "owner": "MaterialLocalizationBn",
+          "count": 43
+        },
+        {
+          "owner": "MaterialLocalizationEt",
+          "count": 43
+        },
+        {
+          "owner": "MaterialLocalizationEu",
+          "count": 43
+        }
+      ],
+      "examples": [
+        {
+          "name": "SEn.get:swing_allSwings_b0",
+          "pc": "0x6869f0",
+          "size": 12,
+          "owner": "SEn"
+        },
+        {
+          "name": "SEs.get:swing_allSwings_bc",
+          "pc": "0x6869fc",
+          "size": 12,
+          "owner": "SEs"
+        },
+        {
+          "name": "SZhTw.get:swing_allSwings_ec",
+          "pc": "0x686a2c",
+          "size": 12,
+          "owner": "SZhTw"
+        },
+        {
+          "name": "SZh.get:swing_allSwings_f8",
+          "pc": "0x686a38",
+          "size": 12,
+          "owner": "SZh"
+        },
+        {
+          "name": "SEn.get:rsi_saved_110",
+          "pc": "0x686a50",
+          "size": 12,
+          "owner": "SEn"
+        },
+        {
+          "name": "SEs.get:rsi_saved_11c",
+          "pc": "0x686a5c",
+          "size": 12,
+          "owner": "SEs"
+        },
+        {
+          "name": "SZhTw.get:rsi_saved_14c",
+          "pc": "0x686a8c",
+          "size": 12,
+          "owner": "SZhTw"
+        },
+        {
+          "name": "SZh.get:rsi_saved_158",
+          "pc": "0x686a98",
+          "size": 12,
+          "owner": "SZh"
+        },
+        {
+          "name": "SEn.get:dashboard_metricAvgSwingROM_170",
+          "pc": "0x686ab0",
+          "size": 12,
+          "owner": "SEn"
+        },
+        {
+          "name": "SZhTw.get:dashboard_metricAvgSwingROM_194",
+          "pc": "0x686ad4",
+          "size": 12,
+          "owner": "SZhTw"
+        },
+        {
+          "name": "SZh.get:dashboard_metricAvgSwingROM_1a0",
+          "pc": "0x686ae0",
+          "size": 12,
+          "owner": "SZh"
+        },
+        {
+          "name": "SEn.get:mobility_test_shoulderExtension_1ac",
+          "pc": "0x686aec",
+          "size": 12,
+          "owner": "SEn"
+        },
+        {
+          "name": "SEn.get:profile_birth_1c4",
+          "pc": "0x686b04",
+          "size": 12,
+          "owner": "SEn"
+        },
+        {
+          "name": "SEs.get:profile_birth_1d0",
+          "pc": "0x686b10",
+          "size": 12,
+          "owner": "SEs"
+        },
+        {
+          "name": "SZh.get:profile_birth_200",
+          "pc": "0x686b40",
+          "size": 12,
+          "owner": "SZh"
+        },
+        {
+          "name": "SEn.get:vbt_barbellTrackingDescription_218",
+          "pc": "0x686b58",
+          "size": 12,
+          "owner": "SEn"
+        },
+        {
+          "name": "SEs.get:vbt_barbellTrackingDescription_224",
+          "pc": "0x686b64",
+          "size": 12,
+          "owner": "SEs"
+        },
+        {
+          "name": "SZhTw.get:vbt_barbellTrackingDescription_254",
+          "pc": "0x686b94",
+          "size": 12,
+          "owner": "SZhTw"
+        },
+        {
+          "name": "SZh.get:vbt_barbellTrackingDescription_260",
+          "pc": "0x686ba0",
+          "size": 12,
+          "owner": "SZh"
+        },
+        {
+          "name": "SEn.get:templates_exercises_sidePlankRight_278",
+          "pc": "0x686bb8",
+          "size": 12,
+          "owner": "SEn"
+        }
+      ]
+    },
+    "platform_framework": {
+      "function_count": 5922,
+      "percent_of_functions": 12.66,
+      "code_bytes_sum": 1514004,
+      "top_owners": [
+        {
+          "owner": "(none)",
+          "count": 726
+        },
+        {
+          "owner": "RenderEditable",
+          "count": 136
+        },
+        {
+          "owner": "ObjectBoxC",
+          "count": 78
+        },
+        {
+          "owner": "_RenderRangeSlider@174317193",
+          "count": 69
+        },
+        {
+          "owner": "PlatformDispatcher",
+          "count": 59
+        },
+        {
+          "owner": "Element",
+          "count": 59
+        },
+        {
+          "owner": "_RenderDecoration@149019562",
+          "count": 59
+        },
+        {
+          "owner": "_RenderSlider@184231897",
+          "count": 59
+        },
+        {
+          "owner": "_StringBase@0150898",
+          "count": 45
+        },
+        {
+          "owner": "RenderParagraph",
+          "count": 43
+        },
+        {
+          "owner": "_BufferingStreamSubscription@5048458",
+          "count": 42
+        },
+        {
+          "owner": "_RenderListTile@150247952",
+          "count": 42
+        },
+        {
+          "owner": "_RenderTheater@270319124",
+          "count": 40
+        },
+        {
+          "owner": "_RenderChip@108318349",
+          "count": 40
+        },
+        {
+          "owner": "RenderObject",
+          "count": 39
+        },
+        {
+          "owner": "_Future@5048458",
+          "count": 38
+        },
+        {
+          "owner": "_RenderSingleChildViewport@310426794",
+          "count": 38
+        },
+        {
+          "owner": "RenderFlex",
+          "count": 36
+        },
+        {
+          "owner": "__Float64x2List&_TypedList&_Float64x2ListMixin@8027147",
+          "count": 33
+        },
+        {
+          "owner": "__Int32x4List&_TypedList&_Int32x4ListMixin@8027147",
+          "count": 33
+        },
+        {
+          "owner": "__Float32x4List&_TypedList&_Float32x4ListMixin@8027147",
+          "count": 33
+        },
+        {
+          "owner": "RenderWrap",
+          "count": 33
+        },
+        {
+          "owner": "_StreamController@5048458",
+          "count": 33
+        },
+        {
+          "owner": "__Int8List&_TypedList&_IntListMixin@8027147",
+          "count": 32
+        },
+        {
+          "owner": "_WidgetsFlutterBinding&BindingBase&GestureBinding&SchedulerBinding&ServicesBinding&PaintingBinding&SemanticsBinding&RendererBinding&WidgetsBinding@225399801",
+          "count": 32
+        },
+        {
+          "owner": "RenderStack",
+          "count": 32
+        },
+        {
+          "owner": "__Float32List&_TypedList&_DoubleListMixin@8027147",
+          "count": 31
+        },
+        {
+          "owner": "ProviderElementBase",
+          "count": 30
+        },
+        {
+          "owner": "RenderBox",
+          "count": 30
+        },
+        {
+          "owner": "RenderViewportBase",
+          "count": 30
+        }
+      ],
+      "examples": [
+        {
+          "name": "_StringBase@0150898._interpolate@0150898_760",
+          "pc": "0x6870a0",
+          "size": 620,
+          "owner": "_StringBase@0150898"
+        },
+        {
+          "name": "_StringBase@0150898.dyn:+_9cc",
+          "pc": "0x68730c",
+          "size": 140,
+          "owner": "_StringBase@0150898"
+        },
+        {
+          "name": "_StringBase@0150898.dyn:[]_ad8",
+          "pc": "0x687418",
+          "size": 252,
+          "owner": "_StringBase@0150898"
+        },
+        {
+          "name": "_StringBase@0150898._interpolateSingle@0150898_cc8",
+          "pc": "0x687608",
+          "size": 132,
+          "owner": "_StringBase@0150898"
+        },
+        {
+          "name": "_OneByteString@0150898._concatAll@0150898_d4c",
+          "pc": "0x68768c",
+          "size": 472,
+          "owner": "_OneByteString@0150898"
+        },
+        {
+          "name": "allocateOneByteString_f24",
+          "pc": "0x687864",
+          "size": 240,
+          "owner": null
+        },
+        {
+          "name": "_prependTypeArguments@10040228_1104",
+          "pc": "0x687a44",
+          "size": 88,
+          "owner": null
+        },
+        {
+          "name": "_StringBase@0150898._concatRangeNative@0150898_118c",
+          "pc": "0x687acc",
+          "size": 132,
+          "owner": "_StringBase@0150898"
+        },
+        {
+          "name": "SJa.get:programType_mixed_2ad8c",
+          "pc": "0x6b16cc",
+          "size": 12,
+          "owner": "SJa"
+        },
+        {
+          "name": "SKo.get:programType_mixed_2ad98",
+          "pc": "0x6b16d8",
+          "size": 12,
+          "owner": "SKo"
+        },
+        {
+          "name": "SDe.get:program_jumpType_2e994",
+          "pc": "0x6b52d4",
+          "size": 12,
+          "owner": "SDe"
+        },
+        {
+          "name": "SFr.get:program_jumpType_2e9b8",
+          "pc": "0x6b52f8",
+          "size": 12,
+          "owner": "SFr"
+        },
+        {
+          "name": "SJa.get:program_jumpType_2e9c4",
+          "pc": "0x6b5304",
+          "size": 12,
+          "owner": "SJa"
+        },
+        {
+          "name": "SKo.get:program_jumpType_2e9d0",
+          "pc": "0x6b5310",
+          "size": 12,
+          "owner": "SKo"
+        },
+        {
+          "name": "SDe.get:program_selectLiftType_2e9f4",
+          "pc": "0x6b5334",
+          "size": 12,
+          "owner": "SDe"
+        },
+        {
+          "name": "SFr.get:program_selectLiftType_2ea18",
+          "pc": "0x6b5358",
+          "size": 12,
+          "owner": "SFr"
+        },
+        {
+          "name": "SJa.get:program_selectLiftType_2ea24",
+          "pc": "0x6b5364",
+          "size": 12,
+          "owner": "SJa"
+        },
+        {
+          "name": "SKo.get:program_selectLiftType_2ea30",
+          "pc": "0x6b5370",
+          "size": 12,
+          "owner": "SKo"
+        },
+        {
+          "name": "SDe.get:program_selectExerciseType_2f0b4",
+          "pc": "0x6b59f4",
+          "size": 12,
+          "owner": "SDe"
+        },
+        {
+          "name": "SFr.get:program_selectExerciseType_2f0d8",
+          "pc": "0x6b5a18",
+          "size": 12,
+          "owner": "SFr"
+        }
+      ]
+    }
+  },
+  "obfuscated_or_codegen": {
+    "function_count": 6019,
+    "percent_of_functions": 12.86,
+    "code_bytes_sum": 1620600,
+    "top_owners": [
+      {
+        "owner": "(none)",
+        "count": 2024
+      },
+      {
+        "owner": "VBTPage",
+        "count": 71
+      },
+      {
+        "owner": "RootPage",
+        "count": 47
+      },
+      {
+        "owner": "WeightliftingPage",
+        "count": 47
+      },
+      {
+        "owner": "EditableTextState",
+        "count": 39
+      },
+      {
+        "owner": "SlamPage",
+        "count": 37
+      },
+      {
+        "owner": "JumpPage",
+        "count": 30
+      },
+      {
+        "owner": "RsiPage",
+        "count": 27
+      },
+      {
+        "owner": "RotationPage",
+        "count": 27
+      },
+      {
+        "owner": "OneRmPage",
+        "count": 26
+      },
+      {
+        "owner": "_ButtonStyleState@101219276",
+        "count": 24
+      },
+      {
+        "owner": "SwingPage",
+        "count": 23
+      },
+      {
+        "owner": "IsometricPage",
+        "count": 22
+      },
+      {
+        "owner": "MobilityPage",
+        "count": 21
+      },
+      {
+        "owner": "VBTDashboard",
+        "count": 20
+      },
+      {
+        "owner": "MultiSensorDashboard",
+        "count": 19
+      },
+      {
+        "owner": "DailyMeasurementCarousel",
+        "count": 18
+      },
+      {
+        "owner": "VelocityProfileChart",
+        "count": 18
+      },
+      {
+        "owner": "SessionExecutionPage",
+        "count": 17
+      },
+      {
+        "owner": "JumpCameraDashboard",
+        "count": 17
+      },
+      {
+        "owner": "_HttpClientConnection@16463476",
+        "count": 17
+      },
+      {
+        "owner": "Highlighter",
+        "count": 16
+      },
+      {
+        "owner": "CalibrationPopup",
+        "count": 16
+      },
+      {
+        "owner": "ExerciseSelectPage",
+        "count": 16
+      },
+      {
+        "owner": "_PlayerBody@1320070734",
+        "count": 16
+      },
+      {
+        "owner": "ProgramCreatePage",
+        "count": 15
+      },
+      {
+        "owner": "RotationDashboard",
+        "count": 15
+      },
+      {
+        "owner": "XmlEventParser",
+        "count": 15
+      },
+      {
+        "owner": "_File@15069316",
+        "count": 14
+      },
+      {
+        "owner": "VBTCameraDashboard",
+        "count": 14
+      }
+    ],
+    "examples": [
+      {
+        "name": "sub_8c",
+        "pc": "0x6869cc",
+        "size": 36,
+        "owner": null
+      },
+      {
+        "name": "sub_a58",
+        "pc": "0x687398",
+        "size": 128,
+        "owner": "_StringBase@0150898"
+      },
+      {
+        "name": "sub_bd4",
+        "pc": "0x687514",
+        "size": 244,
+        "owner": "_StringBase@0150898"
+      },
+      {
+        "name": "init:_printClosure@10040228_1014",
+        "pc": "0x687954",
+        "size": 12,
+        "owner": null
+      },
+      {
+        "name": "sub_1078",
+        "pc": "0x6879b8",
+        "size": 12,
+        "owner": null
+      },
+      {
+        "name": "get:_printClosure@10040228_115c",
+        "pc": "0x687a9c",
+        "size": 48,
+        "owner": null
+      },
+      {
+        "name": "sub_352ec",
+        "pc": "0x6bbc2c",
+        "size": 44,
+        "owner": null
+      },
+      {
+        "name": "sub_35474",
+        "pc": "0x6bbdb4",
+        "size": 52,
+        "owner": "Duration"
+      },
+      {
+        "name": "sub_35528",
+        "pc": "0x6bbe68",
+        "size": 132,
+        "owner": "Duration"
+      },
+      {
+        "name": "sub_35634",
+        "pc": "0x6bbf74",
+        "size": 52,
+        "owner": "Duration"
+      },
+      {
+        "name": "sub_35668",
+        "pc": "0x6bbfa8",
+        "size": 36,
+        "owner": null
+      },
+      {
+        "name": "sub_3775c",
+        "pc": "0x6be09c",
+        "size": 236,
+        "owner": "_GrowableList@0150898"
+      },
+      {
+        "name": "sub_37f48",
+        "pc": "0x6be888",
+        "size": 284,
+        "owner": null
+      },
+      {
+        "name": "sub_38064",
+        "pc": "0x6be9a4",
+        "size": 252,
+        "owner": null
+      },
+      {
+        "name": "sub_38284",
+        "pc": "0x6bebc4",
+        "size": 284,
+        "owner": null
+      },
+      {
+        "name": "sub_383ec",
+        "pc": "0x6bed2c",
+        "size": 140,
+        "owner": "ListBase"
+      },
+      {
+        "name": "sub_38478",
+        "pc": "0x6bedb8",
+        "size": 252,
+        "owner": null
+      },
+      {
+        "name": "sub_38698",
+        "pc": "0x6befd8",
+        "size": 252,
+        "owner": null
+      },
+      {
+        "name": "sub_389fc",
+        "pc": "0x6bf33c",
+        "size": 36,
+        "owner": null
+      },
+      {
+        "name": "sub_39410",
+        "pc": "0x6bfd50",
+        "size": 460,
+        "owner": null
+      }
+    ]
+  },
+  "other_named_or_unknown": {
+    "function_count": 20090,
+    "percent_of_functions": 42.94,
+    "code_bytes_sum": 4148852,
+    "top_owners": [
+      {
+        "owner": "(none)",
+        "count": 5342
+      },
+      {
+        "owner": "SFr",
+        "count": 1346
+      },
+      {
+        "owner": "SKo",
+        "count": 1341
+      },
+      {
+        "owner": "SDe",
+        "count": 1278
+      },
+      {
+        "owner": "SJa",
+        "count": 1250
+      },
+      {
+        "owner": "EditableTextState",
+        "count": 161
+      },
+      {
+        "owner": "HtmlTokenizer",
+        "count": 126
+      },
+      {
+        "owner": "SemanticsConfiguration",
+        "count": 76
+      },
+      {
+        "owner": "_Uri@0150898",
+        "count": 64
+      },
+      {
+        "owner": "XmlEventParser",
+        "count": 49
+      },
+      {
+        "owner": "_GrowableList@0150898",
+        "count": 46
+      },
+      {
+        "owner": "_NativeSocket@15069316",
+        "count": 46
+      },
+      {
+        "owner": "_InkResponseState@146059085",
+        "count": 46
+      },
+      {
+        "owner": "ListBase",
+        "count": 45
+      },
+      {
+        "owner": "RawScrollbarState",
+        "count": 45
+      },
+      {
+        "owner": "_RawSecureSocket@15069316",
+        "count": 44
+      },
+      {
+        "owner": "InBodyPhase",
+        "count": 44
+      },
+      {
+        "owner": "_NativeCanvas@17065589",
+        "count": 43
+      },
+      {
+        "owner": "TextPainter",
+        "count": 42
+      },
+      {
+        "owner": "Matrix4",
+        "count": 41
+      },
+      {
+        "owner": "TextSelectionGestureDetectorBuilder",
+        "count": 41
+      },
+      {
+        "owner": "TooltipState",
+        "count": 41
+      },
+      {
+        "owner": "ScrollableState",
+        "count": 38
+      },
+      {
+        "owner": "ScrollbarPainter",
+        "count": 38
+      },
+      {
+        "owner": "_TextFieldState@199181401",
+        "count": 36
+      },
+      {
+        "owner": "SliverReorderableListState",
+        "count": 36
+      },
+      {
+        "owner": "_InputDecoratorState@149019562",
+        "count": 36
+      },
+      {
+        "owner": "MediaQuery",
+        "count": 34
+      },
+      {
+        "owner": "FocusNode",
+        "count": 34
+      },
+      {
+        "owner": "TextSelectionOverlay",
+        "count": 33
+      }
+    ],
+    "examples": [
+      {
+        "name": "SDe.get:swing_allSwings_80",
+        "pc": "0x6869c0",
+        "size": 12,
+        "owner": "SDe"
+      },
+      {
+        "name": "SFr.get:swing_allSwings_c8",
+        "pc": "0x686a08",
+        "size": 12,
+        "owner": "SFr"
+      },
+      {
+        "name": "SJa.get:swing_allSwings_d4",
+        "pc": "0x686a14",
+        "size": 12,
+        "owner": "SJa"
+      },
+      {
+        "name": "SKo.get:swing_allSwings_e0",
+        "pc": "0x686a20",
+        "size": 12,
+        "owner": "SKo"
+      },
+      {
+        "name": "SDe.get:rsi_saved_104",
+        "pc": "0x686a44",
+        "size": 12,
+        "owner": "SDe"
+      },
+      {
+        "name": "SFr.get:rsi_saved_128",
+        "pc": "0x686a68",
+        "size": 12,
+        "owner": "SFr"
+      },
+      {
+        "name": "SJa.get:rsi_saved_134",
+        "pc": "0x686a74",
+        "size": 12,
+        "owner": "SJa"
+      },
+      {
+        "name": "SKo.get:rsi_saved_140",
+        "pc": "0x686a80",
+        "size": 12,
+        "owner": "SKo"
+      },
+      {
+        "name": "SDe.get:dashboard_metricAvgSwingROM_164",
+        "pc": "0x686aa4",
+        "size": 12,
+        "owner": "SDe"
+      },
+      {
+        "name": "SJa.get:dashboard_metricAvgSwingROM_17c",
+        "pc": "0x686abc",
+        "size": 12,
+        "owner": "SJa"
+      },
+      {
+        "name": "SKo.get:dashboard_metricAvgSwingROM_188",
+        "pc": "0x686ac8",
+        "size": 12,
+        "owner": "SKo"
+      },
+      {
+        "name": "SDe.get:profile_birth_1b8",
+        "pc": "0x686af8",
+        "size": 12,
+        "owner": "SDe"
+      },
+      {
+        "name": "SFr.get:profile_birth_1dc",
+        "pc": "0x686b1c",
+        "size": 12,
+        "owner": "SFr"
+      },
+      {
+        "name": "SJa.get:profile_birth_1e8",
+        "pc": "0x686b28",
+        "size": 12,
+        "owner": "SJa"
+      },
+      {
+        "name": "SKo.get:profile_birth_1f4",
+        "pc": "0x686b34",
+        "size": 12,
+        "owner": "SKo"
+      },
+      {
+        "name": "SDe.get:vbt_barbellTrackingDescription_20c",
+        "pc": "0x686b4c",
+        "size": 12,
+        "owner": "SDe"
+      },
+      {
+        "name": "SFr.get:vbt_barbellTrackingDescription_230",
+        "pc": "0x686b70",
+        "size": 12,
+        "owner": "SFr"
+      },
+      {
+        "name": "SJa.get:vbt_barbellTrackingDescription_23c",
+        "pc": "0x686b7c",
+        "size": 12,
+        "owner": "SJa"
+      },
+      {
+        "name": "SKo.get:vbt_barbellTrackingDescription_248",
+        "pc": "0x686b88",
+        "size": 12,
+        "owner": "SKo"
+      },
+      {
+        "name": "SDe.get:templates_exercises_sidePlankRight_26c",
+        "pc": "0x686bac",
+        "size": 12,
+        "owner": "SDe"
+      }
+    ]
+  }
+}

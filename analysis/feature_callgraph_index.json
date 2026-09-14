@@ -1,0 +1,3896 @@
+{
+  "generated": "2026-09-15",
+  "edge_file": "analysis/aot_unflutter/call_edges.jsonl",
+  "raw_line_count": 214034,
+  "named_call_edge_count": 187171,
+  "records_without_named_call_pair": 26863,
+  "feature_count": 12,
+  "features": {
+    "app_shell": {
+      "source_function_count": 357,
+      "edge_count": 2240,
+      "unique_target_count": 636,
+      "top_targets": [
+        {
+          "target": "sub_8c1c30",
+          "count": 329
+        },
+        {
+          "target": "sub_8c22b8",
+          "count": 139
+        },
+        {
+          "target": "sub_8c0e5c",
+          "count": 84
+        },
+        {
+          "target": "sub_8c1b28",
+          "count": 49
+        },
+        {
+          "target": "0xf46b58",
+          "count": 46
+        },
+        {
+          "target": "0xf46b78",
+          "count": 43
+        },
+        {
+          "target": "sub_8bfdd4",
+          "count": 34
+        },
+        {
+          "target": "sub_8bfb2c",
+          "count": 34
+        },
+        {
+          "target": "sub_5912c",
+          "count": 33
+        },
+        {
+          "target": "sub_8c0a98",
+          "count": 30
+        },
+        {
+          "target": "_StringBase@0150898._interpolate@0150898_760",
+          "count": 28
+        },
+        {
+          "target": "sub_58ef0",
+          "count": 28
+        },
+        {
+          "target": "sub_8bfdb0",
+          "count": 25
+        },
+        {
+          "target": "0xf46c18",
+          "count": 23
+        },
+        {
+          "target": "__Map&_HashVMBase&MapMixin&_HashBase&_OperatorEqualsAndHashCode&_LinkedHashMapMixin@3099033._getValueOrData@3099033_8b7e5c",
+          "count": 21
+        },
+        {
+          "target": "Color.lerp_5c22c4",
+          "count": 20
+        },
+        {
+          "target": "sub_8c1db0",
+          "count": 16
+        },
+        {
+          "target": "lerpDouble_f5ab8",
+          "count": 16
+        },
+        {
+          "target": "_GrowableList@0150898._growToNextCapacity@0150898_37848",
+          "count": 15
+        },
+        {
+          "target": "sub_8bfcd8",
+          "count": 15
+        },
+        {
+          "target": "of_161bd8",
+          "count": 15
+        },
+        {
+          "target": "sub_8c1cb0",
+          "count": 14
+        },
+        {
+          "target": "sub_8c0a5c",
+          "count": 14
+        },
+        {
+          "target": "sub_8bfc70",
+          "count": 14
+        },
+        {
+          "target": "sub_8c2158",
+          "count": 13
+        }
+      ],
+      "meaningful_targets": [
+        {
+          "target": "ModalRoute._maybeDispatchNavigationNotification@286188637_b089c",
+          "count": 4
+        },
+        {
+          "target": "_$VBTSettingImpl@1234411512_1aa4c8",
+          "count": 3
+        },
+        {
+          "target": "NavigatorState._flushHistoryUpdates@266124995_abcf0",
+          "count": 2
+        },
+        {
+          "target": "FirebaseException_12cc2c",
+          "count": 2
+        },
+        {
+          "target": "FirestorePigeonFirebaseApp_1417a0",
+          "count": 2
+        },
+        {
+          "target": "AuthService._setCurrentAppUserInfo@1205060975_1afd1c",
+          "count": 2
+        },
+        {
+          "target": "_$JumpSettingImpl@1234411512_2aec74",
+          "count": 2
+        },
+        {
+          "target": "_$HistorySettingImpl@1234411512_31fcd4",
+          "count": 2
+        },
+        {
+          "target": "AppleAuthProvider_33affc",
+          "count": 2
+        },
+        {
+          "target": "AppleAuthProvider.AppleAuthProvider._33af5c",
+          "count": 2
+        },
+        {
+          "target": "AuthException_339734",
+          "count": 2
+        },
+        {
+          "target": "_$CameraRecordingSettingImpl@1234411512_3bf000",
+          "count": 2
+        },
+        {
+          "target": "ScrollNotificationObserverState.removeListener_207650",
+          "count": 2
+        },
+        {
+          "target": "FirebaseOptions_8d25a0",
+          "count": 2
+        },
+        {
+          "target": "MethodChannelFirebase._initializeFirebaseAppFromMap@647397154_8d1ee0",
+          "count": 2
+        },
+        {
+          "target": "_ModalRoute&TransitionRoute&LocalHistoryRoute@286188637.get:popDisposition_90798",
+          "count": 1
+        },
+        {
+          "target": "_ModalRoute&TransitionRoute&LocalHistoryRoute@286188637.get:willHandlePopInternally_90838",
+          "count": 1
+        },
+        {
+          "target": "NavigationNotification_b0c2c",
+          "count": 1
+        },
+        {
+          "target": "Notification.dispatch_b0adc",
+          "count": 1
+        },
+        {
+          "target": "TransitionRoute.didReplace_b2df4",
+          "count": 1
+        },
+        {
+          "target": "_NavigatorReplaceObservation@266124995_b2de8",
+          "count": 1
+        },
+        {
+          "target": "_History@266124995.indexWhere_b65ec",
+          "count": 1
+        },
+        {
+          "target": "_ModalRoute&TransitionRoute&LocalHistoryRoute@286188637.willPop_c93d4",
+          "count": 1
+        },
+        {
+          "target": "_RegisteredFirebaseService@562212831_13310c",
+          "count": 1
+        },
+        {
+          "target": "InternalFirebaseSettings_1417ac",
+          "count": 1
+        },
+        {
+          "target": "SettingRepositoryImpl.saveSetting_1aa400",
+          "count": 1
+        },
+        {
+          "target": "FirebaseAuth.get:currentUser_134604",
+          "count": 1
+        },
+        {
+          "target": "AuthRepositoryImpl.getAppUserInfo_1b014c",
+          "count": 1
+        },
+        {
+          "target": "AuthRepositoryImpl.get:_usersRef@1199105188_142a4c",
+          "count": 1
+        },
+        {
+          "target": "AuthRepositoryImpl.updateAppUserInfo_1b10b4",
+          "count": 1
+        }
+      ],
+      "cross_feature_edges": [
+        {
+          "edge": "app_shell -> media_cloud",
+          "count": 18
+        },
+        {
+          "edge": "app_shell -> settings_profile",
+          "count": 9
+        },
+        {
+          "edge": "app_shell -> sessions_history",
+          "count": 8
+        },
+        {
+          "edge": "app_shell -> jump_rsi",
+          "count": 1
+        }
+      ]
+    },
+    "auth": {
+      "source_function_count": 25,
+      "edge_count": 350,
+      "unique_target_count": 114,
+      "top_targets": [
+        {
+          "target": "sub_58ef0",
+          "count": 36
+        },
+        {
+          "target": "sub_8c1c30",
+          "count": 25
+        },
+        {
+          "target": "sub_8c1b28",
+          "count": 21
+        },
+        {
+          "target": "sub_5912c",
+          "count": 18
+        },
+        {
+          "target": "_StringBase@0150898._interpolate@0150898_760",
+          "count": 17
+        },
+        {
+          "target": "sub_8bfdb0",
+          "count": 14
+        },
+        {
+          "target": "ptsLog_87898",
+          "count": 13
+        },
+        {
+          "target": "AuthException_339734",
+          "count": 11
+        },
+        {
+          "target": "0xf46b78",
+          "count": 9
+        },
+        {
+          "target": "sub_8bfc70",
+          "count": 9
+        },
+        {
+          "target": "FirebaseAuth.get:currentUser_134604",
+          "count": 6
+        },
+        {
+          "target": "AuthService._setCurrentAppUserInfo@1205060975_1afd1c",
+          "count": 6
+        },
+        {
+          "target": "ProviderElementBase.read_1346a8",
+          "count": 5
+        },
+        {
+          "target": "AuthService.signOut_2f5378",
+          "count": 5
+        },
+        {
+          "target": "FirebaseAuth.get:_delegate@699464419_12dcd0",
+          "count": 4
+        },
+        {
+          "target": "sub_8c22b8",
+          "count": 4
+        },
+        {
+          "target": "sub_8bfd84",
+          "count": 4
+        },
+        {
+          "target": "Firebase.app_12c698",
+          "count": 4
+        },
+        {
+          "target": "_JsonCollectionReference@645385638.doc_142048",
+          "count": 4
+        },
+        {
+          "target": "sub_8c0a5c",
+          "count": 4
+        },
+        {
+          "target": "sub_8c2540",
+          "count": 3
+        },
+        {
+          "target": "FirebaseCrashlytics.get:instance_136f34",
+          "count": 3
+        },
+        {
+          "target": "FirebaseFirestore.collection_1414e4",
+          "count": 3
+        },
+        {
+          "target": "_JsonDocumentReference@645385638.delete_2f59e8",
+          "count": 3
+        },
+        {
+          "target": "AuthRepositoryImpl.getAppUserInfo_1b014c",
+          "count": 2
+        }
+      ],
+      "meaningful_targets": [
+        {
+          "target": "AuthException_339734",
+          "count": 11
+        },
+        {
+          "target": "FirebaseAuth.get:currentUser_134604",
+          "count": 6
+        },
+        {
+          "target": "AuthService._setCurrentAppUserInfo@1205060975_1afd1c",
+          "count": 6
+        },
+        {
+          "target": "AuthService.signOut_2f5378",
+          "count": 5
+        },
+        {
+          "target": "FirebaseAuth.get:_delegate@699464419_12dcd0",
+          "count": 4
+        },
+        {
+          "target": "Firebase.app_12c698",
+          "count": 4
+        },
+        {
+          "target": "FirebaseCrashlytics.get:instance_136f34",
+          "count": 3
+        },
+        {
+          "target": "FirebaseFirestore.collection_1414e4",
+          "count": 3
+        },
+        {
+          "target": "AuthRepositoryImpl.getAppUserInfo_1b014c",
+          "count": 2
+        },
+        {
+          "target": "FirebaseCrashlytics.setUserIdentifier_2f7f7c",
+          "count": 2
+        },
+        {
+          "target": "AppleAuthProvider_33affc",
+          "count": 2
+        },
+        {
+          "target": "AppleAuthProvider.AppleAuthProvider._33af5c",
+          "count": 2
+        },
+        {
+          "target": "GoogleAuthProvider.credential_33b744",
+          "count": 2
+        },
+        {
+          "target": "AuthService.handleLogin_3bbc00",
+          "count": 2
+        },
+        {
+          "target": "FirebaseAuthMultiFactorException_33a7b4",
+          "count": 2
+        },
+        {
+          "target": "FirebaseAuthMultiFactorException.FirebaseAuthMultiFactorException._@699464419_33a6f4",
+          "count": 2
+        },
+        {
+          "target": "AuthPigeonFirebaseApp_12f8a4",
+          "count": 2
+        },
+        {
+          "target": "_extractReplyValueOrThrow@705223271_12f520",
+          "count": 2
+        },
+        {
+          "target": "FirebaseAuth.authStateChanges_12d1f0",
+          "count": 1
+        },
+        {
+          "target": "AuthRepositoryImpl.updateAppUserInfo_1b10b4",
+          "count": 1
+        },
+        {
+          "target": "NotificationService.cancel_18908c",
+          "count": 1
+        },
+        {
+          "target": "FirebaseAuth.signOut_2f551c",
+          "count": 1
+        },
+        {
+          "target": "AuthService._reauthenticate@1205060975_33a354",
+          "count": 1
+        },
+        {
+          "target": "FirebaseFirestore.instanceFor_132c8c",
+          "count": 1
+        },
+        {
+          "target": "ExerciseSessionBox.clearProfileSessions_339e78",
+          "count": 1
+        },
+        {
+          "target": "AuthService._reauthenticateWithGoogle@1205060975_33b008",
+          "count": 1
+        },
+        {
+          "target": "AuthService._reauthenticateWithApple@1205060975_33a518",
+          "count": 1
+        },
+        {
+          "target": "GoogleSignInAuthentication_33b7bc",
+          "count": 1
+        },
+        {
+          "target": "FirebaseAuth.FirebaseAuth.instanceFor_132e9c",
+          "count": 1
+        },
+        {
+          "target": "FirebaseAuth.signInWithProvider_3bd5d8",
+          "count": 1
+        }
+      ],
+      "cross_feature_edges": [
+        {
+          "edge": "auth -> media_cloud",
+          "count": 24
+        },
+        {
+          "edge": "auth -> app_shell",
+          "count": 8
+        },
+        {
+          "edge": "app_shell -> media_cloud",
+          "count": 4
+        },
+        {
+          "edge": "auth -> settings_profile",
+          "count": 2
+        },
+        {
+          "edge": "auth -> sessions_history",
+          "count": 1
+        }
+      ]
+    },
+    "device_ble": {
+      "source_function_count": 129,
+      "edge_count": 1456,
+      "unique_target_count": 251,
+      "top_targets": [
+        {
+          "target": "sub_8c1c30",
+          "count": 138
+        },
+        {
+          "target": "sub_8c1b28",
+          "count": 105
+        },
+        {
+          "target": "sub_8bfdd4",
+          "count": 88
+        },
+        {
+          "target": "sub_8c1a80",
+          "count": 84
+        },
+        {
+          "target": "sub_8c21e8",
+          "count": 68
+        },
+        {
+          "target": "Map._fromLiteral@0150898_49224",
+          "count": 48
+        },
+        {
+          "target": "__Map&_HashVMBase&MapMixin&_HashBase&_OperatorEqualsAndHashCode&_LinkedHashMapMixin@3099033._getValueOrData@3099033_8b7e5c",
+          "count": 43
+        },
+        {
+          "target": "sub_8c2158",
+          "count": 41
+        },
+        {
+          "target": "sub_8c0a5c",
+          "count": 38
+        },
+        {
+          "target": "sub_7a3c14",
+          "count": 36
+        },
+        {
+          "target": "0xf46b78",
+          "count": 30
+        },
+        {
+          "target": "sub_8c0e5c",
+          "count": 30
+        },
+        {
+          "target": "sub_848e80",
+          "count": 29
+        },
+        {
+          "target": "_StringBase@0150898._interpolate@0150898_760",
+          "count": 27
+        },
+        {
+          "target": "sub_8bfc70",
+          "count": 27
+        },
+        {
+          "target": "ProviderElementBase.read_1346a8",
+          "count": 23
+        },
+        {
+          "target": "sub_8d3be0",
+          "count": 22
+        },
+        {
+          "target": "sub_8374ac",
+          "count": 21
+        },
+        {
+          "target": "sub_8c2540",
+          "count": 19
+        },
+        {
+          "target": "sub_5912c",
+          "count": 18
+        },
+        {
+          "target": "StreamController.StreamController.broadcast_131dfc",
+          "count": 18
+        },
+        {
+          "target": "sub_8d3b30",
+          "count": 17
+        },
+        {
+          "target": "log_87a18",
+          "count": 16
+        },
+        {
+          "target": "sub_58ef0",
+          "count": 15
+        },
+        {
+          "target": "sub_8c1db0",
+          "count": 15
+        }
+      ],
+      "meaningful_targets": [
+        {
+          "target": "BleApiImpl._callMethod@859188570_1b5a64",
+          "count": 7
+        },
+        {
+          "target": "PoinTGoService.updateDeviceState_8a6fac",
+          "count": 4
+        },
+        {
+          "target": "BleMocapDataParser._generateMapDataForUnknownPacket@859188570_1b95cc",
+          "count": 3
+        },
+        {
+          "target": "_$AccelCalibrationDataImpl@1117427666_1b8d4c",
+          "count": 2
+        },
+        {
+          "target": "BleMocapDataParser._generateMapDataForEmptyPacket@859188570_1b9624",
+          "count": 2
+        },
+        {
+          "target": "AccelCalibrationUtil.resetAccelMeasureStateForOffsetAxisCal_1bbf48",
+          "count": 2
+        },
+        {
+          "target": "_$BleDeviceImpl@1250046950_1ceae0",
+          "count": 2
+        },
+        {
+          "target": "CalibrationPrompt_8a52dc",
+          "count": 2
+        },
+        {
+          "target": "DeviceConnectionManager._clearConnectTimeout@1123470780_8a6390",
+          "count": 2
+        },
+        {
+          "target": "BleDeviceList.disconnect_8a60e4",
+          "count": 2
+        },
+        {
+          "target": "BleScanStatus.stopScan_1dafb0",
+          "count": 2
+        },
+        {
+          "target": "DeviceConnectionManager.connect_8a7974",
+          "count": 2
+        },
+        {
+          "target": "BleApiImpl.transmitBleCommandPacket_1b59a8",
+          "count": 1
+        },
+        {
+          "target": "BleOperationResult_1b5c24",
+          "count": 1
+        },
+        {
+          "target": "BleApi.BleApi._1b6100",
+          "count": 1
+        },
+        {
+          "target": "BleApiImpl_1c2148",
+          "count": 1
+        },
+        {
+          "target": "BleApiImpl.BleApiImpl._1b615c",
+          "count": 1
+        },
+        {
+          "target": "SensorManager.onBleDfuStateUpdated_1b676c",
+          "count": 1
+        },
+        {
+          "target": "BleApiImpl.startBleDeviceScan_1b6a20",
+          "count": 1
+        },
+        {
+          "target": "SensorManager.onBleDfuFailed_1b6b58",
+          "count": 1
+        },
+        {
+          "target": "SensorManager.onBleDfuCompleted_1b6c9c",
+          "count": 1
+        },
+        {
+          "target": "SensorManager.onBleDfuFirmwareUploadingProgressUpdated_1b6e4c",
+          "count": 1
+        },
+        {
+          "target": "SensorManager.onBleDfuStarted_1b701c",
+          "count": 1
+        },
+        {
+          "target": "BleMocapDataParser.parseReceivedPacket_1b946c",
+          "count": 1
+        },
+        {
+          "target": "_$RotationQuaternionImpl@1097462921_1b9460",
+          "count": 1
+        },
+        {
+          "target": "RotationQuaternion.normalize_1b93d4",
+          "count": 1
+        },
+        {
+          "target": "_$GlobalVelocityImpl@1097462921_1b93bc",
+          "count": 1
+        },
+        {
+          "target": "_$PoinTGOMotionDataImpl@1097462921_1b8d58",
+          "count": 1
+        },
+        {
+          "target": "_$AccelAxisCalibrationResImpl@1117427666_1b8d40",
+          "count": 1
+        },
+        {
+          "target": "_$AccelBiasCalibrationResImpl@1117427666_1b8d34",
+          "count": 1
+        }
+      ],
+      "cross_feature_edges": [
+        {
+          "edge": "device_ble -> calibration",
+          "count": 10
+        },
+        {
+          "edge": "device_ble -> app_shell",
+          "count": 3
+        },
+        {
+          "edge": "device_ble -> rotation",
+          "count": 2
+        }
+      ]
+    },
+    "calibration": {
+      "source_function_count": 56,
+      "edge_count": 576,
+      "unique_target_count": 122,
+      "top_targets": [
+        {
+          "target": "sub_8c1b28",
+          "count": 58
+        },
+        {
+          "target": "sub_8c1c30",
+          "count": 54
+        },
+        {
+          "target": "_StringBase@0150898._interpolate@0150898_760",
+          "count": 40
+        },
+        {
+          "target": "sub_8bfdd4",
+          "count": 33
+        },
+        {
+          "target": "sub_848e80",
+          "count": 24
+        },
+        {
+          "target": "log_87a18",
+          "count": 23
+        },
+        {
+          "target": "sub_8bfc70",
+          "count": 19
+        },
+        {
+          "target": "Map._fromLiteral@0150898_49224",
+          "count": 17
+        },
+        {
+          "target": "sub_8c1a80",
+          "count": 17
+        },
+        {
+          "target": "sub_8c0e5c",
+          "count": 14
+        },
+        {
+          "target": "sub_8c22b8",
+          "count": 12
+        },
+        {
+          "target": "sub_8c2158",
+          "count": 12
+        },
+        {
+          "target": "sub_8d4320",
+          "count": 10
+        },
+        {
+          "target": "sub_8c1db0",
+          "count": 8
+        },
+        {
+          "target": "sub_8c0a5c",
+          "count": 7
+        },
+        {
+          "target": "__Map&_HashVMBase&MapMixin&_HashBase&_OperatorEqualsAndHashCode&_LinkedHashMapMixin@3099033.containsKey_82e644",
+          "count": 7
+        },
+        {
+          "target": "sub_8c0a98",
+          "count": 6
+        },
+        {
+          "target": "sub_1b47a0",
+          "count": 6
+        },
+        {
+          "target": "__Map&_HashVMBase&MapMixin&_HashBase&_OperatorEqualsAndHashCode&_LinkedHashMapMixin@3099033._getValueOrData@3099033_8b7e5c",
+          "count": 6
+        },
+        {
+          "target": "Text_161028",
+          "count": 6
+        },
+        {
+          "target": "useState_1ac1ac",
+          "count": 5
+        },
+        {
+          "target": "sub_58ef0",
+          "count": 5
+        },
+        {
+          "target": "0xf46b78",
+          "count": 5
+        },
+        {
+          "target": "PDSTextStyle_161bcc",
+          "count": 5
+        },
+        {
+          "target": "PDSTextStyle.PDSTextStyle._@1062453227_161a2c",
+          "count": 5
+        }
+      ],
+      "meaningful_targets": [
+        {
+          "target": "CalibrationRecordRepository._loadRecords@1222276897_1b4d8c",
+          "count": 2
+        },
+        {
+          "target": "AccelCalibrationUtil.resetAccelMeasureStateForOffsetAxisCal_1bbf48",
+          "count": 2
+        },
+        {
+          "target": "AccelCalibrationUtil._printAccelMeasureStateMapForOffsetAxisCal@859188570_1bc140",
+          "count": 2
+        },
+        {
+          "target": "CalibrationStateNotifier.clear_1c4774",
+          "count": 2
+        },
+        {
+          "target": "CalibrationStateNotifier.complete_1c473c",
+          "count": 2
+        },
+        {
+          "target": "CalibrationStateNotifier.error_1c4704",
+          "count": 2
+        },
+        {
+          "target": "_$WeightliftingCalibrationImpl@1129372492_248b8c",
+          "count": 2
+        },
+        {
+          "target": "_$$WeightliftingCalibrationImplToJson@1129372492_16a07c",
+          "count": 1
+        },
+        {
+          "target": "GyroCalibrationWidget_1b4600",
+          "count": 1
+        },
+        {
+          "target": "AccelAxisCalibrationWidget_1b45f4",
+          "count": 1
+        },
+        {
+          "target": "BleMocapDataParser._printHex@859188570_1bca54",
+          "count": 1
+        },
+        {
+          "target": "AccelCalibrationUtil.validateAccelXYZAndUpdateMeasureStateForAccelBiasCal_1bc5d0",
+          "count": 1
+        },
+        {
+          "target": "AccelCalibrationUtil.isAccelMeasuredAllMocapPositionForBiasCal_1bc390",
+          "count": 1
+        },
+        {
+          "target": "AccelCalibrationUtil.updateMeasureStateForAccelBiasCal_1bc7bc",
+          "count": 1
+        },
+        {
+          "target": "AccelCalibrationUtil._printAccelMaxBiasMeasurementStatusMap@859188570_1bc9b0",
+          "count": 1
+        },
+        {
+          "target": "AccelCalibrationUtil.validateAccelXYZAndUpdateMeasureStateForOffsetAxisCal_1bd4a0",
+          "count": 1
+        },
+        {
+          "target": "AccelCalibrationUtil.isAccelMeasuredAllMocapPositionForOffsetAxisCal_1bd260",
+          "count": 1
+        },
+        {
+          "target": "AccelCalibrationUtil.updateAccelMeasureStateForOffsetAxisCal_1bd68c",
+          "count": 1
+        },
+        {
+          "target": "GyroCalibrationWidget._getTitle@1225405052_1c4e44",
+          "count": 1
+        },
+        {
+          "target": "GyroCalibrationWidget._getSubtitle@1225405052_1c4d48",
+          "count": 1
+        },
+        {
+          "target": "JsWeightliftingCalculator._callWithEvents@1493039605_248118",
+          "count": 1
+        },
+        {
+          "target": "_$$WeightliftingCalibrationImplFromJson@1129372492_894b64",
+          "count": 1
+        },
+        {
+          "target": "CalibrationRecordRepository.getLastCalibrationDate_8a573c",
+          "count": 1
+        },
+        {
+          "target": "CalibrationPrompt_8a52dc",
+          "count": 1
+        }
+      ],
+      "cross_feature_edges": [
+        {
+          "edge": "calibration -> media_cloud",
+          "count": 2
+        }
+      ]
+    },
+    "weightlifting": {
+      "source_function_count": 198,
+      "edge_count": 3283,
+      "unique_target_count": 417,
+      "top_targets": [
+        {
+          "target": "sub_8bfdd4",
+          "count": 299
+        },
+        {
+          "target": "sub_8c1b28",
+          "count": 189
+        },
+        {
+          "target": "sub_8c1c30",
+          "count": 188
+        },
+        {
+          "target": "sub_8c0e5c",
+          "count": 157
+        },
+        {
+          "target": "sub_8c1a80",
+          "count": 154
+        },
+        {
+          "target": "sub_8c0a5c",
+          "count": 99
+        },
+        {
+          "target": "_GrowableList@0150898._growToNextCapacity@0150898_37848",
+          "count": 88
+        },
+        {
+          "target": "sub_8bfc70",
+          "count": 78
+        },
+        {
+          "target": "sub_8d4320",
+          "count": 72
+        },
+        {
+          "target": "_StringBase@0150898._interpolate@0150898_760",
+          "count": 68
+        },
+        {
+          "target": "0xf46b78",
+          "count": 68
+        },
+        {
+          "target": "of_161bd8",
+          "count": 57
+        },
+        {
+          "target": "EqualUnmodifiableListView_89570",
+          "count": 53
+        },
+        {
+          "target": "_$WeightliftingImpl@1410498253.get:lifts_10c524",
+          "count": 48
+        },
+        {
+          "target": "Text_161028",
+          "count": 47
+        },
+        {
+          "target": "PDSTextStyle_161bcc",
+          "count": 46
+        },
+        {
+          "target": "PDSTextStyle.PDSTextStyle._@1062453227_161a2c",
+          "count": 46
+        },
+        {
+          "target": "sub_8c1db0",
+          "count": 39
+        },
+        {
+          "target": "sub_8c0a98",
+          "count": 34
+        },
+        {
+          "target": "useState_1ac1ac",
+          "count": 33
+        },
+        {
+          "target": "TextStyle.copyWith_161074",
+          "count": 32
+        },
+        {
+          "target": "Map._fromLiteral@0150898_49224",
+          "count": 31
+        },
+        {
+          "target": "_GrowableList@0150898.addAll_1027c4",
+          "count": 31
+        },
+        {
+          "target": "Row_161010",
+          "count": 31
+        },
+        {
+          "target": "sub_8c22b8",
+          "count": 28
+        }
+      ],
+      "meaningful_targets": [
+        {
+          "target": "_$WeightliftingImpl@1410498253.get:lifts_10c524",
+          "count": 48
+        },
+        {
+          "target": "_$WeightliftingImpl@1410498253_247fbc",
+          "count": 9
+        },
+        {
+          "target": "JsWeightliftingCalculator._callWithEvents@1493039605_248118",
+          "count": 9
+        },
+        {
+          "target": "Weightlifting.get:bestPeakVelocity_10c458",
+          "count": 6
+        },
+        {
+          "target": "Weightlifting.get:avgFirstPullVelocity_164028",
+          "count": 6
+        },
+        {
+          "target": "Weightlifting.get:avgSecondPullVelocity_163ed4",
+          "count": 6
+        },
+        {
+          "target": "_$$WeightliftingPhaseDataImplToJson@1129372492_16aa90",
+          "count": 5
+        },
+        {
+          "target": "_$VelocityDataPointImpl@1129372492_24caa8",
+          "count": 5
+        },
+        {
+          "target": "VelocityRating_2abe94",
+          "count": 5
+        },
+        {
+          "target": "WeightliftingLiftTypeLocalization|localizedLabel_266638",
+          "count": 4
+        },
+        {
+          "target": "Weightlifting.get:avgThirdPullVelocity_2ac98c",
+          "count": 4
+        },
+        {
+          "target": "formatVelocity_30a784",
+          "count": 4
+        },
+        {
+          "target": "_$WeightliftingPhaseDataFromJson@1129372492_896108",
+          "count": 4
+        },
+        {
+          "target": "FirebaseFirestore.batch_89ccd0",
+          "count": 4
+        },
+        {
+          "target": "_$PhaseMarkerImpl@1410498253_24ca9c",
+          "count": 3
+        },
+        {
+          "target": "prepareCameraRecording_261964",
+          "count": 3
+        },
+        {
+          "target": "JsWeightliftingCalculator.setCalibration_265f44",
+          "count": 3
+        },
+        {
+          "target": "_$$WeightliftingVelocityTraceImplToJson@1194399554_26ec48",
+          "count": 3
+        },
+        {
+          "target": "Weightlifting.get:successfulLifts_2abc38",
+          "count": 3
+        },
+        {
+          "target": "Weightlifting.get:avgTotalHeight_2ae3c0",
+          "count": 3
+        },
+        {
+          "target": "_$WorkoutWeightliftingResultImpl@1129372492_3adb5c",
+          "count": 3
+        },
+        {
+          "target": "AthleteProfileDataSource._weightliftingTracesRef@1190416904_89bcd8",
+          "count": 3
+        },
+        {
+          "target": "PersonalProfileDataSource._weightliftingTracesRef@1195186576_89d054",
+          "count": 3
+        },
+        {
+          "target": "_$$WeightliftingCalibrationImplToJson@1129372492_16a07c",
+          "count": 2
+        },
+        {
+          "target": "_$$WeightliftingTotalDataImplToJson@1129372492_16a9a4",
+          "count": 2
+        },
+        {
+          "target": "_$WeightliftingLiftRecordImpl@1129372492.get:technicalNotes_16a784",
+          "count": 2
+        },
+        {
+          "target": "_$WeightliftingLiftImpl@1410498253_24805c",
+          "count": 2
+        },
+        {
+          "target": "_$WeightliftingCalibrationImpl@1129372492_248b8c",
+          "count": 2
+        },
+        {
+          "target": "JsWeightliftingCalculator._parsePhase@1493039605_248c8c",
+          "count": 2
+        },
+        {
+          "target": "JsWeightliftingCalculator.clear_2804b4",
+          "count": 2
+        }
+      ],
+      "cross_feature_edges": [
+        {
+          "edge": "weightlifting -> media_cloud",
+          "count": 10
+        },
+        {
+          "edge": "weightlifting -> sessions_history",
+          "count": 10
+        },
+        {
+          "edge": "weightlifting -> calibration",
+          "count": 6
+        },
+        {
+          "edge": "weightlifting -> app_shell",
+          "count": 6
+        }
+      ]
+    },
+    "vbt": {
+      "source_function_count": 241,
+      "edge_count": 4318,
+      "unique_target_count": 514,
+      "top_targets": [
+        {
+          "target": "sub_8bfdd4",
+          "count": 303
+        },
+        {
+          "target": "sub_8c0e5c",
+          "count": 272
+        },
+        {
+          "target": "sub_8c1c30",
+          "count": 238
+        },
+        {
+          "target": "sub_8c1b28",
+          "count": 209
+        },
+        {
+          "target": "sub_8c1a80",
+          "count": 159
+        },
+        {
+          "target": "sub_8c0a5c",
+          "count": 141
+        },
+        {
+          "target": "sub_8474bc",
+          "count": 107
+        },
+        {
+          "target": "_GrowableList@0150898._growToNextCapacity@0150898_37848",
+          "count": 97
+        },
+        {
+          "target": "sub_8c1db0",
+          "count": 95
+        },
+        {
+          "target": "of_161bd8",
+          "count": 82
+        },
+        {
+          "target": "Text_161028",
+          "count": 80
+        },
+        {
+          "target": "EqualUnmodifiableListView_89570",
+          "count": 76
+        },
+        {
+          "target": "0xf46b78",
+          "count": 74
+        },
+        {
+          "target": "PDSTextStyle_161bcc",
+          "count": 72
+        },
+        {
+          "target": "PDSTextStyle.PDSTextStyle._@1062453227_161a2c",
+          "count": 72
+        },
+        {
+          "target": "sub_8d4320",
+          "count": 68
+        },
+        {
+          "target": "sub_8bfc70",
+          "count": 65
+        },
+        {
+          "target": "sub_8c0a98",
+          "count": 59
+        },
+        {
+          "target": "TextStyle.copyWith_161074",
+          "count": 57
+        },
+        {
+          "target": "_StringBase@0150898._interpolate@0150898_760",
+          "count": 51
+        },
+        {
+          "target": "useState_1ac1ac",
+          "count": 47
+        },
+        {
+          "target": "_$VBTImpl@1189259567.get:sets_27d2cc",
+          "count": 44
+        },
+        {
+          "target": "0xf46b98",
+          "count": 39
+        },
+        {
+          "target": "Row_161010",
+          "count": 38
+        },
+        {
+          "target": "_GrowableList@0150898.addAll_1027c4",
+          "count": 35
+        }
+      ],
+      "meaningful_targets": [
+        {
+          "target": "_$VBTImpl@1189259567.get:sets_27d2cc",
+          "count": 44
+        },
+        {
+          "target": "_$VBTImpl@1189259567_30b0fc",
+          "count": 18
+        },
+        {
+          "target": "_$VBTSetImpl@1189259567_30b220",
+          "count": 10
+        },
+        {
+          "target": "VBTContentLocalization|localizedLabel_2e1218",
+          "count": 7
+        },
+        {
+          "target": "VBTContent.fromIdx_17e5ec",
+          "count": 6
+        },
+        {
+          "target": "VbtDetailSection._miniMetric@1384371097_309fcc",
+          "count": 6
+        },
+        {
+          "target": "_$VBTTargetVelocityStateImpl@1482430749_39f2b8",
+          "count": 5
+        },
+        {
+          "target": "_$VBTSettingImpl@1234411512_1aa4c8",
+          "count": 4
+        },
+        {
+          "target": "VBTPerformanceKeyLocalization|localizedDescription_3088cc",
+          "count": 4
+        },
+        {
+          "target": "VBTDataNotifier.currentSet_37b040",
+          "count": 4
+        },
+        {
+          "target": "_$VBTRepImpl@1189259567_2dccfc",
+          "count": 3
+        },
+        {
+          "target": "VbtFeedbackAnalyzer.analyzeSetFatigue_30a838",
+          "count": 3
+        },
+        {
+          "target": "VBTDataNotifier.get:_defaultWeight@1479165247_37de08",
+          "count": 3
+        },
+        {
+          "target": "VBTContentLocalization|localizedSublabel_302c30",
+          "count": 3
+        },
+        {
+          "target": "_$WorkoutVbtResultImpl@1129372492_38b6f8",
+          "count": 3
+        },
+        {
+          "target": "VBTTargetVelocityNotifier._persist@1482430749_39e9d0",
+          "count": 3
+        },
+        {
+          "target": "_$$VbtRepImplToJson@1129372492_11a084",
+          "count": 2
+        },
+        {
+          "target": "VBTContent.toJson_176f18",
+          "count": 2
+        },
+        {
+          "target": "JsVbtCalculator.dispose_2db310",
+          "count": 2
+        },
+        {
+          "target": "JsVbtCalculator_2db0d4",
+          "count": 2
+        },
+        {
+          "target": "JsVbtCalculator.JsVbtCalculator._2dab7c",
+          "count": 2
+        },
+        {
+          "target": "VBT.maxVelMap_306c30",
+          "count": 2
+        },
+        {
+          "target": "VbtDetailSection._toVBT@1384371097_30b034",
+          "count": 2
+        },
+        {
+          "target": "formatVelocity_30a784",
+          "count": 2
+        },
+        {
+          "target": "VbtQualityScoreCard_308790",
+          "count": 2
+        },
+        {
+          "target": "VbtAnalysisResultCard_308784",
+          "count": 2
+        },
+        {
+          "target": "VbtDetailSection._eccentricContainer@1384371097_309e4c",
+          "count": 2
+        },
+        {
+          "target": "VbtDetailSection._eccentricRatingLabel@1384371097_309aec",
+          "count": 2
+        },
+        {
+          "target": "VBTDataNotifier._resetInternalState@1479165247_37dee8",
+          "count": 2
+        },
+        {
+          "target": "JsVbtCalculator.reset_2eeee8",
+          "count": 2
+        }
+      ],
+      "cross_feature_edges": [
+        {
+          "edge": "vbt -> app_shell",
+          "count": 7
+        },
+        {
+          "edge": "vbt -> sessions_history",
+          "count": 5
+        },
+        {
+          "edge": "vbt -> media_cloud",
+          "count": 4
+        },
+        {
+          "edge": "vbt -> calibration",
+          "count": 1
+        }
+      ]
+    },
+    "rotation": {
+      "source_function_count": 127,
+      "edge_count": 2045,
+      "unique_target_count": 315,
+      "top_targets": [
+        {
+          "target": "sub_8bfdd4",
+          "count": 163
+        },
+        {
+          "target": "sub_8c1a80",
+          "count": 148
+        },
+        {
+          "target": "sub_8c1c30",
+          "count": 113
+        },
+        {
+          "target": "sub_8c0e5c",
+          "count": 113
+        },
+        {
+          "target": "sub_8c1b28",
+          "count": 109
+        },
+        {
+          "target": "sub_8c0a5c",
+          "count": 66
+        },
+        {
+          "target": "0xf46b78",
+          "count": 47
+        },
+        {
+          "target": "of_161bd8",
+          "count": 47
+        },
+        {
+          "target": "sub_8c21e8",
+          "count": 43
+        },
+        {
+          "target": "_GrowableList@0150898._growToNextCapacity@0150898_37848",
+          "count": 39
+        },
+        {
+          "target": "EqualUnmodifiableListView_89570",
+          "count": 36
+        },
+        {
+          "target": "_StringBase@0150898._interpolate@0150898_760",
+          "count": 33
+        },
+        {
+          "target": "sub_8bfc70",
+          "count": 31
+        },
+        {
+          "target": "PDSTextStyle_161bcc",
+          "count": 30
+        },
+        {
+          "target": "PDSTextStyle.PDSTextStyle._@1062453227_161a2c",
+          "count": 30
+        },
+        {
+          "target": "Text_161028",
+          "count": 29
+        },
+        {
+          "target": "sub_8c1db0",
+          "count": 28
+        },
+        {
+          "target": "sub_8d4320",
+          "count": 25
+        },
+        {
+          "target": "sub_8c0a98",
+          "count": 22
+        },
+        {
+          "target": "TextStyle.copyWith_161074",
+          "count": 19
+        },
+        {
+          "target": "Row_161010",
+          "count": 19
+        },
+        {
+          "target": "sub_8c2158",
+          "count": 19
+        },
+        {
+          "target": "0xf46b98",
+          "count": 17
+        },
+        {
+          "target": "ListBase.map_49b284",
+          "count": 16
+        },
+        {
+          "target": "Map._fromLiteral@0150898_49224",
+          "count": 15
+        }
+      ],
+      "meaningful_targets": [
+        {
+          "target": "_$RotationImpl@1401451035.get:sets_3141c0",
+          "count": 15
+        },
+        {
+          "target": "_$RotationImpl@1401451035_314f1c",
+          "count": 11
+        },
+        {
+          "target": "RotationDataNotifier._update@1422200199_314ed0",
+          "count": 10
+        },
+        {
+          "target": "RotationDataNotifier.currentSet_31683c",
+          "count": 5
+        },
+        {
+          "target": "Transform._createZRotation@224167661_1d12bc",
+          "count": 4
+        },
+        {
+          "target": "_$WorkoutRotationResultImpl@1129372492_31e540",
+          "count": 3
+        },
+        {
+          "target": "_$RotationSetImpl@1401451035_314f28",
+          "count": 2
+        },
+        {
+          "target": "RotationDataNotifier._onRepDetected@1422200199_315240",
+          "count": 2
+        },
+        {
+          "target": "_$RotationRepImpl@1401451035_3159d0",
+          "count": 2
+        },
+        {
+          "target": "RotationDataNotifier._resetInternalState@1422200199_318514",
+          "count": 2
+        },
+        {
+          "target": "JsRotationCalculator.reset_318568",
+          "count": 2
+        },
+        {
+          "target": "RotationDataNotifier._saveCurrentToRepo@1422200199_321424",
+          "count": 2
+        },
+        {
+          "target": "RotationDataNotifier._resetAfterSave@1422200199_3213c4",
+          "count": 2
+        },
+        {
+          "target": "DeviceOrientationManager.getDefaultDisplayRotation_54ef80",
+          "count": 2
+        },
+        {
+          "target": "getQuarterTurnsFromSurfaceRotationConstant_54ecd8",
+          "count": 2
+        },
+        {
+          "target": "RotationFeedbackAnalyzer.analyze_5b0d30",
+          "count": 2
+        },
+        {
+          "target": "RotationFeedbackAnalyzer._analyzeConsistency@1402175440_5b15cc",
+          "count": 2
+        },
+        {
+          "target": "_RotationMetricsPanel@1423239720._velocityLossColor@1423239720_63739c",
+          "count": 2
+        },
+        {
+          "target": "RotationRepPerformanceWidget._valueForView@1427455810_6395e8",
+          "count": 2
+        },
+        {
+          "target": "_$$WorkoutRotationResultImplToJson@1129372492_164c70",
+          "count": 1
+        },
+        {
+          "target": "_$$WorkoutRotationSetImplToJson@1129372492_164e88",
+          "count": 1
+        },
+        {
+          "target": "_$$WorkoutRotationRepImplToJson@1129372492_1650f8",
+          "count": 1
+        },
+        {
+          "target": "_$$ProgramRotationDataImplToJson@1128248788_171514",
+          "count": 1
+        },
+        {
+          "target": "_$$RotationQuaternionImplToJson@1097462921_1b9208",
+          "count": 1
+        },
+        {
+          "target": "_$RotationQuaternionImpl@1097462921_1b9460",
+          "count": 1
+        },
+        {
+          "target": "CameraRecordingScaffold_1e708c",
+          "count": 1
+        },
+        {
+          "target": "_$$RotationSetImplToJson@1401451035_313608",
+          "count": 1
+        },
+        {
+          "target": "_$$RotationRepImplToJson@1401451035_313890",
+          "count": 1
+        },
+        {
+          "target": "_$$RotationImplToJson@1401451035_314264",
+          "count": 1
+        },
+        {
+          "target": "JsRotationCalculator.flush_315030",
+          "count": 1
+        }
+      ],
+      "cross_feature_edges": [
+        {
+          "edge": "rotation -> sessions_history",
+          "count": 5
+        },
+        {
+          "edge": "rotation -> app_shell",
+          "count": 3
+        },
+        {
+          "edge": "app_shell -> sessions_history",
+          "count": 1
+        },
+        {
+          "edge": "rotation -> media_cloud",
+          "count": 1
+        }
+      ]
+    },
+    "one_rm": {
+      "source_function_count": 128,
+      "edge_count": 1777,
+      "unique_target_count": 336,
+      "top_targets": [
+        {
+          "target": "sub_8c1c30",
+          "count": 136
+        },
+        {
+          "target": "sub_8c0e5c",
+          "count": 97
+        },
+        {
+          "target": "sub_8bfdd4",
+          "count": 84
+        },
+        {
+          "target": "sub_8c1b28",
+          "count": 79
+        },
+        {
+          "target": "sub_8c1a80",
+          "count": 70
+        },
+        {
+          "target": "_GrowableList@0150898._growToNextCapacity@0150898_37848",
+          "count": 66
+        },
+        {
+          "target": "sub_8c0a5c",
+          "count": 45
+        },
+        {
+          "target": "sub_8bfc70",
+          "count": 44
+        },
+        {
+          "target": "Text_161028",
+          "count": 35
+        },
+        {
+          "target": "PDSTextStyle_161bcc",
+          "count": 33
+        },
+        {
+          "target": "PDSTextStyle.PDSTextStyle._@1062453227_161a2c",
+          "count": 33
+        },
+        {
+          "target": "sub_8c1db0",
+          "count": 27
+        },
+        {
+          "target": "TextStyle.copyWith_161074",
+          "count": 26
+        },
+        {
+          "target": "Map._fromLiteral@0150898_49224",
+          "count": 25
+        },
+        {
+          "target": "0xf46b78",
+          "count": 24
+        },
+        {
+          "target": "0xf46b98",
+          "count": 22
+        },
+        {
+          "target": "_GrowableList@0150898._GrowableList@0150898._37a50",
+          "count": 21
+        },
+        {
+          "target": "_StringBase@0150898._interpolate@0150898_760",
+          "count": 21
+        },
+        {
+          "target": "_$OneRmTestImpl@1352308653.get:attempts_2e3090",
+          "count": 21
+        },
+        {
+          "target": "ListBase.map_49b284",
+          "count": 18
+        },
+        {
+          "target": "sub_8c1cb0",
+          "count": 18
+        },
+        {
+          "target": "_GrowableList@0150898.addAll_1027c4",
+          "count": 17
+        },
+        {
+          "target": "EqualUnmodifiableListView_89570",
+          "count": 16
+        },
+        {
+          "target": "sub_8c0a98",
+          "count": 16
+        },
+        {
+          "target": "of_161bd8",
+          "count": 15
+        }
+      ],
+      "meaningful_targets": [
+        {
+          "target": "_$OneRmTestImpl@1352308653.get:attempts_2e3090",
+          "count": 21
+        },
+        {
+          "target": "_$OneRmTestImpl@1352308653_2e31e8",
+          "count": 9
+        },
+        {
+          "target": "OneRmTest.get:weightVelocityMap_2e9cf0",
+          "count": 7
+        },
+        {
+          "target": "OneRmDataNotifier.get:progressionWeights_2eb68c",
+          "count": 4
+        },
+        {
+          "target": "OneRmTest.calculateLvp_2e839c",
+          "count": 4
+        },
+        {
+          "target": "LVP.estimateOneRmAt_2e8200",
+          "count": 4
+        },
+        {
+          "target": "OneRmDataNotifier.get:bestRep_2e25e4",
+          "count": 3
+        },
+        {
+          "target": "JsVbtCalculator.clearSet_2e30ec",
+          "count": 3
+        },
+        {
+          "target": "_$WorkoutOneRmResultImpl@1129372492_2e81f4",
+          "count": 3
+        },
+        {
+          "target": "_$$OneRmAttemptImplToJson@1129372492_170750",
+          "count": 2
+        },
+        {
+          "target": "OneRmDataNotifier.get:currentWeight_2eb5cc",
+          "count": 2
+        },
+        {
+          "target": "OneRmDataNotifier.get:currentTargetPercent_2eb538",
+          "count": 2
+        },
+        {
+          "target": "OneRmDataNotifier.get:validationResult_2e9f9c",
+          "count": 2
+        },
+        {
+          "target": "OneRmFeedbackAnalyzer.analyze_2e8744",
+          "count": 2
+        },
+        {
+          "target": "OneRmTest.toOneRmResultForTrend_2e80a4",
+          "count": 2
+        },
+        {
+          "target": "OneRmDataNotifier._notifyStepChanged@1359310625_2ec0dc",
+          "count": 2
+        },
+        {
+          "target": "OneRmDataNotifier._calculateAndSaveCurrent@1359310625_2eefe4",
+          "count": 2
+        },
+        {
+          "target": "OneRmDataNotifier._clearSavedTestState@1359310625_2eec40",
+          "count": 2
+        },
+        {
+          "target": "OneRmDataNotifier.get:currentResultsSnapshot_2e3ea0",
+          "count": 2
+        },
+        {
+          "target": "OneRmDataNotifier.swapInResults_2e396c",
+          "count": 2
+        },
+        {
+          "target": "JsVbtCalculator.reset_2eeee8",
+          "count": 2
+        },
+        {
+          "target": "OneRmDataNotifier.moveToNextStep_2f1ea0",
+          "count": 2
+        },
+        {
+          "target": "JsVbtCalculator.dispose_2db310",
+          "count": 2
+        },
+        {
+          "target": "_$$OneRmBestRecordImplToJson@1115002182_13a13c",
+          "count": 1
+        },
+        {
+          "target": "_$$OneRmBestRecordImplFromJson@1115002182_13e138",
+          "count": 1
+        },
+        {
+          "target": "_$OneRmBestRecordImpl@1115002182_13e24c",
+          "count": 1
+        },
+        {
+          "target": "_$$WorkoutOneRmResultImplToJson@1129372492_17007c",
+          "count": 1
+        },
+        {
+          "target": "_$$ProgramOneRmDataImplToJson@1128248788_17188c",
+          "count": 1
+        },
+        {
+          "target": "_$WorkoutOneRmResultImpl@1129372492.get:attempts_17067c",
+          "count": 1
+        },
+        {
+          "target": "_lblOneRmEstimated@1103342723_17edf4",
+          "count": 1
+        }
+      ],
+      "cross_feature_edges": [
+        {
+          "edge": "one_rm -> vbt",
+          "count": 9
+        },
+        {
+          "edge": "one_rm -> sessions_history",
+          "count": 6
+        },
+        {
+          "edge": "one_rm -> media_cloud",
+          "count": 2
+        },
+        {
+          "edge": "one_rm -> app_shell",
+          "count": 2
+        }
+      ]
+    },
+    "jump_rsi": {
+      "source_function_count": 259,
+      "edge_count": 3835,
+      "unique_target_count": 446,
+      "top_targets": [
+        {
+          "target": "sub_8bfdd4",
+          "count": 273
+        },
+        {
+          "target": "sub_8c1c30",
+          "count": 255
+        },
+        {
+          "target": "sub_8c1b28",
+          "count": 207
+        },
+        {
+          "target": "sub_8c0e5c",
+          "count": 199
+        },
+        {
+          "target": "sub_8c1a80",
+          "count": 184
+        },
+        {
+          "target": "_GrowableList@0150898._growToNextCapacity@0150898_37848",
+          "count": 118
+        },
+        {
+          "target": "sub_8c0a5c",
+          "count": 101
+        },
+        {
+          "target": "sub_8bfc70",
+          "count": 87
+        },
+        {
+          "target": "_StringBase@0150898._interpolate@0150898_760",
+          "count": 82
+        },
+        {
+          "target": "0xf46b78",
+          "count": 71
+        },
+        {
+          "target": "sub_8c1db0",
+          "count": 59
+        },
+        {
+          "target": "Text_161028",
+          "count": 50
+        },
+        {
+          "target": "PDSTextStyle_161bcc",
+          "count": 48
+        },
+        {
+          "target": "PDSTextStyle.PDSTextStyle._@1062453227_161a2c",
+          "count": 48
+        },
+        {
+          "target": "EqualUnmodifiableListView_89570",
+          "count": 47
+        },
+        {
+          "target": "0xf46b98",
+          "count": 47
+        },
+        {
+          "target": "sub_8c0a98",
+          "count": 44
+        },
+        {
+          "target": "_GrowableList@0150898._GrowableList@0150898._37a50",
+          "count": 41
+        },
+        {
+          "target": "_$JumpImpl@1259142584.get:records_26b290",
+          "count": 39
+        },
+        {
+          "target": "Map._fromLiteral@0150898_49224",
+          "count": 35
+        },
+        {
+          "target": "sub_8c22b8",
+          "count": 35
+        },
+        {
+          "target": "_GrowableList@0150898.addAll_1027c4",
+          "count": 33
+        },
+        {
+          "target": "sub_8d4320",
+          "count": 32
+        },
+        {
+          "target": "of_161bd8",
+          "count": 32
+        },
+        {
+          "target": "sub_8bfb2c",
+          "count": 32
+        }
+      ],
+      "meaningful_targets": [
+        {
+          "target": "_$JumpImpl@1259142584.get:records_26b290",
+          "count": 39
+        },
+        {
+          "target": "_$RsiImpl@1099028742.get:records_1634d0",
+          "count": 25
+        },
+        {
+          "target": "Rsi.get:top5_1633fc",
+          "count": 14
+        },
+        {
+          "target": "_$JumpImpl@1259142584_2779a4",
+          "count": 10
+        },
+        {
+          "target": "_$RsiImpl@1099028742_2b7ba0",
+          "count": 10
+        },
+        {
+          "target": "Rsi.get:bestRsi_32a294",
+          "count": 8
+        },
+        {
+          "target": "_$ReplayPhaseImpl@1435425036_273e30",
+          "count": 6
+        },
+        {
+          "target": "Rsi.get:averageRsi_16de08",
+          "count": 6
+        },
+        {
+          "target": "_$WorkoutRsiResultImpl@1129372492_329ed0",
+          "count": 5
+        },
+        {
+          "target": "RsiScoringCriterion_32bd70",
+          "count": 5
+        },
+        {
+          "target": "_$WorkoutJumpResultImpl@1129372492_2a5ee8",
+          "count": 4
+        },
+        {
+          "target": "JumpScoringCriterion_2a73d4",
+          "count": 4
+        },
+        {
+          "target": "Rsi.get:effectiveTargetJumps_2b7f0c",
+          "count": 4
+        },
+        {
+          "target": "Rsi.get:averageContactTime_32a118",
+          "count": 4
+        },
+        {
+          "target": "JumpDataNotifier.get:_effectiveBoxHeightM@1313282915_2789f8",
+          "count": 3
+        },
+        {
+          "target": "_$JumpRepImpl@1259142584_278e58",
+          "count": 3
+        },
+        {
+          "target": "RsiDataNotifier.get:_effectiveBoxHeightM@1430298721_2b7ad0",
+          "count": 3
+        },
+        {
+          "target": "Rsi.get:averageHeight_16334c",
+          "count": 3
+        },
+        {
+          "target": "Rsi.get:bestHeight_32a1c8",
+          "count": 3
+        },
+        {
+          "target": "Rsi.get:rsiCV_329edc",
+          "count": 3
+        },
+        {
+          "target": "RsiRating.getColor_63e26c",
+          "count": 3
+        },
+        {
+          "target": "RsiRating.getRating_63e130",
+          "count": 3
+        },
+        {
+          "target": "_$RsiBestRecordImpl@1115002182_13c3e8",
+          "count": 2
+        },
+        {
+          "target": "JumpContentLocalization|localizedLabel_26be7c",
+          "count": 2
+        },
+        {
+          "target": "CameraRecordingScaffold_1e708c",
+          "count": 2
+        },
+        {
+          "target": "JumpComSwayMetrics_27c6a0",
+          "count": 2
+        },
+        {
+          "target": "JumpFeedbackAnalyzer.analyze_2a5f64",
+          "count": 2
+        },
+        {
+          "target": "_$JumpSettingImpl@1234411512_2aec74",
+          "count": 2
+        },
+        {
+          "target": "JumpDataNotifier.setBoxHeight_2afb6c",
+          "count": 2
+        },
+        {
+          "target": "JumpDataNotifier._saveCurrentToRepo@1313282915_2b2b8c",
+          "count": 2
+        }
+      ],
+      "cross_feature_edges": [
+        {
+          "edge": "jump_rsi -> sessions_history",
+          "count": 13
+        },
+        {
+          "edge": "jump_rsi -> app_shell",
+          "count": 8
+        },
+        {
+          "edge": "jump_rsi -> media_cloud",
+          "count": 3
+        }
+      ]
+    },
+    "sessions_history": {
+      "source_function_count": 469,
+      "edge_count": 6425,
+      "unique_target_count": 896,
+      "top_targets": [
+        {
+          "target": "sub_8c1c30",
+          "count": 482
+        },
+        {
+          "target": "sub_8bfdd4",
+          "count": 394
+        },
+        {
+          "target": "sub_8c1b28",
+          "count": 274
+        },
+        {
+          "target": "sub_8c0e5c",
+          "count": 264
+        },
+        {
+          "target": "sub_8c1a80",
+          "count": 199
+        },
+        {
+          "target": "sub_8c1db0",
+          "count": 197
+        },
+        {
+          "target": "_StringBase@0150898._interpolate@0150898_760",
+          "count": 159
+        },
+        {
+          "target": "_GrowableList@0150898._growToNextCapacity@0150898_37848",
+          "count": 109
+        },
+        {
+          "target": "sub_8bfc70",
+          "count": 109
+        },
+        {
+          "target": "sub_58ef0",
+          "count": 102
+        },
+        {
+          "target": "sub_8c0a5c",
+          "count": 101
+        },
+        {
+          "target": "sub_8c0a98",
+          "count": 92
+        },
+        {
+          "target": "EqualUnmodifiableListView_89570",
+          "count": 80
+        },
+        {
+          "target": "0xf46b78",
+          "count": 72
+        },
+        {
+          "target": "sub_8374ac",
+          "count": 72
+        },
+        {
+          "target": "0xf46b98",
+          "count": 71
+        },
+        {
+          "target": "sub_8c1cb0",
+          "count": 63
+        },
+        {
+          "target": "sub_8c22b8",
+          "count": 62
+        },
+        {
+          "target": "_GrowableList@0150898._GrowableList@0150898._37a50",
+          "count": 61
+        },
+        {
+          "target": "Map._fromLiteral@0150898_49224",
+          "count": 60
+        },
+        {
+          "target": "sub_8bfdb0",
+          "count": 60
+        },
+        {
+          "target": "sub_5912c",
+          "count": 58
+        },
+        {
+          "target": "ProviderElementBase.read_1346a8",
+          "count": 52
+        },
+        {
+          "target": "sub_8bfb2c",
+          "count": 51
+        },
+        {
+          "target": "sub_8474bc",
+          "count": 51
+        }
+      ],
+      "meaningful_targets": [
+        {
+          "target": "VBTContent.fromIdx_17e5ec",
+          "count": 9
+        },
+        {
+          "target": "VBTContentLocalization|localizedLabel_2e1218",
+          "count": 9
+        },
+        {
+          "target": "_$ReplayPhaseImpl@1435425036_273e30",
+          "count": 8
+        },
+        {
+          "target": "AthleteProfileDataSource._propagateToResult@1190416904_8a204c",
+          "count": 8
+        },
+        {
+          "target": "SetReplayCaptureService._discardDir@1317488692_272564",
+          "count": 7
+        },
+        {
+          "target": "VBTContentLocalization|localizedSublabel_302c30",
+          "count": 7
+        },
+        {
+          "target": "JumpContentLocalization|localizedLabel_26be7c",
+          "count": 7
+        },
+        {
+          "target": "WeightliftingLiftTypeLocalization|localizedLabel_266638",
+          "count": 7
+        },
+        {
+          "target": "RsiTestTypeLocalization|localizedLabel_302a7c",
+          "count": 6
+        },
+        {
+          "target": "AthleteProfileDataSource.get:_sessionsRef@1190416904_89bd30",
+          "count": 6
+        },
+        {
+          "target": "_$ExerciseSessionImpl@1107304276_1e3634",
+          "count": 5
+        },
+        {
+          "target": "VbtExerciseLabelLocalization|localizedVbtExercise_302404",
+          "count": 5
+        },
+        {
+          "target": "UndoHistoryState.get:_effectiveController@333437083_5048a0",
+          "count": 5
+        },
+        {
+          "target": "ReplayPathPainter._buildPath@1442342518_6b7938",
+          "count": 5
+        },
+        {
+          "target": "PersonalProfileDataSource.get:_sessionsRef@1195186576_89d0ac",
+          "count": 5
+        },
+        {
+          "target": "_$ReplayRepImpl@1435425036_273e24",
+          "count": 4
+        },
+        {
+          "target": "_$ReplayBundleImpl@1435425036_273c14",
+          "count": 4
+        },
+        {
+          "target": "SetReplayCaptureService._releaseBarrier@1317488692_275fac",
+          "count": 4
+        },
+        {
+          "target": "ReplayPlaybackClock.seekTo_5b58e0",
+          "count": 4
+        },
+        {
+          "target": "ReplayPlaybackClock._setDisplay@1436135143_5b5cb0",
+          "count": 4
+        },
+        {
+          "target": "FirebaseFirestore.batch_89ccd0",
+          "count": 4
+        },
+        {
+          "target": "ProfileService.get:dataSource_1cf038",
+          "count": 3
+        },
+        {
+          "target": "SetReplayCaptureService._completeBundle@1317488692_26d218",
+          "count": 3
+        },
+        {
+          "target": "ReplayVelocitySeries.toJson_26e520",
+          "count": 3
+        },
+        {
+          "target": "SetReplayCaptureService._assembleCore@1317488692_273e3c",
+          "count": 3
+        },
+        {
+          "target": "_$ReplayVelocitySeriesImpl@1435425036_273dec",
+          "count": 3
+        },
+        {
+          "target": "_$ReplayPathSegmentImpl@1435425036_274e40",
+          "count": 3
+        },
+        {
+          "target": "SetReplayStore._rootDir@1434284173_27f648",
+          "count": 3
+        },
+        {
+          "target": "RotationDataNotifier._update@1422200199_314ed0",
+          "count": 3
+        },
+        {
+          "target": "SessionRecoveryStore.clear_38e83c",
+          "count": 3
+        }
+      ],
+      "cross_feature_edges": [
+        {
+          "edge": "sessions_history -> vbt",
+          "count": 43
+        },
+        {
+          "edge": "sessions_history -> jump_rsi",
+          "count": 37
+        },
+        {
+          "edge": "sessions_history -> app_shell",
+          "count": 28
+        },
+        {
+          "edge": "sessions_history -> media_cloud",
+          "count": 23
+        },
+        {
+          "edge": "sessions_history -> weightlifting",
+          "count": 22
+        },
+        {
+          "edge": "sessions_history -> rotation",
+          "count": 11
+        },
+        {
+          "edge": "sessions_history -> one_rm",
+          "count": 10
+        },
+        {
+          "edge": "sessions_history -> settings_profile",
+          "count": 7
+        },
+        {
+          "edge": "vbt -> app_shell",
+          "count": 4
+        },
+        {
+          "edge": "weightlifting -> media_cloud",
+          "count": 3
+        },
+        {
+          "edge": "auth -> app_shell",
+          "count": 2
+        },
+        {
+          "edge": "auth -> media_cloud",
+          "count": 1
+        }
+      ]
+    },
+    "settings_profile": {
+      "source_function_count": 243,
+      "edge_count": 2690,
+      "unique_target_count": 535,
+      "top_targets": [
+        {
+          "target": "sub_8c1c30",
+          "count": 241
+        },
+        {
+          "target": "sub_8c1b28",
+          "count": 104
+        },
+        {
+          "target": "sub_8c0e5c",
+          "count": 101
+        },
+        {
+          "target": "sub_8bfdd4",
+          "count": 80
+        },
+        {
+          "target": "sub_8c22b8",
+          "count": 78
+        },
+        {
+          "target": "__Map&_HashVMBase&MapMixin&_HashBase&_OperatorEqualsAndHashCode&_LinkedHashMapMixin@3099033._getValueOrData@3099033_8b7e5c",
+          "count": 73
+        },
+        {
+          "target": "sub_58ef0",
+          "count": 72
+        },
+        {
+          "target": "sub_5912c",
+          "count": 64
+        },
+        {
+          "target": "sub_3d76c",
+          "count": 53
+        },
+        {
+          "target": "sub_8bfc70",
+          "count": 52
+        },
+        {
+          "target": "_StringBase@0150898._interpolate@0150898_760",
+          "count": 48
+        },
+        {
+          "target": "sub_8c0a5c",
+          "count": 40
+        },
+        {
+          "target": "sub_8c2540",
+          "count": 38
+        },
+        {
+          "target": "_GrowableList@0150898._growToNextCapacity@0150898_37848",
+          "count": 32
+        },
+        {
+          "target": "_JsonCollectionReference@645385638.doc_142048",
+          "count": 32
+        },
+        {
+          "target": "sub_8c0a98",
+          "count": 30
+        },
+        {
+          "target": "sub_8c1db0",
+          "count": 28
+        },
+        {
+          "target": "0xf46b98",
+          "count": 27
+        },
+        {
+          "target": "sub_8bfdb0",
+          "count": 27
+        },
+        {
+          "target": "_GrowableList@0150898._GrowableList@0150898._37a50",
+          "count": 22
+        },
+        {
+          "target": "Map._fromLiteral@0150898_49224",
+          "count": 22
+        },
+        {
+          "target": "0xf46b78",
+          "count": 22
+        },
+        {
+          "target": "sub_8374ac",
+          "count": 20
+        },
+        {
+          "target": "ptsLog_87898",
+          "count": 18
+        },
+        {
+          "target": "log_87a18",
+          "count": 18
+        }
+      ],
+      "meaningful_targets": [
+        {
+          "target": "FirebaseFirestore.collection_1414e4",
+          "count": 16
+        },
+        {
+          "target": "AthleteProfileDataSource._propagateToResult@1190416904_8a204c",
+          "count": 8
+        },
+        {
+          "target": "FirebaseAuth.get:currentUser_134604",
+          "count": 7
+        },
+        {
+          "target": "defaultScrollNotificationPredicate_18b2a0",
+          "count": 7
+        },
+        {
+          "target": "_FixedScrollMetrics&Object&ScrollMetrics@294372966.get:axis_4ac568",
+          "count": 7
+        },
+        {
+          "target": "AthleteProfileDataSource.get:_sessionsRef@1190416904_89bd30",
+          "count": 7
+        },
+        {
+          "target": "FirebaseFirestore.batch_89ccd0",
+          "count": 6
+        },
+        {
+          "target": "PersonalProfileDataSource.get:_sessionsRef@1195186576_89d0ac",
+          "count": 6
+        },
+        {
+          "target": "_$ProfileImpl@1115002182_13c3f4",
+          "count": 5
+        },
+        {
+          "target": "Firebase.app_12c698",
+          "count": 5
+        },
+        {
+          "target": "FlutterLocalNotificationsPlugin.resolvePlatformSpecificImplementation_181a2c",
+          "count": 5
+        },
+        {
+          "target": "_convertNotificationSoundToMap@832519573_18195c",
+          "count": 4
+        },
+        {
+          "target": "VelocityProfileChart._buildSpots@1413197056_66e1cc",
+          "count": 4
+        },
+        {
+          "target": "AthleteProfileDataSource.get:_measurementsRef@1190416904_886b10",
+          "count": 4
+        },
+        {
+          "target": "Element.dispatchNotification_b0b20",
+          "count": 3
+        },
+        {
+          "target": "ProfileRepository._profileFromDoc@1204521632_1384b4",
+          "count": 3
+        },
+        {
+          "target": "ProfileService._update@1112198323_1aef24",
+          "count": 3
+        },
+        {
+          "target": "PersonalProfileDataSource.get:_measurementsRef@1195186576_88764c",
+          "count": 3
+        },
+        {
+          "target": "FirebaseAuth.FirebaseAuth.instanceFor_132e9c",
+          "count": 3
+        },
+        {
+          "target": "_$ExerciseSessionImpl@1107304276_1e3634",
+          "count": 3
+        },
+        {
+          "target": "AthleteProfileDataSource._weightliftingTracesRef@1190416904_89bcd8",
+          "count": 3
+        },
+        {
+          "target": "PersonalProfileDataSource._weightliftingTracesRef@1195186576_89d054",
+          "count": 3
+        },
+        {
+          "target": "AthleteProfileDataSource._sessionToFirestore@1190416904_89d44c",
+          "count": 3
+        },
+        {
+          "target": "PersonalProfileDataSource._serializeSession@1195186576_16ee6c",
+          "count": 3
+        },
+        {
+          "target": "PersonalProfileDataSource._notifyIfCompleted@1195186576_89e134",
+          "count": 3
+        },
+        {
+          "target": "_NotificationNode@246042623.dispatchNotification_b0b64",
+          "count": 2
+        },
+        {
+          "target": "ProfileRepository._getMyProfileOrNull@1204521632_141ad4",
+          "count": 2
+        },
+        {
+          "target": "FirebaseCrashlytics.get:instance_136f34",
+          "count": 2
+        },
+        {
+          "target": "FirebaseCrashlytics.recordError_1358a0",
+          "count": 2
+        },
+        {
+          "target": "ProfileRepository.getProfilesByTeamIds_142b68",
+          "count": 2
+        }
+      ],
+      "cross_feature_edges": [
+        {
+          "edge": "settings_profile -> media_cloud",
+          "count": 39
+        },
+        {
+          "edge": "settings_profile -> sessions_history",
+          "count": 11
+        },
+        {
+          "edge": "settings_profile -> auth",
+          "count": 10
+        },
+        {
+          "edge": "settings_profile -> app_shell",
+          "count": 10
+        },
+        {
+          "edge": "settings_profile -> weightlifting",
+          "count": 5
+        },
+        {
+          "edge": "weightlifting -> media_cloud",
+          "count": 5
+        },
+        {
+          "edge": "sessions_history -> media_cloud",
+          "count": 4
+        },
+        {
+          "edge": "settings_profile -> rotation",
+          "count": 3
+        },
+        {
+          "edge": "sessions_history -> jump_rsi",
+          "count": 2
+        }
+      ]
+    },
+    "media_cloud": {
+      "source_function_count": 785,
+      "edge_count": 6911,
+      "unique_target_count": 1148,
+      "top_targets": [
+        {
+          "target": "sub_8c1c30",
+          "count": 689
+        },
+        {
+          "target": "sub_8c0e5c",
+          "count": 272
+        },
+        {
+          "target": "sub_8c22b8",
+          "count": 266
+        },
+        {
+          "target": "sub_8c1b28",
+          "count": 253
+        },
+        {
+          "target": "sub_58ef0",
+          "count": 208
+        },
+        {
+          "target": "0xf46b78",
+          "count": 191
+        },
+        {
+          "target": "sub_8bfdb0",
+          "count": 158
+        },
+        {
+          "target": "sub_5912c",
+          "count": 149
+        },
+        {
+          "target": "sub_8c1db0",
+          "count": 138
+        },
+        {
+          "target": "sub_8bfc70",
+          "count": 127
+        },
+        {
+          "target": "_StringBase@0150898._interpolate@0150898_760",
+          "count": 119
+        },
+        {
+          "target": "sub_8c0a98",
+          "count": 111
+        },
+        {
+          "target": "sub_8c0a5c",
+          "count": 104
+        },
+        {
+          "target": "sub_3d76c",
+          "count": 90
+        },
+        {
+          "target": "__Map&_HashVMBase&MapMixin&_HashBase&_OperatorEqualsAndHashCode&_LinkedHashMapMixin@3099033._getValueOrData@3099033_8b7e5c",
+          "count": 89
+        },
+        {
+          "target": "0xf46b98",
+          "count": 82
+        },
+        {
+          "target": "BasicMessageChannel_d041c",
+          "count": 82
+        },
+        {
+          "target": "sub_8bfdd4",
+          "count": 77
+        },
+        {
+          "target": "0xf46b58",
+          "count": 66
+        },
+        {
+          "target": "BasicMessageChannel.send_b3334",
+          "count": 58
+        },
+        {
+          "target": "sub_8bfb2c",
+          "count": 56
+        },
+        {
+          "target": "useState_1ac1ac",
+          "count": 54
+        },
+        {
+          "target": "sub_8c2158",
+          "count": 53
+        },
+        {
+          "target": "sub_98928",
+          "count": 53
+        },
+        {
+          "target": "sub_8d3b30",
+          "count": 51
+        }
+      ],
+      "meaningful_targets": [
+        {
+          "target": "CameraException_1e9fe0",
+          "count": 23
+        },
+        {
+          "target": "FirestoreMessageCodec.writeValue_7bd1f8",
+          "count": 20
+        },
+        {
+          "target": "Firebase.app_12c698",
+          "count": 18
+        },
+        {
+          "target": "_extractReplyValueOrThrow@654275743_13a96c",
+          "count": 10
+        },
+        {
+          "target": "CameraRecordingScaffold_1e708c",
+          "count": 10
+        },
+        {
+          "target": "_extractReplyValueOrThrow@705223271_12f520",
+          "count": 9
+        },
+        {
+          "target": "CameraRecordingNotifier._safeSetState@1221153746_1caab4",
+          "count": 9
+        },
+        {
+          "target": "defaultScrollNotificationPredicate_18b2a0",
+          "count": 7
+        },
+        {
+          "target": "_FixedScrollMetrics&Object&ScrollMetrics@294372966.get:axis_4ac568",
+          "count": 7
+        },
+        {
+          "target": "FirebaseAuth.get:_delegate@699464419_12dcd0",
+          "count": 6
+        },
+        {
+          "target": "AuthPigeonFirebaseApp_12f8a4",
+          "count": 6
+        },
+        {
+          "target": "CameraRecordingService.noteFailure_1c63a8",
+          "count": 6
+        },
+        {
+          "target": "CameraSize.CameraSize._8158dc",
+          "count": 6
+        },
+        {
+          "target": "FlutterLocalNotificationsPlugin.resolvePlatformSpecificImplementation_181a2c",
+          "count": 5
+        },
+        {
+          "target": "CameraController._throwIfNotInitialized@627373842_1ea62c",
+          "count": 5
+        },
+        {
+          "target": "CameraValue.copyWith_1e9fec",
+          "count": 5
+        },
+        {
+          "target": "MethodChannelCamera._getArgumentDictionary@637124294_2344ac",
+          "count": 5
+        },
+        {
+          "target": "FirebaseFirestore.get:_delegate@645385638_1417b8",
+          "count": 4
+        },
+        {
+          "target": "_convertNotificationSoundToMap@832519573_18195c",
+          "count": 4
+        },
+        {
+          "target": "_BlendedDecorationImage@489297748.createPainter_84d860",
+          "count": 4
+        },
+        {
+          "target": "_BlendedDecorationImagePainter@489297748.paint_84d5a8",
+          "count": 4
+        },
+        {
+          "target": "CameraController.dispose_560170",
+          "count": 3
+        },
+        {
+          "target": "Element.dispatchNotification_b0b20",
+          "count": 3
+        },
+        {
+          "target": "FirebasePlugin.get:pluginConstants_1328cc",
+          "count": 3
+        },
+        {
+          "target": "CameraRecordingService.requestScreenRecordingPermission_1c9f5c",
+          "count": 3
+        },
+        {
+          "target": "CameraImagePlane_232fcc",
+          "count": 3
+        },
+        {
+          "target": "MethodChannelCamera._cameraEvents@637124294_2637d8",
+          "count": 3
+        },
+        {
+          "target": "_$CameraRecordingSettingImpl@1234411512_3bf000",
+          "count": 3
+        },
+        {
+          "target": "DeviceOrientationManager.getDefaultDisplayRotation_54ef80",
+          "count": 3
+        },
+        {
+          "target": "_extractReplyValueOrThrow@722305088_8d2314",
+          "count": 3
+        }
+      ],
+      "cross_feature_edges": [
+        {
+          "edge": "media_cloud -> app_shell",
+          "count": 12
+        },
+        {
+          "edge": "media_cloud -> sessions_history",
+          "count": 4
+        },
+        {
+          "edge": "media_cloud -> settings_profile",
+          "count": 3
+        },
+        {
+          "edge": "settings_profile -> rotation",
+          "count": 3
+        },
+        {
+          "edge": "settings_profile -> app_shell",
+          "count": 2
+        },
+        {
+          "edge": "auth -> app_shell",
+          "count": 2
+        },
+        {
+          "edge": "media_cloud -> rotation",
+          "count": 2
+        },
+        {
+          "edge": "settings_profile -> sessions_history",
+          "count": 2
+        },
+        {
+          "edge": "one_rm -> sessions_history",
+          "count": 1
+        }
+      ]
+    }
+  },
+  "examples": {
+    "app_shell": [
+      {
+        "from_func": "ModalRoute.get:popDisposition_90688",
+        "from_pc": "0x7170ac",
+        "kind": "bl",
+        "target": "_ModalRoute&TransitionRoute&LocalHistoryRoute@286188637.get:popDisposition_90798"
+      },
+      {
+        "from_func": "_ModalRoute&TransitionRoute&LocalHistoryRoute@286188637.get:popDisposition_90798",
+        "from_pc": "0x7170fc",
+        "kind": "bl",
+        "target": "_ModalRoute&TransitionRoute&LocalHistoryRoute@286188637.get:willHandlePopInternally_90838"
+      },
+      {
+        "from_func": "ModalRoute.didPopNext_b06e4",
+        "from_pc": "0x7371c0",
+        "kind": "bl",
+        "target": "ModalRoute._maybeDispatchNavigationNotification@286188637_b089c"
+      },
+      {
+        "from_func": "ModalRoute._maybeDispatchNavigationNotification@286188637_b089c",
+        "from_pc": "0x737278",
+        "kind": "bl",
+        "target": "NavigationNotification_b0c2c"
+      },
+      {
+        "from_func": "ModalRoute._maybeDispatchNavigationNotification@286188637_b089c",
+        "from_pc": "0x7373c4",
+        "kind": "bl",
+        "target": "Notification.dispatch_b0adc"
+      },
+      {
+        "from_func": "ModalRoute._maybeDispatchNavigationNotification@286188637_b0aa4",
+        "from_pc": "0x737404",
+        "kind": "bl",
+        "target": "ModalRoute._maybeDispatchNavigationNotification@286188637_b089c"
+      },
+      {
+        "from_func": "_RouteEntry@266124995.handlePush_b2bd0",
+        "from_pc": "0x739638",
+        "kind": "bl",
+        "target": "TransitionRoute.didReplace_b2df4"
+      },
+      {
+        "from_func": "_RouteEntry@266124995.handlePush_b2bd0",
+        "from_pc": "0x7396a4",
+        "kind": "bl",
+        "target": "_NavigatorReplaceObservation@266124995_b2de8"
+      },
+      {
+        "from_func": "NavigatorState.finalizeRoute_b64fc",
+        "from_pc": "0x73ce94",
+        "kind": "bl",
+        "target": "_History@266124995.indexWhere_b65ec"
+      },
+      {
+        "from_func": "NavigatorState.finalizeRoute_b64fc",
+        "from_pc": "0x73cef8",
+        "kind": "bl",
+        "target": "NavigatorState._flushHistoryUpdates@266124995_abcf0"
+      },
+      {
+        "from_func": "ModalRoute.willPop_c9254",
+        "from_pc": "0x74fcdc",
+        "kind": "bl",
+        "target": "_ModalRoute&TransitionRoute&LocalHistoryRoute@286188637.willPop_c93d4"
+      },
+      {
+        "from_func": "noAppExists_12cb9c",
+        "from_pc": "0x7b3534",
+        "kind": "bl",
+        "target": "FirebaseException_12cc2c"
+      }
+    ],
+    "auth": [
+      {
+        "from_func": "AuthService.authStateChanges_12d198",
+        "from_pc": "0x7b3af8",
+        "kind": "bl",
+        "target": "FirebaseAuth.authStateChanges_12d1f0"
+      },
+      {
+        "from_func": "AuthService.get:currentUser_1345ac",
+        "from_pc": "0x7baf0c",
+        "kind": "bl",
+        "target": "FirebaseAuth.get:currentUser_134604"
+      },
+      {
+        "from_func": "FirebaseAuth.get:currentUser_134604",
+        "from_pc": "0x7baf68",
+        "kind": "bl",
+        "target": "FirebaseAuth.get:_delegate@699464419_12dcd0"
+      },
+      {
+        "from_func": "FirebaseAuth.get:currentUser_134604",
+        "from_pc": "0x7baf84",
+        "kind": "bl",
+        "target": "FirebaseAuth.get:_delegate@699464419_12dcd0"
+      },
+      {
+        "from_func": "AuthService.refreshAppUserInfo_1afc60",
+        "from_pc": "0x8365d8",
+        "kind": "bl",
+        "target": "FirebaseAuth.get:currentUser_134604"
+      },
+      {
+        "from_func": "AuthService.refreshAppUserInfo_1afc60",
+        "from_pc": "0x83662c",
+        "kind": "bl",
+        "target": "AuthRepositoryImpl.getAppUserInfo_1b014c"
+      },
+      {
+        "from_func": "AuthService.refreshAppUserInfo_1afc60",
+        "from_pc": "0x836648",
+        "kind": "bl",
+        "target": "AuthService._setCurrentAppUserInfo@1205060975_1afd1c"
+      },
+      {
+        "from_func": "AuthService.updateAppUserInfo_1b104c",
+        "from_pc": "0x8379c8",
+        "kind": "bl",
+        "target": "AuthRepositoryImpl.updateAppUserInfo_1b10b4"
+      },
+      {
+        "from_func": "AuthService.updateAppUserInfo_1b104c",
+        "from_pc": "0x8379e0",
+        "kind": "bl",
+        "target": "AuthService._setCurrentAppUserInfo@1205060975_1afd1c"
+      },
+      {
+        "from_func": "ProgramService.get:_currentUserId@1263118684_1ded1c",
+        "from_pc": "0x8656cc",
+        "kind": "bl",
+        "target": "FirebaseAuth.get:currentUser_134604"
+      },
+      {
+        "from_func": "AuthService.signOut_2f5340",
+        "from_pc": "0x97bca0",
+        "kind": "bl",
+        "target": "AuthService.signOut_2f5378"
+      },
+      {
+        "from_func": "AuthService.signOut_2f5378",
+        "from_pc": "0x97bce0",
+        "kind": "bl",
+        "target": "FirebaseCrashlytics.get:instance_136f34"
+      }
+    ],
+    "device_ble": [
+      {
+        "from_func": "SensorManager.transmitBlePacket_1b58ac",
+        "from_pc": "0x83c234",
+        "kind": "bl",
+        "target": "BleApiImpl.transmitBleCommandPacket_1b59a8"
+      },
+      {
+        "from_func": "BleApiImpl.transmitBleCommandPacket_1b59a8",
+        "from_pc": "0x83c38c",
+        "kind": "bl",
+        "target": "BleApiImpl._callMethod@859188570_1b5a64"
+      },
+      {
+        "from_func": "BleApiImpl._callMethod@859188570_1b5a64",
+        "from_pc": "0x83c544",
+        "kind": "bl",
+        "target": "BleOperationResult_1b5c24"
+      },
+      {
+        "from_func": "SensorManager.SensorManager._internal@1116043306_1b5de8",
+        "from_pc": "0x83c74c",
+        "kind": "bl",
+        "target": "BleApi.BleApi._1b6100"
+      },
+      {
+        "from_func": "BleApi.BleApi._1b6100",
+        "from_pc": "0x83ca68",
+        "kind": "bl",
+        "target": "BleApiImpl_1c2148"
+      },
+      {
+        "from_func": "BleApi.BleApi._1b6100",
+        "from_pc": "0x83ca74",
+        "kind": "bl",
+        "target": "BleApiImpl.BleApiImpl._1b615c"
+      },
+      {
+        "from_func": "BleApiImpl._onBleDfuStateUpdated@859188570_1b6658",
+        "from_pc": "0x83d090",
+        "kind": "bl",
+        "target": "SensorManager.onBleDfuStateUpdated_1b676c"
+      },
+      {
+        "from_func": "SensorManager.startScan_1b6948",
+        "from_pc": "0x83d2c0",
+        "kind": "bl",
+        "target": "BleApiImpl.startBleDeviceScan_1b6a20"
+      },
+      {
+        "from_func": "BleApiImpl.startBleDeviceScan_1b6a20",
+        "from_pc": "0x83d39c",
+        "kind": "bl",
+        "target": "BleApiImpl._callMethod@859188570_1b5a64"
+      },
+      {
+        "from_func": "BleApiImpl._onBleDfuFailed@859188570_1b6aa8",
+        "from_pc": "0x83d47c",
+        "kind": "bl",
+        "target": "SensorManager.onBleDfuFailed_1b6b58"
+      },
+      {
+        "from_func": "BleApiImpl._onBleDfuCompleted@859188570_1b6bec",
+        "from_pc": "0x83d5c0",
+        "kind": "bl",
+        "target": "SensorManager.onBleDfuCompleted_1b6c9c"
+      },
+      {
+        "from_func": "BleApiImpl._onBleDfuFirmwareUploadingProgressUpdated@859188570_1b6d30",
+        "from_pc": "0x83d770",
+        "kind": "bl",
+        "target": "SensorManager.onBleDfuFirmwareUploadingProgressUpdated_1b6e4c"
+      }
+    ],
+    "calibration": [
+      {
+        "from_func": "_$WeightliftingCalibrationImpl@1129372492.dyn:toJson_169fe0",
+        "from_pc": "0x7f0950",
+        "kind": "bl",
+        "target": "_$$WeightliftingCalibrationImplToJson@1129372492_16a07c"
+      },
+      {
+        "from_func": "CalibrationPopup.build_1b4080",
+        "from_pc": "0x83ad2c",
+        "kind": "bl",
+        "target": "GyroCalibrationWidget_1b4600"
+      },
+      {
+        "from_func": "CalibrationPopup.build_1b4080",
+        "from_pc": "0x83ad54",
+        "kind": "bl",
+        "target": "AccelAxisCalibrationWidget_1b45f4"
+      },
+      {
+        "from_func": "CalibrationRecordRepository.saveCalibrationDate_1b4c8c",
+        "from_pc": "0x83b5fc",
+        "kind": "bl",
+        "target": "CalibrationRecordRepository._loadRecords@1222276897_1b4d8c"
+      },
+      {
+        "from_func": "BleMocapDataParser._parseAccelBiasCalibrationPacket@859188570_1bb788",
+        "from_pc": "0x842128",
+        "kind": "bl",
+        "target": "BleMocapDataParser._printHex@859188570_1bca54"
+      },
+      {
+        "from_func": "BleMocapDataParser._parseAccelBiasCalibrationPacket@859188570_1bb788",
+        "from_pc": "0x84254c",
+        "kind": "bl",
+        "target": "AccelCalibrationUtil.validateAccelXYZAndUpdateMeasureStateForAccelBiasCal_1bc5d0"
+      },
+      {
+        "from_func": "BleMocapDataParser._parseAccelBiasCalibrationPacket@859188570_1bb788",
+        "from_pc": "0x842578",
+        "kind": "bl",
+        "target": "AccelCalibrationUtil.isAccelMeasuredAllMocapPositionForBiasCal_1bc390"
+      },
+      {
+        "from_func": "BleMocapDataParser._parseAccelBiasCalibrationPacket@859188570_1bb788",
+        "from_pc": "0x84273c",
+        "kind": "bl",
+        "target": "AccelCalibrationUtil.resetAccelMeasureStateForOffsetAxisCal_1bbf48"
+      },
+      {
+        "from_func": "AccelCalibrationUtil.resetAccelMeasureStateForOffsetAxisCal_1bbf48",
+        "from_pc": "0x842a5c",
+        "kind": "bl",
+        "target": "AccelCalibrationUtil._printAccelMeasureStateMapForOffsetAxisCal@859188570_1bc140"
+      },
+      {
+        "from_func": "AccelCalibrationUtil.validateAccelXYZAndUpdateMeasureStateForAccelBiasCal_1bc5d0",
+        "from_pc": "0x8430cc",
+        "kind": "bl",
+        "target": "AccelCalibrationUtil.updateMeasureStateForAccelBiasCal_1bc7bc"
+      },
+      {
+        "from_func": "AccelCalibrationUtil.updateMeasureStateForAccelBiasCal_1bc7bc",
+        "from_pc": "0x8432d4",
+        "kind": "bl",
+        "target": "AccelCalibrationUtil._printAccelMaxBiasMeasurementStatusMap@859188570_1bc9b0"
+      },
+      {
+        "from_func": "BleMocapDataParser._parseAccelOffsetAxisCalibrationPacket@859188570_1bcc40",
+        "from_pc": "0x84381c",
+        "kind": "bl",
+        "target": "AccelCalibrationUtil.validateAccelXYZAndUpdateMeasureStateForOffsetAxisCal_1bd4a0"
+      }
+    ],
+    "weightlifting": [
+      {
+        "from_func": "Weightlifting.get:bestPeakVelocity_10c458",
+        "from_pc": "0x792dbc",
+        "kind": "bl",
+        "target": "_$WeightliftingImpl@1410498253.get:lifts_10c524"
+      },
+      {
+        "from_func": "Weightlifting.get:bestPeakVelocity_10c458",
+        "from_pc": "0x792dfc",
+        "kind": "bl",
+        "target": "_$WeightliftingImpl@1410498253.get:lifts_10c524"
+      },
+      {
+        "from_func": "_$WeightliftingImpl@1410498253.dyn:toJson_10c580",
+        "from_pc": "0x792ef0",
+        "kind": "bl",
+        "target": "_$$WeightliftingImplToJson@1410498253_10c5c8"
+      },
+      {
+        "from_func": "_$WeightliftingLiftImpl@1410498253.dyn:toJson_10c838",
+        "from_pc": "0x7931a8",
+        "kind": "bl",
+        "target": "_$$WeightliftingLiftImplToJson@1410498253_10c8a0"
+      },
+      {
+        "from_func": "_$WeightliftingBestRecordImpl@1115002182.dyn:toJson_1396f8",
+        "from_pc": "0x7c0068",
+        "kind": "bl",
+        "target": "_$$WeightliftingBestRecordImplToJson@1115002182_139760"
+      },
+      {
+        "from_func": "_$WeightliftingBestRecordFromJson@1115002182_13ca68",
+        "from_pc": "0x7c33bc",
+        "kind": "bl",
+        "target": "_$$WeightliftingBestRecordImplFromJson@1115002182_13ca94"
+      },
+      {
+        "from_func": "_$$WeightliftingBestRecordImplFromJson@1115002182_13ca94",
+        "from_pc": "0x7c35f4",
+        "kind": "bl",
+        "target": "_$WeightliftingBestRecordImpl@1115002182_13ccf0"
+      },
+      {
+        "from_func": "Weightlifting.get:avgSecondPullVelocity_163ed4",
+        "from_pc": "0x7ea838",
+        "kind": "bl",
+        "target": "_$WeightliftingImpl@1410498253.get:lifts_10c524"
+      },
+      {
+        "from_func": "Weightlifting.get:avgSecondPullVelocity_163ed4",
+        "from_pc": "0x7ea878",
+        "kind": "bl",
+        "target": "_$WeightliftingImpl@1410498253.get:lifts_10c524"
+      },
+      {
+        "from_func": "Weightlifting.get:avgSecondPullVelocity_163ed4",
+        "from_pc": "0x7ea8b4",
+        "kind": "bl",
+        "target": "_$WeightliftingImpl@1410498253.get:lifts_10c524"
+      },
+      {
+        "from_func": "Weightlifting.get:avgFirstPullVelocity_164028",
+        "from_pc": "0x7ea98c",
+        "kind": "bl",
+        "target": "_$WeightliftingImpl@1410498253.get:lifts_10c524"
+      },
+      {
+        "from_func": "Weightlifting.get:avgFirstPullVelocity_164028",
+        "from_pc": "0x7ea9cc",
+        "kind": "bl",
+        "target": "_$WeightliftingImpl@1410498253.get:lifts_10c524"
+      }
+    ],
+    "vbt": [
+      {
+        "from_func": "_$VBTSettingImpl@1234411512.dyn:toJson_892e0",
+        "from_pc": "0x70fc50",
+        "kind": "bl",
+        "target": "_$$VBTSettingImplToJson@1234411512_89328"
+      },
+      {
+        "from_func": "_$VbtSetImpl@1129372492.dyn:toJson_119d04",
+        "from_pc": "0x7a0674",
+        "kind": "bl",
+        "target": "_$$VbtSetImplToJson@1129372492_119d4c"
+      },
+      {
+        "from_func": "_$VbtRepImpl@1129372492.dyn:toJson_11a01c",
+        "from_pc": "0x7a098c",
+        "kind": "bl",
+        "target": "_$$VbtRepImplToJson@1129372492_11a084"
+      },
+      {
+        "from_func": "_$WorkoutVbtResultImpl@1129372492.dyn:toJson_11a754",
+        "from_pc": "0x7a10c4",
+        "kind": "bl",
+        "target": "_$$WorkoutVbtResultImplToJson@1129372492_11a79c"
+      },
+      {
+        "from_func": "_$$WorkoutVbtResultImplToJson@1129372492_11a79c",
+        "from_pc": "0x7a135c",
+        "kind": "bl",
+        "target": "_$WorkoutVbtResultImpl@1129372492.get:weightliftingDrillIdxs_11aa84"
+      },
+      {
+        "from_func": "_$VbtBestRecordImpl@1115002182.dyn:toJson_13a468",
+        "from_pc": "0x7c0dd8",
+        "kind": "bl",
+        "target": "_$$VbtBestRecordImplToJson@1115002182_13a4b0"
+      },
+      {
+        "from_func": "_$VbtBestRecordFromJson@1115002182_13e5d8",
+        "from_pc": "0x7c4f2c",
+        "kind": "bl",
+        "target": "_$$VbtBestRecordImplFromJson@1115002182_13e604"
+      },
+      {
+        "from_func": "_$$VbtBestRecordImplFromJson@1115002182_13e604",
+        "from_pc": "0x7c50bc",
+        "kind": "bl",
+        "target": "_$VbtBestRecordImpl@1115002182_13e7b0"
+      },
+      {
+        "from_func": "VbtFeedbackAnalyzer._analyzeEccentricDataForSet@1408308736_16c724",
+        "from_pc": "0x7f31dc",
+        "kind": "bl",
+        "target": "VbtFeedbackAnalyzer._calculateTempoConsistency@1408308736_16cbc8"
+      },
+      {
+        "from_func": "VbtFeedbackAnalyzer._analyzeEccentricDataForSet@1408308736_16c724",
+        "from_pc": "0x7f31f0",
+        "kind": "bl",
+        "target": "VbtFeedbackAnalyzer._calculateControlScore@1408308736_16ca58"
+      },
+      {
+        "from_func": "VbtFeedbackAnalyzer._analyzeEccentricDataForSet@1408308736_16c724",
+        "from_pc": "0x7f31fc",
+        "kind": "bl",
+        "target": "VbtFeedbackAnalyzer._calculateEccentricVelocityTrend@1408308736_16c904"
+      },
+      {
+        "from_func": "_$ProgramVbtDataImpl@1128248788.dyn:toJson_170034",
+        "from_pc": "0x7f69a4",
+        "kind": "bl",
+        "target": "_$$ProgramVbtDataImplToJson@1128248788_171e24"
+      }
+    ],
+    "rotation": [
+      {
+        "from_func": "_$WorkoutRotationResultImpl@1129372492.dyn:toJson_164c28",
+        "from_pc": "0x7eb598",
+        "kind": "bl",
+        "target": "_$$WorkoutRotationResultImplToJson@1129372492_164c70"
+      },
+      {
+        "from_func": "_$WorkoutRotationSetImpl@1129372492.dyn:toJson_164e20",
+        "from_pc": "0x7eb790",
+        "kind": "bl",
+        "target": "_$$WorkoutRotationSetImplToJson@1129372492_164e88"
+      },
+      {
+        "from_func": "_$WorkoutRotationRepImpl@1129372492.dyn:toJson_1650b0",
+        "from_pc": "0x7eba20",
+        "kind": "bl",
+        "target": "_$$WorkoutRotationRepImplToJson@1129372492_1650f8"
+      },
+      {
+        "from_func": "_$ProgramRotationDataImpl@1128248788.dyn:toJson_16fdf4",
+        "from_pc": "0x7f6764",
+        "kind": "bl",
+        "target": "_$$ProgramRotationDataImplToJson@1128248788_171514"
+      },
+      {
+        "from_func": "_$RotationQuaternionImpl@1097462921.dyn:toJson_1b9070",
+        "from_pc": "0x83f9e0",
+        "kind": "bl",
+        "target": "_$$RotationQuaternionImplToJson@1097462921_1b9208"
+      },
+      {
+        "from_func": "RotationQuaternion.normalize_1b93d4",
+        "from_pc": "0x83fd70",
+        "kind": "bl",
+        "target": "_$RotationQuaternionImpl@1097462921_1b9460"
+      },
+      {
+        "from_func": "Transform._computeRotation@224167661_1d1160",
+        "from_pc": "0x857b50",
+        "kind": "bl",
+        "target": "Transform._createZRotation@224167661_1d12bc"
+      },
+      {
+        "from_func": "Transform._computeRotation@224167661_1d1160",
+        "from_pc": "0x857b74",
+        "kind": "bl",
+        "target": "Transform._createZRotation@224167661_1d12bc"
+      },
+      {
+        "from_func": "Transform._computeRotation@224167661_1d1160",
+        "from_pc": "0x857bcc",
+        "kind": "bl",
+        "target": "Transform._createZRotation@224167661_1d12bc"
+      },
+      {
+        "from_func": "Transform._computeRotation@224167661_1d1160",
+        "from_pc": "0x857be4",
+        "kind": "bl",
+        "target": "Transform._createZRotation@224167661_1d12bc"
+      },
+      {
+        "from_func": "RotationCameraDashboard.build_312318",
+        "from_pc": "0x999d60",
+        "kind": "bl",
+        "target": "CameraRecordingScaffold_1e708c"
+      },
+      {
+        "from_func": "_$RotationSetImpl@1401451035.dyn:toJson_3135c0",
+        "from_pc": "0x999f30",
+        "kind": "bl",
+        "target": "_$$RotationSetImplToJson@1401451035_313608"
+      }
+    ],
+    "one_rm": [
+      {
+        "from_func": "_$OneRmBestRecordImpl@1115002182.dyn:toJson_13a0f4",
+        "from_pc": "0x7c0a64",
+        "kind": "bl",
+        "target": "_$$OneRmBestRecordImplToJson@1115002182_13a13c"
+      },
+      {
+        "from_func": "_$OneRmBestRecordFromJson@1115002182_13e10c",
+        "from_pc": "0x7c4a60",
+        "kind": "bl",
+        "target": "_$$OneRmBestRecordImplFromJson@1115002182_13e138"
+      },
+      {
+        "from_func": "_$$OneRmBestRecordImplFromJson@1115002182_13e138",
+        "from_pc": "0x7c4b64",
+        "kind": "bl",
+        "target": "_$OneRmBestRecordImpl@1115002182_13e24c"
+      },
+      {
+        "from_func": "_$WorkoutOneRmResultImpl@1129372492.dyn:toJson_16fd1c",
+        "from_pc": "0x7f668c",
+        "kind": "bl",
+        "target": "_$$WorkoutOneRmResultImplToJson@1129372492_17007c"
+      },
+      {
+        "from_func": "_$ProgramOneRmDataImpl@1128248788.dyn:toJson_16fecc",
+        "from_pc": "0x7f683c",
+        "kind": "bl",
+        "target": "_$$ProgramOneRmDataImplToJson@1128248788_17188c"
+      },
+      {
+        "from_func": "_$$WorkoutOneRmResultImplToJson@1129372492_17007c",
+        "from_pc": "0x7f6a8c",
+        "kind": "bl",
+        "target": "_$WorkoutOneRmResultImpl@1129372492.get:attempts_17067c"
+      },
+      {
+        "from_func": "_$OneRmAttemptImpl@1129372492.dyn:toJson_170708",
+        "from_pc": "0x7f7078",
+        "kind": "bl",
+        "target": "_$$OneRmAttemptImplToJson@1129372492_170750"
+      },
+      {
+        "from_func": "_lblOneRmEstimated@1103342723_17edc4",
+        "from_pc": "0x80571c",
+        "kind": "bl",
+        "target": "_lblOneRmEstimated@1103342723_17edf4"
+      },
+      {
+        "from_func": "OneRmCameraMeasurePage.build_2e04d8",
+        "from_pc": "0x96714c",
+        "kind": "bl",
+        "target": "OneRmDataNotifier.get:bestRep_2e25e4"
+      },
+      {
+        "from_func": "OneRmCameraMeasurePage.build_2e04d8",
+        "from_pc": "0x9674a8",
+        "kind": "bl",
+        "target": "_OneRmMetricsPanel@1360063093_2e1074"
+      },
+      {
+        "from_func": "OneRmCameraMeasurePage.build_2e04d8",
+        "from_pc": "0x9678f4",
+        "kind": "bl",
+        "target": "CameraRecordingScaffold_1e708c"
+      },
+      {
+        "from_func": "OneRmDataNotifier.completeAttempt_2e27b4",
+        "from_pc": "0x969120",
+        "kind": "bl",
+        "target": "OneRmDataNotifier.get:bestRep_2e25e4"
+      }
+    ],
+    "jump_rsi": [
+      {
+        "from_func": "_$JumpSettingImpl@1234411512.dyn:toJson_89068",
+        "from_pc": "0x70f9d8",
+        "kind": "bl",
+        "target": "_$$JumpSettingImplToJson@1234411512_890b0"
+      },
+      {
+        "from_func": "_$$JumpSettingImplToJson@1234411512_890b0",
+        "from_pc": "0x70fa88",
+        "kind": "bl",
+        "target": "_$JumpSettingImpl@1234411512.get:lastBoxHeightM_8919c"
+      },
+      {
+        "from_func": "_$RsiBestRecordImpl@1115002182.dyn:toJson_139e94",
+        "from_pc": "0x7c0804",
+        "kind": "bl",
+        "target": "_$$RsiBestRecordImplToJson@1115002182_139efc"
+      },
+      {
+        "from_func": "_$JumpBestRecordImpl@1115002182.dyn:toJson_13a288",
+        "from_pc": "0x7c0bf8",
+        "kind": "bl",
+        "target": "_$$JumpBestRecordImplToJson@1115002182_13a2f0"
+      },
+      {
+        "from_func": "normalizeRsiBestRecord_13c2e8",
+        "from_pc": "0x7c2cd0",
+        "kind": "bl",
+        "target": "_$RsiBestRecordImpl@1115002182_13c3e8"
+      },
+      {
+        "from_func": "_$RsiBestRecordFromJson@1115002182_13de30",
+        "from_pc": "0x7c4784",
+        "kind": "bl",
+        "target": "_$$RsiBestRecordImplFromJson@1115002182_13de5c"
+      },
+      {
+        "from_func": "_$$RsiBestRecordImplFromJson@1115002182_13de5c",
+        "from_pc": "0x7c499c",
+        "kind": "bl",
+        "target": "_$RsiBestRecordImpl@1115002182_13c3e8"
+      },
+      {
+        "from_func": "_$JumpBestRecordFromJson@1115002182_13e2c8",
+        "from_pc": "0x7c4c1c",
+        "kind": "bl",
+        "target": "_$$JumpBestRecordImplFromJson@1115002182_13e2f4"
+      },
+      {
+        "from_func": "_$$JumpBestRecordImplFromJson@1115002182_13e2f4",
+        "from_pc": "0x7c4e64",
+        "kind": "bl",
+        "target": "_$JumpBestRecordImpl@1115002182_13e55c"
+      },
+      {
+        "from_func": "Rsi.get:averageHeight_16334c",
+        "from_pc": "0x7e9cb0",
+        "kind": "bl",
+        "target": "Rsi.get:top5_1633fc"
+      },
+      {
+        "from_func": "Rsi.get:averageHeight_16334c",
+        "from_pc": "0x7e9cd0",
+        "kind": "bl",
+        "target": "Rsi.get:top5_1633fc"
+      },
+      {
+        "from_func": "Rsi.get:averageHeight_16334c",
+        "from_pc": "0x7e9d0c",
+        "kind": "bl",
+        "target": "Rsi.get:top5_1633fc"
+      }
+    ],
+    "sessions_history": [
+      {
+        "from_func": "_$HistorySettingImpl@1234411512.dyn:toJson_896bc",
+        "from_pc": "0x71002c",
+        "kind": "bl",
+        "target": "_$$HistorySettingImplToJson@1234411512_89704"
+      },
+      {
+        "from_func": "_$$HistorySettingImplToJson@1234411512_89704",
+        "from_pc": "0x710084",
+        "kind": "bl",
+        "target": "_$HistorySettingImpl@1234411512.get:setPerformanceKpis_89884"
+      },
+      {
+        "from_func": "_ModalRoute&TransitionRoute&LocalHistoryRoute@286188637.get:popDisposition_90798",
+        "from_pc": "0x7170fc",
+        "kind": "bl",
+        "target": "_ModalRoute&TransitionRoute&LocalHistoryRoute@286188637.get:willHandlePopInternally_90838"
+      },
+      {
+        "from_func": "NavigatorState._flushHistoryUpdates@266124995_abcf0",
+        "from_pc": "0x7330cc",
+        "kind": "bl",
+        "target": "NavigatorState._flushObserverNotifications@266124995_afc40"
+      },
+      {
+        "from_func": "NavigatorState._flushHistoryUpdates@266124995_abcf0",
+        "from_pc": "0x733404",
+        "kind": "bl",
+        "target": "_HistoryProperty@266124995.update_accec"
+      },
+      {
+        "from_func": "_History@266124995.dyn:removeAt_acbec",
+        "from_pc": "0x73356c",
+        "kind": "bl",
+        "target": "_History@266124995.removeAt_acb9c"
+      },
+      {
+        "from_func": "_HistoryProperty@266124995.update_accec",
+        "from_pc": "0x733d20",
+        "kind": "bl",
+        "target": "_HistoryProperty@266124995._finalizeEntry@266124995_ad4a8"
+      },
+      {
+        "from_func": "_$ExerciseSessionImpl@1107304276.dyn:toJson_16e98c",
+        "from_pc": "0x7f52fc",
+        "kind": "bl",
+        "target": "_$$ExerciseSessionImplToJson@1107304276_16e9d4"
+      },
+      {
+        "from_func": "PersonalProfileDataSource._serializeSession@1195186576_16ee6c",
+        "from_pc": "0x7f591c",
+        "kind": "bl",
+        "target": "ExerciseSessionHistory_747b4"
+      },
+      {
+        "from_func": "_$$WorkoutExerciseResultImplToJson@1106232364_16f314",
+        "from_pc": "0x7f5f74",
+        "kind": "bl",
+        "target": "_$$ProgramVbtDataImplToJson@1128248788_171e24"
+      },
+      {
+        "from_func": "_$$WorkoutExerciseResultImplToJson@1106232364_16f314",
+        "from_pc": "0x7f5fcc",
+        "kind": "bl",
+        "target": "_$$ProgramJumpDataImplToJson@1128248788_171cfc"
+      },
+      {
+        "from_func": "_$$WorkoutExerciseResultImplToJson@1106232364_16f314",
+        "from_pc": "0x7f607c",
+        "kind": "bl",
+        "target": "_$$ProgramRsiDataImplToJson@1128248788_171ab0"
+      }
+    ],
+    "settings_profile": [
+      {
+        "from_func": "_updateUserSettingsData@17065589_95594",
+        "from_pc": "0x71bf0c",
+        "kind": "bl",
+        "target": "PlatformDispatcher._updateUserSettingsData@17065589_955e8"
+      },
+      {
+        "from_func": "_updateUserSettingsData@17065589_95d30",
+        "from_pc": "0x71c690",
+        "kind": "bl",
+        "target": "_updateUserSettingsData@17065589_95594"
+      },
+      {
+        "from_func": "ModalRoute._maybeDispatchNavigationNotification@286188637_b089c",
+        "from_pc": "0x737278",
+        "kind": "bl",
+        "target": "NavigationNotification_b0c2c"
+      },
+      {
+        "from_func": "ModalRoute._maybeDispatchNavigationNotification@286188637_b089c",
+        "from_pc": "0x7373c4",
+        "kind": "bl",
+        "target": "Notification.dispatch_b0adc"
+      },
+      {
+        "from_func": "ModalRoute._maybeDispatchNavigationNotification@286188637_b0aa4",
+        "from_pc": "0x737404",
+        "kind": "bl",
+        "target": "ModalRoute._maybeDispatchNavigationNotification@286188637_b089c"
+      },
+      {
+        "from_func": "Notification.dispatch_b0adc",
+        "from_pc": "0x737444",
+        "kind": "bl",
+        "target": "Element.dispatchNotification_b0b20"
+      },
+      {
+        "from_func": "Element.dispatchNotification_b0b20",
+        "from_pc": "0x737488",
+        "kind": "bl",
+        "target": "_NotificationNode@246042623.dispatchNotification_b0b64"
+      },
+      {
+        "from_func": "_NotificationNode@246042623.dispatchNotification_b0b64",
+        "from_pc": "0x737518",
+        "kind": "bl",
+        "target": "_NotificationNode@246042623.dispatchNotification_b0b64"
+      },
+      {
+        "from_func": "DeviceGestureSettings.DeviceGestureSettings.fromView_c6848",
+        "from_pc": "0x74d1f4",
+        "kind": "bl",
+        "target": "DeviceGestureSettings_c68dc"
+      },
+      {
+        "from_func": "ProfileService.build_13424c",
+        "from_pc": "0x7bada0",
+        "kind": "bl",
+        "target": "FirebaseAuth.get:currentUser_134604"
+      },
+      {
+        "from_func": "ProfileRepository.getProfile_136fec",
+        "from_pc": "0x7bd9cc",
+        "kind": "bl",
+        "target": "AuthRepositoryImpl.get:_usersRef@1199105188_142a4c"
+      },
+      {
+        "from_func": "ProfileRepository.getProfile_136fec",
+        "from_pc": "0x7bdb70",
+        "kind": "bl",
+        "target": "ProfileRepository._getMyProfileOrNull@1204521632_141ad4"
+      }
+    ],
+    "media_cloud": [
+      {
+        "from_func": "CameraRecordingNotifier.disposeCalculator_8898c",
+        "from_pc": "0x70f304",
+        "kind": "bl",
+        "target": "CameraRecordingService.dispose_889e0"
+      },
+      {
+        "from_func": "CameraRecordingService.dispose_889e0",
+        "from_pc": "0x70f40c",
+        "kind": "bl",
+        "target": "CameraController.dispose_560170"
+      },
+      {
+        "from_func": "CameraController.dispose_88b10",
+        "from_pc": "0x70f470",
+        "kind": "bl",
+        "target": "CameraController.dispose_560170"
+      },
+      {
+        "from_func": "_$CameraRecordingSettingImpl@1234411512.dyn:toJson_88f5c",
+        "from_pc": "0x70f8cc",
+        "kind": "bl",
+        "target": "_$$CameraRecordingSettingImplToJson@1234411512_88fa4"
+      },
+      {
+        "from_func": "ModalRoute._maybeDispatchNavigationNotification@286188637_b089c",
+        "from_pc": "0x737278",
+        "kind": "bl",
+        "target": "NavigationNotification_b0c2c"
+      },
+      {
+        "from_func": "ModalRoute._maybeDispatchNavigationNotification@286188637_b089c",
+        "from_pc": "0x7373c4",
+        "kind": "bl",
+        "target": "Notification.dispatch_b0adc"
+      },
+      {
+        "from_func": "ModalRoute._maybeDispatchNavigationNotification@286188637_b0aa4",
+        "from_pc": "0x737404",
+        "kind": "bl",
+        "target": "ModalRoute._maybeDispatchNavigationNotification@286188637_b089c"
+      },
+      {
+        "from_func": "Notification.dispatch_b0adc",
+        "from_pc": "0x737444",
+        "kind": "bl",
+        "target": "Element.dispatchNotification_b0b20"
+      },
+      {
+        "from_func": "Element.dispatchNotification_b0b20",
+        "from_pc": "0x737488",
+        "kind": "bl",
+        "target": "_NotificationNode@246042623.dispatchNotification_b0b64"
+      },
+      {
+        "from_func": "_NotificationNode@246042623.dispatchNotification_b0b64",
+        "from_pc": "0x737518",
+        "kind": "bl",
+        "target": "_NotificationNode@246042623.dispatchNotification_b0b64"
+      },
+      {
+        "from_func": "MethodChannelFirebaseAuth.dispose_12c280",
+        "from_pc": "0x7b2ce8",
+        "kind": "bl",
+        "target": "Firebase.app_12c698"
+      },
+      {
+        "from_func": "MethodChannelFirebaseAuth.dispose_12c280",
+        "from_pc": "0x7b2d8c",
+        "kind": "bl",
+        "target": "Firebase.app_12c698"
+      }
+    ]
+  }
+}
